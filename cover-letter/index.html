@@ -64,17 +64,15 @@
             font-size: 16px;
         }
         
-        /* İNTERAKTİF REDACTED STİLİ */
         .redacted {
             background-color: var(--text-color);
-            color: transparent; /* Metni gizle */
+            color: transparent;
             user-select: none;
-            position: relative;
             transition: background-color 0.3s ease;
         }
         .redacted:hover {
-            background-color: rgba(51, 51, 51, 0.3); /* Üzerine gelince şeffaflaş */
-            color: var(--text-color); /* Metni göster */
+            background-color: rgba(51, 51, 51, 0.3);
+            color: var(--text-color);
         }
 
         .highlight { font-weight: 700; }
@@ -96,13 +94,25 @@
     <div class="dossier">
         <div class="stamp" id="stamp-element">CLASSIFIED</div>
         
+        <div id="boot-sequence"></div>
         <div class="content" id="terminal">
-             <span id="typewriter"></span><span class="cursor" id="main-cursor" style="display: none;"></span>
+             <!-- İçerik JavaScript ile eklenecek -->
         </div>
     </div>
 
     <script>
         const stampSound = "data:audio/wav;base64,UklGRiQSAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQASAABmsyZpAAb/hfgG+PsF/v7/3/L+wPK+7f61/er8m/0q/T4BBAJBASf90/zR/Gv8W/w3+8L6xvmD+NL46vi2+Mb2o/Tn9RkGCQoTAyv/x/6r/vT/7/3g/jMBEwJIAwP9i/v3+aP2P/Uu9oPzRPHA8JrwnPCq8PPvxu9g8PD2CgWJCFgJjAOb/wL+S/ys/ND8l/yU/DL7Tfoq+cD10/Fo8gXxWfB18QXvxfB9844B0gaRC3EG6gfM/97/B/95/9X/3P53/1L/9f5Q/4f/2P/o/0MABAAFAAoAAf8c/u3+yf7N/iT+w/zC/Pj8Ff37/An8kPuf9/L6xfc8+fP6fvl49aD2j/bE+CX+AwcEBAQHAgv+Nf+3AOMCCgK9/wX/m/5G/0z+yf/P/2v/n/9Q/4H/7/9QAAgAJQA1AAH+Nf+z/0kCjwbSC6MGrAfTCAEM9gg5DOcGCgL8B3kKcgYd/1wGgQf9BPf+rfiG9oH0MvbX+oX9/v/VAAQADgAIAAEABgAC/4P92P2C/dL99f0J/Vz8HPuV+mP7HvwN/Tz8PfuG+o/64voI/Pz/CQQFCAQPA/3/6gEWA2AEHwK7/9P+x/4F/e367/cO9/71v/L68pTyW/D778brQ/Gv+WwJ9C5kQ4RKnFA4TCBE2FlkK1gB9ANX/3f9E/+7/gv+7/zcA6AHcAy0FhgeGCYgKkguUDJIOXg8+EdATWBZAF1QY1BtuG/Qe0iEAIwYkHyePKLAptivALbIu8jEgM5A15jjLOlI81D3kPxZBUEJqQ+JFEkYwRnJHgkk1SxtLi0wQTWhOuk/5VD1XSVm+W7pe/mL+gP6R/qT+sP62/o7+W/54/i7+NP4X/hf+IP4e/gT+Ff4e/gr+Cf4J/gr+FP4W/hX+Ev4P/gz+AP76/vH+3P7S/sL+tP7C/sH+zv7g/vD/GP8l/zT/Rf9X/2H/bv99/4v/nP+v/8H/yv/T/+v/+v8E/wn/DP8T/xr/HP8f/yP/Jf8v/zf/QP9F/0n/TP9S/1b/XP9f/2P/Z/9r/3P/eP9//4f/iv+P/5X/mP+f/6b/q/+v/7X/uv/E/8j/zf/T/9f/3f/h/w==";
+        
+        const bootLines = [
+            'Receiving secure transmission...',
+            'Source: ahmetkazankaya.dev',
+            'Destination: goodjobgames.com/hiring',
+            'Decrypting packet...',
+            'Authentication successful.',
+            ' ',
+            'Displaying message:',
+            ' '
+        ];
         
         const terminalContent = `
             <p><span class="highlight">Subject: AI Engineer Position - Proactive Solution Prototype</span></p>
@@ -136,45 +146,49 @@
             </p>
             <br>
             <span class="comment"># END OF TRANSMISSION</span>
+            <span class="cursor"></span>
         `;
 
         const terminalEl = document.getElementById('terminal');
-        const typewriterTarget = document.getElementById('typewriter');
-        const mainCursor = document.getElementById('main-cursor');
-        let i = 0;
-
+        const bootContainer = document.getElementById('boot-sequence');
+        let bootIndex = 0;
+        
         function playStamp() {
             try { new Audio(stampSound).play(); } catch (e) { console.error("Could not play stamp sound.", e); }
         }
 
-        function typeWriter() {
-            if (i < terminalContent.length) {
-                // HTML etiketlerini atla ve direkt ekle
-                if (terminalContent.substring(i, i + 1) === '<') {
-                    const tagEnd = terminalContent.indexOf('>', i);
-                    typewriterTarget.innerHTML += terminalContent.substring(i, tagEnd + 1);
-                    i = tagEnd + 1;
-                } else {
-                    typewriterTarget.innerHTML += terminalContent.charAt(i);
-                    i++;
+        function typeBootSequence() {
+            if (bootIndex < bootLines.length) {
+                const line = bootLines[bootIndex];
+                let charIndex = 0;
+                bootContainer.innerHTML += '<br>';
+                const lineEl = document.createElement('span');
+                bootContainer.appendChild(lineEl);
+                
+                function typeChar() {
+                    if(charIndex < line.length) {
+                        lineEl.innerHTML += line.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeChar, 20);
+                    } else {
+                        bootIndex++;
+                        setTimeout(typeBootSequence, 50);
+                    }
                 }
-                document.querySelector('.dossier').scrollTop = document.querySelector('.dossier').scrollHeight;
-                setTimeout(typeWriter, 10); // Yazma hızı
+                typeChar();
             } else {
-                mainCursor.style.display = 'inline-block'; // Yazma bitince imleci göster
+                 setTimeout(() => {
+                    bootContainer.style.display = 'none';
+                    terminalEl.style.visibility = 'visible';
+                    terminalEl.innerHTML = terminalContent;
+                }, 700);
             }
         }
         
         window.onload = function() {
-            const stamp = document.getElementById('stamp-element');
             setTimeout(() => {
-                stamp.style.opacity = '0.8';
                 playStamp();
-                
-                setTimeout(() => {
-                    terminalEl.style.visibility = 'visible';
-                    typeWriter();
-                }, 1000); 
+                typeBootSequence();
             }, 500);
         }
     </script>
