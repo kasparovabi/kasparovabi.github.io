@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmet Kazankaya - AI Creative Director</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --accent-color: #FFD700; /* Gold */
+            --card-color: #242424;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: #fff;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--accent-color);
+            margin-top: 0.5rem;
+        }
+
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-card {
+            background: var(--card-color);
+            border-radius: 5px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 3px solid var(--accent-color);
+            display: flex;
+            flex-direction: column;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .portfolio-card h3 {
+            margin-top: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+        }
+        .portfolio-card h3 a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .portfolio-card h3 a:hover {
+            color: var(--accent-color);
+        }
+        .portfolio-card p {
+            flex-grow: 1;
+        }
+        .card-links a {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-right: 1rem;
+        }
+
+        .experience-item { margin-bottom: 2rem; }
+        .job-title { font-size: 1.2rem; font-weight: 700; color: #fff; }
+        .job-meta { color: var(--accent-color); font-style: italic; }
+        
+        .skills-list { list-style: none; padding: 0; }
+        .skills-list li { margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem; }
+        .skills-list li::before { content: '◆'; color: var(--accent-color); position: absolute; left: 0; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="reveal">
+            <h1>Ahmet Kazankaya</h1>
+            <h2>AI Creative Director | Visual Storyteller</h2>
+            <div class="contact-info">
+                <a href="mailto:ahmetkazankaya1@gmail.com">ahmetkazankaya1@gmail.com</a> |
+                <a href="https://www.linkedin.com/in/ahmetkazankaya" target="_blank">LinkedIn</a>
+            </div>
+        </header>
+
+        <section class="section reveal">
+            <h2 class="section-title">Vizyon</h2>
+            <p>Yaratıcı vizyon ile en son yapay zeka teknolojilerini birleştirerek, markalar için sadece estetik değil, aynı zamanda hikayesi olan, akılda kalıcı ve etkili görsel dünyalar yaratıyorum. Amacım, teknolojiyi bir araç olarak kullanarak, yaratıcı düşüncenin sınırlarını zorlamak ve ekiplere bu yeni üretim biçimlerinde ilham vererek rehberlik etmektir.</p>
+        </section>
+
+        <section class="section reveal">
+            <h2 class="section-title">Yetenekler & Uzmanlık Alanları</h2>
+            <ul class="skills-list">
+                <li><b>Sanat Yönetimi & Kürasyon:</b> AI projelerinde konsept, kompozisyon, stil ve duygusal ton belirleme; görsel kalite standardı oluşturma.</li>
+                <li><b>Üretken AI Platformları:</b> ComfyUI (Uzman), Midjourney, Stable Diffusion (1.5, XL, 3), FLUX, Runway, Sora, Luma Labs, D-ID.</li>
+                <li><b>Model Eğitimi & Optimizasyon:</b> Marka kimliğine özel LoRA ve Fine-Tuned modelleri eğiterek görsel tutarlılık sağlama.</li>
+                <li><b>Video & Post-Prodüksiyon:</b> Final Cut Pro (Profesyonel), Premiere Pro, After Effects.</li>
+                <li><b>İş Akışı Tasarımı & Otomasyon:</b> Yaratıcı süreçleri hızlandırmak için n8n ve benzeri otomasyon araçlarıyla verimli pipeline'lar tasarlama.</li>
+            </ul>
+        </section>
+
+        <section class="section reveal">
+            <h2 class="section-title">Öne Çıkan Projeler</h2>
+            <div class="portfolio-grid">
+                
+                <div class="portfolio-card">
+                    <h3><a href="https://www.behance.net/gallery/217187915/HEINZ-AI-Commercial" target="_blank">AI Reklam Filmleri</a></h3>
+                    <p>HEINZ gibi markalar için konseptten finale yapay zeka ile üretilmiş reklam kampanyaları.</p>
+                    <div class="card-links">
+                        <a href="https://www.instagram.com/p/DF00neIOjWH/" target="_blank">Greyder Kampanyası</a>
+                        <a href="https://www.instagram.com/reel/C_RPLyWtPCv/" target="_blank">Yarışma Projesi</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <h3><a href="https://www.behance.net/gallery/217157115/Fine-Tuned-Model-for-Lotus-Cookies" target="_blank">Özel Eğitilmiş AI Modelleri</a></h3>
+                    <p>Lotus Cookies gibi markalar için özel LoRA modelleri eğiterek ürünlerin, lifestyle görsellerine kusursuz entegrasyonu.</p>
+                </div>
+                
+                <div class="portfolio-card">
+                    <h3><a href="https://www.behance.net/gallery/219335789/Rhythmix-Workflow-for-Stable-Audio" target="_blank">Görsel Anlatı & Müzik Klipleri</a></h3>
+                    <p>Ses senkronizasyonlu (Rhythmix) ve video-to-video teknikleriyle üretilmiş sanatsal ve anlatı odaklı projeler.</p>
+                    <div class="card-links">
+                        <a href="https://www.behance.net/gallery/217185901/The-Wonderful-Story-of-Henry-Sugar" target="_blank">Henry Sugar</a>
+                        <a href="https://www.instagram.com/reel/DCthMZwNCPn/" target="_blank">We Lost Dancing</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <h3><a href="https://github.com/kasparovabi/good-job-games-ai-player-feedback-analyzer" target="_blank">AI Otomasyon Pipeline'ı (n8n)</a></h3>
+                    <p>Yaratıcı ekiplerin verimliliğini artırmak amacıyla, oyuncu geri bildirimlerini analiz edip ilgili kanallara yönlendiren otomasyon sistemi.</p>
+                </div>
+                
+            </div>
+        </section>
+        
+        <section class="section reveal">
+            <h2 class="section-title">Yapay Zekaya Giden Yol: Görsel Sanatlar & Fotoğrafçılık Temeli</h2>
+            <div class="experience-item">
+                <p class="job-title">Resmi Fotoğrafçı @ İstanbul Valiliği</p>
+                <p class="job-meta">Şubat 2019 - Ağustos 2022</p>
+                <p>Vali Ali Yerlikaya'nın resmi fotoğrafçısı olarak, tarihi anları belgelerken kompozisyon, ışık ve hikaye anlatımı becerilerimi en üst düzeyde kullandım. Bu deneyim, anın ruhunu yakalama ve tek bir karede güçlü bir mesaj verme yeteneğimi pekiştirdi.</p>
+            </div>
+            <div class="experience-item">
+                <p class="job-title">Grafik Tasarımcı & Stüdyo Fotoğrafçısı @ Creww Digital</p>
+                <p class="job-meta">Ekim 2017 - Şubat 2019</p>
+                <p>E-ticaret ve sosyal medya için görsel stratejiler geliştirdim. Stüdyo ortamında model ve ürün çekimleri yöneterek, bir markanın görsel dilini oluşturma ve bu dili farklı platformlarda tutarlı bir şekilde uygulama konusunda pratik deneyim kazandım. Bu tecrübe, bugünkü AI sanat yönetmenliği vizyonumun temelini oluşturmaktadır.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function revealSections() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealSections);
+        document.addEventListener('DOMContentLoaded', revealSections);
+    </script>
+</body>
+</html>
