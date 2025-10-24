@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmet Kazankaya - AI Content Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --accent-color: #FF4500;
+            --card-color: #ffffff;
+            --header-color: #1a1a1a;
+        }
+        html { scroll-behavior: smooth; }
+
+        body {
+            /* DUVARI ŞEFFAF YAPIYORUZ */
+            background-color: transparent; 
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* ANİMASYONLU ARKA PLAN KATMANI */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; /* Bu katmanı en arkaya gönderir */
+            
+            /* Animasyon bozulursa diye statik rengi de buraya ekliyoruz */
+            background-color: var(--bg-color); 
+            
+            /* Animasyon */
+            background-image: linear-gradient(-45deg, #ffffff, #f0f0f0, #fff8f5, #ffffff);
+            background-size: 400% 400%;
+            animation: gradient-flow 15s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container { 
+            max-width: 960px; 
+            margin: 0 auto; 
+            padding: 4rem 2rem;
+        }
+        header { text-align: center; margin-bottom: 4rem; }
+        h1 {
+            font-family: 'Syne', sans-serif; font-size: 3.5rem;
+            color: var(--header-color); margin: 0;
+        }
+        h2 {
+            font-size: 1.5rem; font-weight: 400; color: var(--accent-color);
+            margin-top: 0.5rem;
+        }
+        .contact-info a { color: var(--header-color); text-decoration: none; margin: 0 1rem; transition: color 0.3s ease; }
+        .contact-info a:hover { color: var(--accent-color); }
+        .section { margin-bottom: 4rem; }
+        .section-title {
+            font-family: 'Syne', sans-serif; font-size: 2rem;
+            color: var(--header-color); margin-bottom: 2rem;
+        }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            overflow: hidden; text-decoration: none; color: var(--text-color);
+            display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .portfolio-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+        .card-content { padding: 1.5rem; }
+        .card-content h3 { margin-top: 0; font-family: 'Syne', sans-serif; color: var(--header-color); }
+        .card-content p { font-size: 0.95rem; margin-bottom: 0; }
+        .experience-item { margin-bottom: 2rem; }
+        .job-title { font-size: 1.2rem; font-weight: 500; color: var(--header-color); }
+        .job-meta { color: var(--accent-color); font-style: italic; font-size: 0.9rem; }
+        .skills-list { display: flex; flex-wrap: wrap; gap: 0.75rem; list-style: none; padding: 0; }
+        .skills-list li {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ahmet Kazankaya</h1>
+            <h2>AI Content Creator | Digital Artist</h2>
+            <div class="contact-info">
+                <a href="mailto:ahmetkazankaya1@gmail.com">ahmetkazankaya1@gmail.com</a> |
+                <a href="https://www.linkedin.com/in/ahmetkazankaya" target="_blank">LinkedIn</a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">Hakkımda</h2>
+            <p>Sosyal medya trendleri, meme kültürü ve dijital sanata olan tutkumu, üretken yapay zeka araçlarındaki teknik uzmanlığımla birleştirerek viral potansiyeli yüksek, estetik ve ilgi çekici görsel içerikler üretiyorum. Amacım, markalar ve ürünler için görsel hikayeler anlatmak ve bu hikayeleri en son AI teknolojileriyle hayata geçirmektir.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Uzmanlık Alanları</h2>
+            <ul class="skills-list">
+                <li>AI Visual Generation</li><li>ComfyUI Workflows</li><li>Nano Banana</li><li>Midjourney</li>
+                <li>Stable Diffusion</li><li>Model Fine-Tuning</li><li>Adobe Photoshop</li><li>Post-Processing</li>
+                <li>Viral Content Strategy</li><li>Meme Culture</li><li>Visual Storytelling</li><li>Final Cut Pro</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Seçilmiş Projeler</h2>
+            <div class="portfolio-grid">
+                <a href="https://www.behance.net/gallery/217187915/HEINZ-AI-Commercial" target="_blank" class="portfolio-card">
+                    <div class="card-content"><h3>AI Reklam Filmleri</h3><p>HEINZ ve Greyder gibi markalar için üretilmiş konsept ve reklam projeleri.</p></div>
+                </a>
+                <a href="https://www.behance.net/gallery/217157115/Fine-Tuned-Model-for-Lotus-Cookies" target="_blank" class="portfolio-card">
+                    <div class="card-content"><h3>Özel Eğitilmiş Modeller</h3><p>Marka kimliğine özel eğitilmiş modellerle ürünlerin lifestyle görsellerine entegrasyonu.</p></div>
+                </a>
+                <a href="https://www.behance.net/gallery/219335789/Rhythmix-Workflow-for-Stable-Audio" target="_blank" class="portfolio-card">
+                    <div class="card-content"><h3>Görsel Anlatılar</h3><p>Ses senkronizasyonu ve video-to-video teknikleriyle üretilmiş sanatsal ve anlatı odaklı projeler.</p></div>
+                </a>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Estetik Gözün Temeli: Profesyonel Geçmiş</h2>
+            <div class="experience-item">
+                <p class="job-title">Resmi Fotoğrafçı @ İstanbul Valiliği (2019-2022)</p>
+                <p>Kompozisyon, ışık ve anı yakalama konularında kazandığım profesyonel disiplin, AI çıktılarının sanat yönünü değerlendirme ve bir kalite standardı belirleme yeteneğimin temelini oluşturur.</p>
+            </div>
+            <div class="experience-item">
+                <p class="job-title">Grafik Tasarımcı & Stüdyo Fotoğrafçısı @ Creww Digital (2017-2019)</p>
+                <p>E-ticaret ve sosyal medya için görsel stratejiler geliştirerek, bir markanın görsel dilini oluşturma ve bu dili farklı platformlarda tutarlı bir şekilde uygulama konusunda pratik deneyim kazandım.</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
