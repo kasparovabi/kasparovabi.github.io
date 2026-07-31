@@ -1,234 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmet Kazankaya - AI Engineer CV</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --background-color: #1a1a1a;
-            --text-color: #FFBF00;
-            --link-color: #f0f8ff;
-            --glitch-color1: #ff00c1;
-            --glitch-color2: #00ffff;
-            --scanline-opacity: 0.08;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmet Kazankaya — AI-assisted developer, automation engineer</title>
+<meta name="description" content="I build and run production software with AI agents as the implementation layer. Institutional task automation, product pipelines, embedded voice robotics, open source agent tooling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Martian+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c1016; --ink2:#121822; --line:#1e2632;
+  --bone:#e8e5de; --dim:#98a0ac; --faint:#6b7482;
+  --copper:#ce8f4f; --patina:#82a892; --clay:#ad8579;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Newsreader",Georgia,serif;
+  --mono:"Martian Mono",ui-monospace,monospace;
+  --gut:clamp(1.25rem,4vw,3.5rem);
+}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--ink);color:var(--bone);
+  font-family:var(--body);font-size:1.02rem;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+p,dd,li,h1,h3{overflow-wrap:break-word}
+.wrap{max-width:1120px;width:100%;margin:0 auto;padding:0 var(--gut)}
+a{color:var(--copper);text-decoration:none;border-bottom:1px solid rgba(206,143,79,.32);transition:border-color .18s}
+a:hover{border-bottom-color:var(--copper)}
+a:focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:2px}
 
-        body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: 'Fira Code', monospace;
-            padding: 2rem;
-            margin: 0;
-            line-height: 1.6;
-            font-size: 16px;
-            overflow: hidden;
-            position: relative;
-        }
+/* ---------- masthead ---------- */
+.masthead{padding:clamp(2.4rem,6vh,4rem) 0 0}
+h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(2.9rem,9.5vw,6.4rem);line-height:.9;letter-spacing:-.035em;
+  margin:0;color:var(--bone);
+}
+.role{
+  font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--copper);margin:1.1rem 0 0;
+}
+.meta{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.02em;color:var(--faint);
+  margin:.9rem 0 0;display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;line-height:1.85;
+}
+.meta > *{min-width:0;overflow-wrap:anywhere}
+.meta a{color:var(--dim);border-bottom-color:rgba(152,160,172,.28)}
+.meta a:hover{color:var(--copper);border-bottom-color:var(--copper)}
 
-        #atari-background {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            overflow: hidden; z-index: 0; opacity: 0.05; white-space: pre;
-            font-size: 18px; line-height: 1.2;
-        }
-        
-        .invader { position: absolute; animation: fall 20s linear infinite; }
+/* ---------- thesis ---------- */
+.thesis{padding:clamp(2rem,5vh,3.2rem) 0 clamp(2.2rem,6vh,3.4rem)}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,4vw,3.4rem);align-items:start}
+@media (max-width:880px){.thesis-grid{grid-template-columns:1fr;gap:1.1rem}}
+.lede{
+  font-size:clamp(1.35rem,2.7vw,2.05rem);line-height:1.34;margin:0;
+  font-weight:500;letter-spacing:-.01em;
+}
+.lede em{font-style:normal;color:var(--copper)}
+.sub{color:var(--dim);margin:0;font-size:1.02rem}
 
-        @keyframes fall {
-            0% { transform: translateY(-10vh); }
-            100% { transform: translateY(110vh); }
-        }
+/* ---------- diagnosis block: the signature ---------- */
+.diag{position:relative;padding-left:1.5rem;margin:1.6rem 0 0}
+.diag::before{
+  content:"";position:absolute;left:0;top:.45em;bottom:.35em;width:2px;border-radius:2px;
+  background:linear-gradient(180deg,var(--faint) 0%,var(--clay) 30%,var(--patina) 68%,var(--copper) 100%);
+}
+.diag dl{display:grid;grid-template-columns:8.6rem 1fr;gap:.55rem 1.4rem;margin:0}
+.diag dt{
+  font-family:var(--mono);font-size:.58rem;font-weight:500;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--faint);padding-top:.42em;
+}
+.diag dd{margin:0;color:var(--bone);font-size:.99rem;line-height:1.5}
+.diag .t-guess dt{color:var(--clay)}
+.diag .t-guess dd{color:var(--dim);font-style:italic}
+.diag .t-root dt{color:var(--patina)}
+.diag .t-fix dt{color:var(--copper)}
+.diag dd small{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--faint);display:block;margin-top:.25rem}
 
-        body::after {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(0deg, rgba(0,0,0, var(--scanline-opacity)) 50%, transparent 50%);
-            background-size: 100% 4px; animation: scanline 15s linear infinite;
-            pointer-events: none; z-index: 1;
-        }
+.hero-case{
+  margin-top:clamp(1.6rem,4vh,2.6rem);background:var(--ink2);
+  border:1px solid var(--line);border-radius:3px;padding:1.5rem clamp(1rem,3vw,1.9rem) 1.6rem;
+}
+.hero-case .case-head{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 1.1rem;line-height:1.7;overflow-wrap:anywhere;
+}
+.hero-case .case-head b{color:var(--dim);font-weight:400}
+.hero-case .diag{margin-top:0}
 
-        @keyframes scanline { 0% { background-position: 0 0; } 100% { background-position: 0 100vh; } }
+/* reveal */
+.rv{opacity:0;transform:translateY(9px)}
+.is-in .rv{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
+.is-in .rv:nth-child(1){transition-delay:.05s}
+.is-in .rv:nth-child(2){transition-delay:.22s}
+.is-in .rv:nth-child(3){transition-delay:.39s}
+.is-in .rv:nth-child(4){transition-delay:.56s}
+.is-in .rv:nth-child(5){transition-delay:.73s}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none}
+  .is-in .rv{transition:none}
+}
 
-        .container {
-            max-width: 800px; margin: 0 auto; position: relative; z-index: 2;
-            text-shadow: 0 0 5px rgba(255, 191, 0, 0.4);
-            animation: flicker 0.15s infinite; height: 100vh; overflow-y: auto;
-        }
-        
-        @keyframes flicker {
-            0%, 100% { opacity: 1; } 50.2% { opacity: 0.95; } 50.4% { opacity: 1; }
-            50.6% { opacity: 0.9; } 50.8% { opacity: 1; }
-        }
-        
-        a {
-            color: var(--link-color);
-            font-weight: 700;
-            text-decoration: none;
-            position: relative;
-            display: inline-block;
-            text-shadow: 0 0 7px rgba(240, 248, 255, 0.7);
-        }
+/* ---------- sections ---------- */
+section{padding:clamp(2rem,5vh,3.2rem) 0;border-top:1px solid var(--line)}
+.sec-label{
+  font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;
+}
+.grid2{display:grid;grid-template-columns:10.5rem 1fr;gap:clamp(1.2rem,3vw,2.4rem)}
+@media (max-width:880px){.grid2{grid-template-columns:1fr;gap:.9rem}}
 
-        a:hover::before, a:hover::after {
-            content: attr(data-text); position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; background: var(--background-color);
-            overflow: hidden; clip: rect(0, 0, 0, 0);
-        }
-        a:hover::before {
-            left: -2px; text-shadow: 2px 0 var(--glitch-color1);
-            animation: glitch-anim-1 1s infinite linear alternate-reverse;
-        }
-        a:hover::after {
-            left: 2px; text-shadow: -2px 0 var(--glitch-color2);
-            animation: glitch-anim-2 1s infinite linear alternate-reverse;
-        }
-        @keyframes glitch-anim-1 { 0% { clip: rect(42px, 9999px, 44px, 0); } 20% { clip: rect(12px, 9999px, 62px, 0); } 40% { clip: rect(50px, 9999px, 102px, 0); } 60% { clip: rect(30px, 9999px, 80px, 0); } 80% { clip: rect(90px, 9999px, 2px, 0); } 100% { clip: rect(10px, 9999px, 55px, 0); } }
-        @keyframes glitch-anim-2 { 0% { clip: rect(5px, 9999px, 95px, 0); } 20% { clip: rect(80px, 9999px, 10px, 0); } 40% { clip: rect(25px, 9999px, 70px, 0); } 60% { clip: rect(65px, 9999px, 35px, 0); } 80% { clip: rect(40px, 9999px, 85px, 0); } 100% { clip: rect(100px, 9999px, 20px, 0); } }
+.note{margin:0 0 1.5rem;max-width:70ch}
+.note:last-child{margin-bottom:0}
+.note b{
+  font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--copper);display:block;margin-bottom:.3rem;
+}
+.note span{color:var(--dim)}
 
-        h1 { font-size: 2em; margin: 0; }
-        p { margin-top: 0.5em; }
-        .section-title { font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; display: block; }
-        .comment { opacity: 0.6; }
-        .prompt { display: inline; }
-        .cursor { display: inline-block; width: 10px; height: 1.2em; background-color: var(--text-color); animation: blink 1s step-end infinite; vertical-align: bottom; }
-        @keyframes blink { 50% { opacity: 0; } }
-        ul { list-style-type: none; padding-left: 0; }
-        li::before { content: '> '; white-space: pre; }
-        .job-title { font-weight: 700; }
-        .job-date { float: right; font-style: italic; }
-        
-        #boot-sequence { padding-bottom: 2rem; }
+/* ---------- cases ---------- */
+.case{padding:2.4rem 0;border-top:1px dashed var(--line)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case h3{
+  font-family:var(--display);font-weight:700;font-size:clamp(1.35rem,2.6vw,1.75rem);
+  letter-spacing:-.015em;margin:0;color:var(--bone);
+}
+.status{
+  font-family:var(--mono);font-size:.58rem;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);display:inline-flex;align-items:center;
+  gap:.45rem;margin:.55rem 0 0;
+}
+.status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--patina)}
+.status.s-proto::before{background:var(--copper)}
+.status.s-open::before{background:var(--dim)}
+.case p{margin:.95rem 0 0;max-width:72ch;color:var(--bone)}
+.stack{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.05em;color:var(--faint);
+  margin:1.05rem 0 0;line-height:1.85;max-width:72ch;
+}
 
-        @media (max-width: 600px) {
-            body { padding: 1rem; font-size: 14px; }
-            .job-date { float: none; display: block; }
-        }
-    </style>
+/* ---------- stack table ---------- */
+.rows{display:grid;gap:.1rem}
+.row{display:grid;grid-template-columns:11rem 1fr;gap:1.4rem;padding:.62rem 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row dt{
+  font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);padding-top:.3em;margin:0;
+}
+.row dd{margin:0;color:var(--bone);font-size:.97rem}
+@media (max-width:640px){
+  .row,.diag dl{grid-template-columns:1fr;gap:.2rem}
+  .row dd,.diag dd{padding-bottom:.35rem}
+}
+
+/* ---------- history ---------- */
+.job{display:grid;grid-template-columns:11rem 1fr;gap:1.4rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.job:last-of-type{border-bottom:0}
+.job time{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--faint);
+  padding-top:.42em;white-space:nowrap;
+}
+.job .what{margin:0}
+.job .what strong{font-family:var(--display);font-weight:600;font-size:1.02rem;color:var(--bone);display:block}
+.job .what span{color:var(--dim);font-size:.94rem}
+@media (max-width:640px){.job{grid-template-columns:1fr;gap:.15rem}.job time{padding-top:0}}
+
+/* ---------- footer ---------- */
+footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,8vh,5rem);border-top:1px solid var(--line)}
+.foot-line{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--faint);
+  display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;line-height:2;
+}
+.pdf{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+  display:inline-block;margin-bottom:1.6rem;padding:.62rem 1.1rem;border:1px solid var(--line);
+  border-radius:2px;color:var(--copper);transition:border-color .18s,background .18s;
+}
+.pdf:hover{border-color:var(--copper);background:rgba(206,143,79,.07)}
+</style>
 </head>
 <body>
-    <div id="atari-background"></div>
 
-    <div class="container">
-        <div id="boot-sequence"></div>
-        <div id="terminal" style="display: none;">
-            <span class="prompt">guest@ahmetkazankaya.dev:~$ </span><span id="typewriter"></span><span class="cursor"></span>
-        </div>
+<div class="wrap">
+
+  <header class="masthead">
+    <h1>Ahmet<br>Kazankaya</h1>
+    <p class="role">AI-assisted developer · automation engineer</p>
+    <p class="meta">
+      <span>Istanbul, Turkey · remote</span>
+      <a href="mailto:ahmetkazankaya1@gmail.com">ahmetkazankaya1@gmail.com</a>
+      <a href="https://github.com/kasparovabi">github.com/kasparovabi</a>
+      <a href="https://www.linkedin.com/in/ahmetkazankaya">linkedin.com/in/ahmetkazankaya</a>
+      <span>+90 536 214 8114</span>
+    </p>
+  </header>
+
+  <div class="thesis">
+    <div class="thesis-grid">
+      <p class="lede">One human, several agents.<br>I decide, review and debug.<br><em>They type.</em></p>
+      <p class="sub">I came to software through production work rather than a computer science degree. Since early 2026 I have shipped a task management system in daily use at a foundation, an automation line that lists and prices real products on Etsy, an ESP32 desktop robot with voice, and two open source skill sets other people install into their own agent setups. A model writes the code and the failures land on me, so I know where these tools mislead. This is what that looks like:</p>
     </div>
 
-    <script>
-        const beepSound = "data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"+Array(30).join("1t2212t11t");
-        
-        const bootLines = [
-            'CMOS checksum error - Defaults loaded.', 'AK-BIOS (C) 2024 Ahmet Kazankaya Corp.', 'Initializing System BIOS...',
-            'Memory Test: 640K OK', ' ', 'Loading Kernel Modules... [OK]', 'Initializing Device Drivers... [OK]',
-            'Mounting file systems... [OK]', 'Starting network services: dhcpcd... [OK]', ' ',
-            'Connecting to host ahmetkazankaya.dev...', 'Authenticating...', 'Connection established.', ' ',
-            'Welcome to AK-OS v1.0', 'login: guest', 'Loading user profile...',
-            'Running startup script: ./display_cv.sh --full', ' '
-        ];
-        
-        const terminalContent = `
-            <h1>Ahmet Kazankaya</h1>
-            <p>Creative AI Engineer | Generative AI & Automation Specialist</p>
+    <div class="hero-case" id="heroCase">
+      <p class="case-head">Rıfkı, ESP32-S3 desktop robot · <b>the board browned out and boot looped, on battery, for a month</b></p>
+      <div class="diag">
+        <dl>
+          <div class="rv t-guess" style="display:contents">
+            <dt>First guess</dt><dd>Servos stay passive during boot, so they cannot be the cause.</dd>
+          </div>
+          <div class="rv" style="display:contents">
+            <dt>Signal</dt><dd>Watching the hardware: the servos twitch the instant the battery goes in.</dd>
+          </div>
+          <div class="rv t-root" style="display:contents">
+            <dt>Root cause</dt><dd>At reset the PWM pins float. Three SG90 servos each pull about 300 mA of inrush, and together with the WiFi power peak they collapse the boost rail.</dd>
+          </div>
+          <div class="rv t-fix" style="display:contents">
+            <dt>Fix</dt><dd>Drive the servo and motor pins to OUTPUT LOW with pulldown in the first line of the board constructor.<small>No hardware change. The twitching stopped and the screen came up on the first try.</small></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
 
-            <span class="section-title">[======== CONTACT ========]</span>
-            <ul>
-                <li>Email: <a href="mailto:ahmetkazankaya1@gmail.com" data-text="ahmetkazankaya1@gmail.com">ahmetkazankaya1@gmail.com</a></li>
-                <li>LinkedIn: <a href="https://www.linkedin.com/in/ahmetkazankaya" target="_blank" data-text="linkedin.com/in/ahmetkazankaya">linkedin.com/in/ahmetkazankaya</a></li>
-                <li>GitHub: <a href="https://github.com/kasparovabi" target="_blank" data-text="github.com/kasparovabi">github.com/kasparovabi</a></li>
-                <li>Phone: (+90) 536 214 8114</li>
-            </ul>
+  <section id="work">
+    <div class="grid2">
+      <p class="sec-label">How I work with AI</p>
+      <div>
+        <p class="note"><b>Working model</b><span>One human, several agents. I write the architecture and the constraints into per repository steering files, route each task to the cheapest model that can do it, and read every diff before it lands. What the agents cannot do is decide what is worth building, or work out why a system is lying to me. Because the automation carries the repetitive load, I run several of these lines at the same time rather than one after another.</span></p>
+        <p class="note"><b>Daily tools</b><span>Claude Code as the main driver across a Windows and a macOS machine joined over Tailscale, so one session can work on both. Claude Agent SDK embedded in my own applications. Codex CLI, Cursor, Antigravity and Gemini CLI alongside it; Ollama and OpenRouter for local and mixed model routing; MCP servers for Blender, NotebookLM and my own tools.</span></p>
+        <p class="note"><b>Analysis</b><span>A 170 iteration automated research loop over trading data that rejected 87 hypotheses and produced the finding that mattered: no tradable edge was left in that pattern space. An automation survey across 184 real tasks and the matching mailbox that yielded 31 concrete candidates. A security audit of a self hosted AI workspace, written up as a report.</span></p>
+        <p class="note"><b>Documentation and design</b><span>A cross linked knowledge layer over my notes, built from raw sources by an ingestion command, with weekly lint runs that flag contradictions and stale claims. Steering files per repository that encode how a thing must be done rather than where the files live, which is what keeps a fresh agent session from redesigning yesterday's decisions.</span></p>
+        <p class="note"><b>Coding and testing</b><span>Headless verification wherever the tool allows it: Unity batchmode builds and smoke tests, xcodebuild with simulator screenshots for iOS, pytest and vitest suites the agent has to pass before a task counts as done.</span></p>
+        <p class="note"><b>Risks and limits</b><span>I wrote guard-20 and audit-20 because the same twenty failure classes kept reappearing in generated code. I refuse blocklist style fixes: when a speech model started hallucinating a phrase, filtering that phrase would have hidden a dead voice activity detector underneath. Scaffolding has a ceiling too, and my own agent scaffold documents it: it gates itself off on the newest models because over scaffolding makes their output worse.</span></p>
+      </div>
+    </div>
+  </section>
 
-            <span class="section-title">[======== SUMMARY ========]</span>
-            <p>A creative and results-driven AI Engineer with deep expertise in generative AI, specializing in fine-tuning advanced models (Stable Diffusion, FLUX), designing complex ComfyUI workflows, and developing cost-effective automation solutions. Proven ability to bridge technical and creative domains, from producing commercial AI projects to engineering robust n8n pipelines that enhance operational efficiency.</p>
+  <section id="cases">
+    <div class="grid2">
+      <p class="sec-label">Cases</p>
+      <div>
 
-            <span class="section-title">[======== TECHNICAL SKILLS ========]</span>
-            <ul>
-                <li><b>Generative AI (Visual):</b> ComfyUI (Expert), Stable Diffusion (1.5/XL/3), FLUX, Midjourney, LoRA & Model Fine-Tuning</li>
-                <li><b>Generative AI (Audio):</b> TTS, STS Model Training</li>
-                <li><b>Automation & Orchestration:</b> n8n.io (Advanced), Make, Zapier, Blotato, Railway, API Integration</li>
-                <li><b>Programming:</b> Python (Foundational), JavaScript (Foundational - for n8n)</li>
-                <li><b>Cloud Platforms:</b> GCP, Google Colab, Runpod, Massed Compute</li>
-                <li><b>Video & Post-Production:</b> Final Cut Pro (Professional), Premiere Pro</li>
-            </ul>
-            
-            <span class="section-title">[======== KEY AI & AUTOMATION PROJECTS ========]</span>
-            <ul>
-                <li>
-                    <b>AI-Powered Player Feedback Pipeline</b> | <a href="https://github.com/kasparovabi/good-job-games-ai-player-feedback-analyzer" target="_blank" data-text="GitHub">GitHub</a> | <a href="https://www.loom.com/share/a096887d7df84dca85ea4e91e8602c8b?sid=98f7fef1-4d58-4067-b333-9db402e3305f" target="_blank" data-text="Video Demo">Video Demo</a>
-                    <br><span class="comment"># Proactively developed for the AI Engineer role at Good Job Games.</span>
-                    <br>Engineered an n8n pipeline using Google Gemini 2.5 Flash to analyze player feedback, perform sentiment/topic classification, and route alerts to appropriate teams on Slack.
-                </li>
-                <li>
-                    <b>Automated Tech News Curator</b>
-                    <br>Built a personal productivity automation in n8n that monitors news sources, summarizes content, categorizes it in Airtable, and prepares it for publication.
-                </li>
-            </ul>
+        <article class="case">
+          <h3>Maarif Task Management</h3>
+          <p class="status">In production · Türkiye Maarif Vakfı, Directorate of Communications</p>
+          <p>Before it existed the director read every incoming email himself, decided who should do each job, then tracked every delivery personally. The system reads the mailbox, turns each message into a task definition with an LLM, assigns it, and shows the state of every job on an office TV board.</p>
+          <div class="diag">
+            <dl>
+              <dt>Symptom</dt><dd>Generated task documents drifted from the institution's templates, and a text diff showed nothing.</dd>
+              <div class="t-root" style="display:contents"><dt>Root cause</dt><dd>The drift was visual, not textual, so the thing I was checking could not see it.</dd></div>
+              <div class="t-fix" style="display:contents"><dt>Fix</dt><dd>Compare delivered files visually against fixed templates, which made template stability measurable, and move the watcher off raw messages so the record holds an LLM written job definition instead of the mail body.</dd></div>
+            </dl>
+          </div>
+          <p class="stack">Python · FastAPI · SQLAlchemy · SQLite · Next.js · Swift · Microsoft Graph · Outlook 365 · Telegram</p>
+        </article>
 
-            <span class="section-title">[======== PROFESSIONAL EXPERIENCE ========]</span>
-            <div>
-                <span class="job-title">AI Game Artist / AI Solutions Designer @ JoyGame Publishing</span>
-                <span class="job-date">AUG 2025 - OCT 2025</span>
-                <br>Generated high-quality game assets and designed automation workflows to accelerate development pipelines.
-            </div>
-            <br>
-            <div>
-                <span class="job-title">Chief AI Artist / AI Art Director @ gpt journey</span>
-                <span class="job-date">APR 2024 - AUG 2025</span>
-                <br>Led end-to-end production of AI-generated commercials and trained custom models for brand campaigns.
-            </div>
-            <br>
-            <span class="comment"># For full work history, please refer to LinkedIn profile.</span>
-            <br><br>
-            <span class="comment"># Process finished with exit code 0.</span>
-        `;
+        <article class="case">
+          <h3>Etsy Factory and Demand Engine</h3>
+          <p class="status">Running daily · own production business</p>
+          <p>An automation line for a print on demand shop: public domain museum works and locally generated art flow into Printify products and Etsy listings, through a Telegram approval gate, on a schedule, controllable from my phone over the tailnet. A second engine prices the catalogue: it pulls Printify's own shipping table per variant and country, applies a market ceiling per product type, and disables combinations that cannot be profitable.</p>
+          <div class="diag">
+            <dl>
+              <dt>Symptom</dt><dd>The scout agents kept producing near duplicate product ideas.</dd>
+              <div class="t-guess" style="display:contents"><dt>First guess</dt><dd>The model. Changing it changed nothing.</dd></div>
+              <div class="t-root" style="display:contents"><dt>Root cause</dt><dd>The shape of the data handed to the agents.</dd></div>
+              <div class="t-fix" style="display:contents"><dt>Fix</dt><dd>Restructure the input.<small>The clearest case I have of an AI failure that is not an AI problem.</small></dd></div>
+            </dl>
+          </div>
+          <p class="stack">Python · Swift · Etsy API · Printify · Telegram · launchd · Tailscale · Met, Getty, SMK, Wikimedia collections</p>
+        </article>
 
-        const bootContainer = document.getElementById('boot-sequence');
-        const terminalContainer = document.getElementById('terminal');
-        const typewriterTarget = document.getElementById('typewriter');
-        const atariBg = document.getElementById('atari-background');
-        let bootIndex = 0;
+        <article class="case">
+          <h3>Rıfkı, a desktop robot</h3>
+          <p class="status s-proto">Working prototype · ESP32-S3</p>
+          <p>Voice in, voice and motion out: microphone to speech recognition to an LLM to speech synthesis to head and arm servos, with wake word detection, over the air firmware updates and camera based face tracking. The power fault is in the case above; this one is the pipeline lying quietly.</p>
+          <div class="diag">
+            <dl>
+              <dt>Symptom</dt><dd>The speech pipeline kept inventing a phrase out of silence.</dd>
+              <div class="t-guess" style="display:contents"><dt>First guess</dt><dd>Filter the phrase. Rejected: that patches the wrong layer.</dd></div>
+              <div class="t-root" style="display:contents"><dt>Root cause</dt><dd>Torch's C++ file open corrupts the Turkish character in the project path, so the voice activity detector raised on every call and a broad except turned that failure into a warning. With the detector dead, endpointing never fired and the transcriber was handed pure silence.</dd></div>
+              <div class="t-fix" style="display:contents"><dt>Fix</dt><dd>Copy the model file to an ASCII cache path through Python and load it from there.</dd></div>
+            </dl>
+          </div>
+          <p class="stack">C++ · PlatformIO · ESP-IDF · Python · Deepgram · Groq · ElevenLabs</p>
+        </article>
 
-        function playBeep() { try { new Audio(beepSound).play(); } catch (e) { console.error("Could not play boot sound.", e); } }
+        <article class="case">
+          <h3>guard-20, audit-20 and Mythos Scaffold</h3>
+          <p class="status s-open">Open source · <a href="https://github.com/kasparovabi/claude-audit-20">claude-audit-20</a> · <a href="https://github.com/kasparovabi/claude-mythos-scaffold">claude-mythos-scaffold</a></p>
+          <p>Two skill sets that turn recurring AI coding failures into enforceable process. guard-20 loads before code is written and states twenty failure classes as writing rules. audit-20 runs at the end as a twenty pass verification gate whose final pass does nothing but try to falsify the findings of the previous nineteen, so the aggressive passes do not bury you in false positives. Mythos Scaffold externalises long task state into a mission file, enforces persistence through Stop and SessionStart hooks so an agent cannot quit early or lose the thread after context compaction, and routes work to named worker agents by model tier.</p>
+          <div class="diag">
+            <dl>
+              <dt>Symptom</dt><dd>The scaffold measurably degraded output on the newest model generation, the opposite of its purpose.</dd>
+              <div class="t-root" style="display:contents"><dt>Root cause</dt><dd>Over scaffolding. The newer the model, the more the extra process costs it.</dd></div>
+              <div class="t-fix" style="display:contents"><dt>Fix</dt><dd>Model gating, the ceiling written into the documentation, and an eval harness that runs bare and scaffolded arms so the claim is measured rather than assumed.</dd></div>
+            </dl>
+          </div>
+          <p class="stack">Python · Claude Code skills · Stop and SessionStart hooks · eval harness</p>
+        </article>
 
-        function createInvaders() {
-            const invaders = ['👾', '🕹️', '👽', '🚀', '⭐', '≽( o_o)≼', '<-A->', 'o/\\o'];
-            const count = 70;
-            for (let i = 0; i < count; i++) {
-                const invader = document.createElement('div');
-                invader.classList.add('invader');
-                invader.innerText = invaders[Math.floor(Math.random() * invaders.length)];
-                invader.style.left = `${Math.random() * 100}vw`;
-                invader.style.animationDuration = `${Math.random() * 15 + 10}s`;
-                invader.style.animationDelay = `-${Math.random() * 25}s`;
-                atariBg.appendChild(invader);
-            }
-        }
+        <article class="case">
+          <h3>Cebimde Claude</h3>
+          <p class="status s-proto">iOS client for agentic development</p>
+          <p>An iPhone app that hands a task to a coding agent from anywhere: SwiftUI client, TypeScript backend on the Mac running the Claude Agent SDK, WebSocket between them. The agent produces either a web page or a full XcodeGen SwiftUI project, builds it, and returns a simulator screenshot; a second command installs it on a real device.</p>
+          <div class="diag">
+            <dl>
+              <dt>Symptom</dt><dd>On a phone the connection drops constantly, and every drop left a ghost: output and heartbeats going to a dead socket, reconnect storms, an abandoned agent still running while a new one started on the same project.</dd>
+              <div class="t-root" style="display:contents"><dt>Root cause</dt><dd>No identity on the connection and no ownership rule per project.</dd></div>
+              <div class="t-fix" style="display:contents"><dt>Fix</dt><dd>A connection epoch so late output cannot reach a stale socket, a rule that a new message stops any hanging agent on that project, and session ids persisted to disk so a conversation survives the app being killed.</dd></div>
+            </dl>
+          </div>
+          <p class="stack">Swift · SwiftUI · TypeScript · Claude Agent SDK · WebSocket · XcodeGen · xcodebuild</p>
+        </article>
 
-        function runBootSequence() {
-            if (bootIndex < bootLines.length) {
-                bootContainer.innerHTML += bootLines[bootIndex] + '<br>';
-                bootIndex++;
-                document.querySelector('.container').scrollTop = document.querySelector('.container').scrollHeight;
-                setTimeout(runBootSequence, Math.random() * 100 + 50); 
-            } else {
-                setTimeout(() => {
-                    bootContainer.style.display = 'none';
-                    terminalContainer.style.display = 'block';
-                    typewriterTarget.innerHTML = terminalContent;
-                }, 1000);
-            }
-        }
-        
-        window.onload = function() {
-            createInvaders();
-            playBeep();
-            runBootSequence();
-        }
-    </script>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="grid2">
+      <p class="sec-label">Stack</p>
+      <div>
+        <p class="note" style="margin-bottom:1.7rem"><span>Everything below appears in code I have shipped.</span></p>
+        <dl class="rows">
+          <div class="row"><dt>Languages</dt><dd>Python, TypeScript, JavaScript, Swift, C++ (ESP32/Arduino), C#, SQL, MQL5, Shell, PowerShell</dd></div>
+          <div class="row"><dt>Backend, data</dt><dd>FastAPI, SQLAlchemy, SQLite, PostgreSQL, Prisma, Supabase, NestJS, Redis</dd></div>
+          <div class="row"><dt>Frontend</dt><dd>Next.js, React, Tailwind, Vite, Turborepo monorepos</dd></div>
+          <div class="row"><dt>Mobile, desktop</dt><dd>SwiftUI, Capacitor, Tauri, Expo, PySide6, Electron</dd></div>
+          <div class="row"><dt>Embedded</dt><dd>ESP-IDF, PlatformIO, Arduino, servo and audio hardware bring up</dd></div>
+          <div class="row"><dt>Infrastructure</dt><dd>Git, Docker, Vercel, Netlify, Cloudflare Workers, Tailscale, launchd and cron, pm2</dd></div>
+          <div class="row"><dt>Integrations</dt><dd>REST APIs, Microsoft Graph and Outlook 365, Etsy, Printify, Telegram, WhatsApp (Baileys), Deepgram, ElevenLabs, Groq, KIE.AI, OpenRouter, Binance, MetaTrader5</dd></div>
+          <div class="row"><dt>Testing</dt><dd>pytest, vitest, Jest, XCTest, Playwright, headless batchmode CI</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="history">
+    <div class="grid2">
+      <p class="sec-label">History</p>
+      <div>
+        <div class="job"><time>Mar 2026 — now</time><p class="what"><strong>AI Solutions Designer · Türkiye Maarif Vakfı</strong><span>Internal systems and automation for the Directorate of Communications.</span></p></div>
+        <div class="job"><time>Nov 2025 — Jan 2026</time><p class="what"><strong>Generative AI Engineer · Pepper Root</strong><span>Creative AI studio, remote.</span></p></div>
+        <div class="job"><time>Aug 2025 — Oct 2025</time><p class="what"><strong>AI Artist · Joy Game</strong><span>Game assets and pipeline automation.</span></p></div>
+        <div class="job"><time>Mar 2024 — Aug 2025</time><p class="what"><strong>Chief GenAI Art Director · GPT Journey</strong><span>AI generated commercials and custom model training for brand campaigns.</span></p></div>
+        <div class="job"><time>Oct 2022 — Jun 2025</time><p class="what"><strong>Generative AI Creator · Fiverr</strong></p></div>
+        <div class="job"><time>Jun 2020 — Nov 2022</time><p class="what"><strong>Graphic Designer and Photographer · Creww Digital</strong></p></div>
+        <div class="job"><time>Jan 2018 — Apr 2020</time><p class="what"><strong>Official Photographer · Istanbul Governorship</strong></p></div>
+        <div class="job"><time>Feb 2017 — Jan 2018</time><p class="what"><strong>News Editor · Skala Media Solutions</strong></p></div>
+        <div class="job"><time>Sep 2016 — Feb 2017</time><p class="what"><strong>Teacher · ARGEM</strong></p></div>
+
+        <p class="note" style="margin-top:2.2rem"><b>Education</b><span>Mechanical Engineering, Namık Kemal University, from 2012. I left before finishing the degree and learned the rest by building; the engineering years are where the habit of taking a system apart before judging it comes from.</span></p>
+        <p class="note"><b>Before software</b><span>Ten years in visual production, which is where the tooling instinct came from. I moved into generative tools early, running Stable Diffusion and ComfyUI on my own machines from 2023 and treating node based workflows and LoRA fine tuning as production tooling rather than demos. My focus now is software and automation; the visual work is background.</span></p>
+        <p class="note"><b>Reading habit</b><span>I keep a searchable knowledge layer over what I read, with weekly lint runs that surface contradictions and claims gone stale. When a component misbehaves I go to the source before the second attempt rather than after the tenth. I verify current practice before choosing a stack, because a model's training data is always older than the problem in front of me.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a class="pdf" href="Ahmet-Kazankaya-CV.pdf">Download the two page CV</a>
+    <p class="foot-line">
+      <a href="mailto:ahmetkazankaya1@gmail.com">ahmetkazankaya1@gmail.com</a>
+      <a href="https://github.com/kasparovabi">github.com/kasparovabi</a>
+      <a href="https://www.linkedin.com/in/ahmetkazankaya">linkedin.com/in/ahmetkazankaya</a>
+      <span>Turkish, English</span>
+    </p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var hero = document.getElementById('heroCase');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    if (hero) hero.classList.add('is-in');
+    return;
+  }
+  requestAnimationFrame(function(){
+    setTimeout(function(){ if (hero) hero.classList.add('is-in'); }, 260);
+  });
+})();
+</script>
+
 </body>
-
 </html>
-
