@@ -124,6 +124,20 @@ section.blk{padding:clamp(3rem,9vh,6rem) 0;border-top:1px solid var(--line);posi
 .card .stack{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;color:var(--faint);
   margin:1.1rem 0 0;line-height:1.9}
 
+/* inline splat figures inside a case */
+.splats{display:grid;grid-template-columns:minmax(0,0.62fr) minmax(0,1fr);
+  gap:clamp(.9rem,2.5vw,1.8rem);margin:1.4rem 0 0;align-items:end}
+@media (max-width:760px){.splats{grid-template-columns:1fr;gap:1.2rem}}
+.splat{margin:0;position:relative}
+.splat canvas,.splat img{display:block;width:100%;height:clamp(190px,26vh,300px);
+  object-fit:contain;border-radius:2px}
+.splat canvas{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
+:root.splat-gpu .splat.on canvas{opacity:1}
+:root.splat-gpu .splat.on img{opacity:0}
+.splat img{transition:opacity .5s ease;background:rgba(255,255,255,.02)}
+.splat figcaption{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  color:var(--faint);margin:.6rem 0 0;line-height:1.6}
+
 .diag{position:relative;padding-left:1.4rem;margin:1.2rem 0 0}
 .diag::before{content:"";position:absolute;left:0;top:.4em;bottom:.3em;width:2px;border-radius:2px;
   background:linear-gradient(180deg,var(--faint),var(--clay) 32%,var(--alarm) 62%,var(--patina) 100%)}
@@ -291,6 +305,21 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
             <div class="f" style="display:contents"><dt>Fix</dt><dd>Copy the model file to an ASCII cache path through Python and load it from there.</dd></div>
           </dl></div>
           <p class="stack">C++ · PlatformIO · ESP-IDF · Python · Deepgram · Groq · ElevenLabs</p>
+
+          <div class="splats">
+            <figure class="splat" data-key="rifki">
+              <canvas aria-hidden="true"></canvas>
+              <img src="rifki.webp" width="620" height="806" loading="lazy" decoding="async"
+                   alt="The robot on a workbench: 3D printed orange body, an OLED face showing two eyes, ultrasonic sensors below it, servo wiring running out the back.">
+              <figcaption>The machine the fault was in</figcaption>
+            </figure>
+            <figure class="splat" data-key="wiring">
+              <canvas aria-hidden="true"></canvas>
+              <img src="wiring.webp" width="680" height="453" loading="lazy" decoding="async"
+                   alt="Wiring diagram of the robot: ESP32-S3 at the centre with servo, audio, display and sensor lines colour coded out to each peripheral.">
+              <figcaption>Wiring, where the rail is shared</figcaption>
+            </figure>
+          </div>
         </article>
 
         <article class="card">
@@ -393,6 +422,8 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
 <script src="rail.js" defer></script>
 <script src="crosswalk-data.js" defer></script>
 <script src="portrait.js" defer></script>
+<script src="splat-data.js" defer></script>
+<script src="splat.js" defer></script>
 <script>
 (function(){
   /* ---------- reveal on enter ---------- */
