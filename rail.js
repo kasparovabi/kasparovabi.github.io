@@ -371,6 +371,7 @@
         initGPU().then(function (g) {
           gpu = g;
           if (gpu) { root.classList.add('has-gpu'); sizeGPU(); }
+          syncLabel();
         });
       }
       if (onScreen) startLoop();
@@ -402,12 +403,21 @@
   }
 
   /* the switch */
-  var btn = document.getElementById('motionToggle'), lbl = document.getElementById('motionLabel');
+  var btn = document.getElementById('motionToggle'),
+      lbl = document.getElementById('motionLabel'),
+      hint = document.getElementById('motionHint');
   function syncLabel() {
     var on = full();
     if (lbl) lbl.textContent = on ? 'Motion on' : 'Motion off';
-    if (btn) { btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-               btn.title = on ? 'Turn the current field off' : 'Turn the current field on'; }
+    if (hint) {
+      hint.textContent = on
+        ? (gpuTried && !gpu ? '· no webgpu' : '')
+        : '· click to run the field';
+    }
+    if (btn) {
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.title = on ? 'Turn the current field off' : 'Turn the current field on';
+    }
   }
   if (btn) {
     btn.addEventListener('click', function () {
