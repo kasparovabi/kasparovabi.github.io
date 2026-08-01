@@ -309,14 +309,14 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
         <article class="card">
           <h3>Cebimde Claude</h3>
           <p class="state proto">Working prototype</p>
-          <p class="org">iOS client for agentic development</p>
-          <p>An iPhone app that hands a task to a coding agent from anywhere: SwiftUI client, TypeScript backend running the Claude Agent SDK, WebSocket between them. The agent builds a web page or a full SwiftUI project and returns a simulator screenshot; a second command installs it on a real device.</p>
+          <p class="org">Building iOS apps from the phone, without sitting at a Mac</p>
+          <p>Making an iOS app normally means a Mac with Xcode open in front of you. This turns the Mac into a build server you never look at: you describe the app from your phone, the agent scaffolds an XcodeGen SwiftUI project, compiles it, and sends back a simulator screenshot. A second command signs it and installs it on the phone in your hand. When a build fails the compiler output goes back to the agent, which fixes it and rebuilds without being asked.</p>
           <div class="diag"><dl>
             <dt>Symptom</dt><dd>Every dropped connection left a ghost, writing output to a dead socket while a new agent started on the same project.</dd>
             <div class="r" style="display:contents"><dt>Root cause</dt><dd>No identity on the connection, no ownership rule per project.</dd></div>
             <div class="f" style="display:contents"><dt>Fix</dt><dd>A connection epoch, a stop rule for hanging agents, and session ids persisted to disk so a conversation survives the app being killed.</dd></div>
           </dl></div>
-          <p class="stack">Swift · SwiftUI · TypeScript · Claude Agent SDK · WebSocket · XcodeGen · xcodebuild</p>
+          <p class="stack">Swift · SwiftUI · TypeScript · Claude Agent SDK · WebSocket · XcodeGen · xcodebuild · devicectl</p>
         </article>
 
       </div>
