@@ -1,11 +1,11 @@
-﻿/* Portrait scene: the photograph is not shown, it is assembled.
+/* Portrait scene: the photograph is not shown, it is assembled.
    Pixels become particles, scattered at first, pulled into place as you scroll.
    WebGPU when available; otherwise the plain image. */
 (function () {
   'use strict';
 
   var root = document.documentElement;
-  function full() { return root.getAttribute('data-motion') !== 'reduced'; }
+  /* the photo stays as the fallback when WebGPU is missing */
 
   var stage = document.getElementById('portrait');
   var cv = document.getElementById('pfield');
@@ -149,7 +149,7 @@
   ].join('\n');
 
   function initGPU() {
-    if (!navigator.gpu || !full()) return Promise.resolve(null);
+    if (!navigator.gpu) return Promise.resolve(null);
     return navigator.gpu.requestAdapter().then(function (ad) {
       if (!ad) return null;
       return ad.requestDevice().then(function (dev) {
@@ -260,7 +260,7 @@
   }
 
   function start() {
-    if (running || !full() || !gpu) return;
+    if (running || !gpu) return;
     running = true; last = 0; requestAnimationFrame(frame);
   }
   function stop() { running = false; }
@@ -272,7 +272,6 @@
   }
 
   function boot() {
-    if (!full()) { usePhoto(); return; }
     if (tried) { if (gpu) { root.classList.add('portrait-gpu'); if (onScreen) start(); } return; }
     tried = true;
     initGPU().then(function (g) {
@@ -300,14 +299,6 @@
   addEventListener('resize', function () {
     resize();
     if (gpu && samples && srcImg) { var s = samplePhoto(srcImg); if (s) { samples = s; upload(); } }
-  });
-
-  var btn = document.getElementById('motionToggle');
-  if (btn) btn.addEventListener('click', function () {
-    setTimeout(function () {
-      if (full()) { boot(); if (onScreen) start(); }
-      else usePhoto();
-    }, 30);
   });
 
   addEventListener('scroll', function () {

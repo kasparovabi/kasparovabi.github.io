@@ -1,11 +1,11 @@
-﻿/* The rail: a scrubbed power-fault scene.
+/* The rail: a scrubbed power-fault scene.
    WebGPU compute-shader current field when available, 2D canvas otherwise.
    The curve is the real fault: 3.3 V boost rail, three SG90 servos, brownout at 2.43 V. */
 (function () {
   'use strict';
 
   var root = document.documentElement;
-  function full() { return root.getAttribute('data-motion') !== 'reduced'; }
+  var root = document.documentElement;
   var stage = document.getElementById('stage');
   var c2d = document.getElementById('rail');
   var cgpu = document.getElementById('field');
@@ -191,7 +191,7 @@
   ].join('\n');
 
   function initGPU() {
-    if (!cgpu || !navigator.gpu || !full()) return Promise.resolve(null);
+    if (!cgpu || !navigator.gpu) return Promise.resolve(null);
     return navigator.gpu.requestAdapter().then(function (ad) {
       if (!ad) return null;
       return ad.requestDevice().then(function (dev) {
@@ -333,12 +333,12 @@
   }
 
   /* ---------- loop ---------- */
-  var last = 0, running = false, curP = 0, onScreen = true, gpuTried = false, queued = false;
+  var last = 0, running = false, curP = 0, onScreen = true;
 
   function paint(p, t, dt) {
     draw2d(p); beat(p);
     if (ident) ident.style.opacity = (1 - Math.max(0, Math.min(1, (p - 0.16) / 0.30)) * 0.88).toFixed(3);
-    if (gpu && !gpu.lost && full()) drawGPU(p, t, dt);
+    if (gpu && !gpu.lost) drawGPU(p, t, dt);
   }
 
   function frame(now) {
@@ -350,50 +350,23 @@
     if (running) requestAnimationFrame(frame);
   }
 
-  /* reduced motion: no rAF loop, the scroll position alone drives the trace */
-  function onScrollStatic() {
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(function (now) {
-      queued = false;
-      curP = progress();
-      paint(curP, now * 0.001, 0.016);
-    });
-  }
-
   function startLoop() {
     if (running) return;
     running = true; last = 0;
     requestAnimationFrame(frame);
   }
   function stopLoop() { running = false; }
-
-  function applyMotion() {
-    if (full()) {
-      removeEventListener('scroll', onScrollStatic);
-      if (!gpuTried) {
-        gpuTried = true;
-        initGPU().then(function (g) {
-          gpu = g;
-          if (gpu) { root.classList.add('has-gpu'); sizeGPU(); }
-          syncLabel();
-        });
-      }
-      if (onScreen) startLoop();
-    } else {
-      stopLoop();
-      addEventListener('scroll', onScrollStatic, { passive: true });
-      onScrollStatic();
-    }
-  }
-
   function resizeAll() {
     size2d(); sizeGPU();
-    if (!running) onScrollStatic();
+    if (!running) requestAnimationFrame(frame);
   }
 
   size2d();
-  applyMotion();
+  initGPU().then(function (g) {
+    gpu = g;
+    if (gpu) { root.classList.add('has-gpu'); sizeGPU(); }
+  });
+  startLoop();
 
   addEventListener('resize', resizeAll);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { paint(curP, 0, 0.016); });
@@ -402,36 +375,7 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
       onScreen = es[0].isIntersecting;
-      if (!full()) return;
       if (onScreen) startLoop(); else stopLoop();
     }, { threshold: 0 }).observe(stage);
   }
-
-  /* the switch */
-  var btn = document.getElementById('motionToggle'),
-      lbl = document.getElementById('motionLabel'),
-      hint = document.getElementById('motionHint');
-  function syncLabel() {
-    var on = full();
-    if (lbl) lbl.textContent = on ? 'Motion on' : 'Motion off';
-    if (hint) {
-      hint.textContent = on
-        ? (gpuTried && !gpu ? '· no webgpu' : '')
-        : '· click to run the field';
-    }
-    if (btn) {
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      btn.title = on ? 'Turn the current field off' : 'Turn the current field on';
-    }
-  }
-  if (btn) {
-    btn.addEventListener('click', function () {
-      var next = full() ? 'reduced' : 'full';
-      root.setAttribute('data-motion', next);
-      try { localStorage.setItem('motion', next); } catch (e) {}
-      syncLabel();
-      applyMotion();
-    });
-  }
-  syncLabel();
 })();
