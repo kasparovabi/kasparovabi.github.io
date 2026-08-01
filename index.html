@@ -154,6 +154,27 @@ section.blk{padding:clamp(3rem,9vh,6rem) 0;border-top:1px solid var(--line);posi
   .diag dl{gap:.1rem}
 }
 
+/* ============ portrait: the photo is assembled, not shown ============ */
+.portrait{position:relative;height:300vh;border-top:1px solid var(--line)}
+.portrait-pin{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:flex-end}
+#pfield{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+#pimg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;
+  height:80%;width:auto;max-width:92%;object-fit:contain;filter:saturate(.8) contrast(1.04);
+  transition:opacity .5s ease}
+:root.portrait-gpu #pimg{opacity:0;pointer-events:none}
+.portrait-pin::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;z-index:1;
+  background:linear-gradient(180deg,transparent,rgba(8,11,16,.6) 45%,rgba(8,11,16,.94));
+  pointer-events:none}
+.portrait-copy{position:relative;z-index:2;padding-bottom:clamp(2rem,7vh,4rem);
+  opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.portrait-copy.on{opacity:1;transform:none}
+.portrait-copy .tag{font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 .5rem}
+.portrait-copy .say{font-size:clamp(1.2rem,2.6vw,1.95rem);line-height:1.32;margin:0;
+  max-width:30ch;font-weight:500}
+:root[data-motion="reduced"] .portrait-copy{opacity:1;transform:none;transition:none}
+:root[data-motion="reduced"] #pfield{display:none}
+
 footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px solid var(--line)}
 .pdf{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
   display:inline-block;margin-bottom:1.5rem;padding:.65rem 1.15rem;border:1px solid var(--line);
@@ -373,6 +394,22 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
     </div>
   </section>
 
+  </div>
+
+  <section class="portrait" id="portrait">
+    <div class="portrait-pin">
+      <canvas id="pfield" aria-hidden="true"></canvas>
+      <img id="pimg" src="crosswalk.jpg" width="820" height="1025" loading="lazy" decoding="async"
+           alt="A crossing at rush hour, everyone around me blurred by the exposure, me standing still and looking back at the camera.">
+      <div class="wrap portrait-copy">
+        <p class="tag">How the work actually goes</p>
+        <p class="say">Every fix on this page started the same way. Stop moving, and look at the thing itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
   <footer>
     <a class="pdf" href="Ahmet-Kazankaya-CV.pdf">Download the two page CV</a>
     <p class="foot">
@@ -387,6 +424,8 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
 </div>
 
 <script src="rail.js" defer></script>
+<script src="crosswalk-data.js" defer></script>
+<script src="portrait.js" defer></script>
 <script>
 (function(){
   /* ---------- reveal on enter ---------- */

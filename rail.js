@@ -132,9 +132,13 @@
     '  let health = clamp(u.volt, 0.0, 1.0);',
     '  let lane = 0.45 + p.seed * 1.15;',
     '  let speed = mix(14.0, 190.0, health * health) * lane;',
-    '  let chaos = mix(98.0, 3.0, health) * (0.6 + p.seed * 0.8);',
+    '  let chaos = mix(98.0, 14.0, health) * (0.6 + p.seed * 0.8);',
     '  let wob = sin(p.pos.x * 0.011 + u.time * 1.7 + p.seed * 6.283) * chaos;',
-    '  let pull = (u.band - p.pos.y) * mix(0.05, 1.05, health);',
+    /* each particle keeps its own offset from the trace, so a calm rail stays a
+       band with depth instead of collapsing into a one pixel wire */
+    '  let spread = u.res.y * mix(0.26, 0.075, health);',
+    '  let home = u.band + (p.seed - 0.5) * 2.0 * spread;',
+    '  let pull = (home - p.pos.y) * mix(0.05, 0.55, health);',
     '  p.vel.x = mix(p.vel.x, speed, 0.09);',
     '  p.vel.y = mix(p.vel.y, wob + pull, 0.07);',
     '  p.pos = p.pos + p.vel * u.dt;',
