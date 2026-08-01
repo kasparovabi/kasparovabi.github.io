@@ -1,4 +1,4 @@
-/* The rail: a scrubbed power-fault scene.
+﻿/* The rail: a scrubbed power-fault scene.
    WebGPU compute-shader current field when available, 2D canvas otherwise.
    The curve is the real fault: 3.3 V boost rail, three SG90 servos, brownout at 2.43 V. */
 (function () {
@@ -51,8 +51,9 @@
   }
 
   function railGeom() {
+    /* keep the trace clear of the caption block that grows from the bottom */
     var padX = Math.max(18, W * 0.045);
-    var top = H * 0.50, bot = H * 0.88;
+    var top = H * 0.40, bot = H * 0.72;
     return {
       padX: padX, top: top, bot: bot,
       y: function (v) { return bot - (v / VMAX) * (bot - top); },
@@ -71,7 +72,7 @@
     ctx.beginPath(); ctx.moveTo(g.padX, yT); ctx.lineTo(W - g.padX, yT); ctx.stroke();
     ctx.restore();
     if (p > 0.30) {
-      ctx.font = '9px "Martian Mono", ui-monospace, monospace';
+      ctx.font = '11px "Martian Mono", ui-monospace, monospace';
       var bl = '2.43 V  BROWNOUT', bw = ctx.measureText(bl).width;
       ctx.fillStyle = 'rgba(8,11,16,.82)';
       ctx.fillRect(g.padX - 5, yT - 20, bw + 10, 15);
@@ -102,7 +103,7 @@
     ctx.beginPath(); ctx.arc(hx, hy, 3.4, 0, Math.PI * 2);
     ctx.fillStyle = vh < THRESHOLD ? '#d4533f' : (p > 0.78 ? '#7fb094' : '#d8944c');
     ctx.fill();
-    ctx.font = '10px "Martian Mono", ui-monospace, monospace';
+    ctx.font = '12px "Martian Mono", ui-monospace, monospace';
     var lbl = vh.toFixed(2) + ' V', lw = ctx.measureText(lbl).width;
     var lx = Math.min(W - g.padX - lw, hx + 10), ly = Math.max(g.top - 6, hy - 12);
     ctx.fillStyle = 'rgba(8,11,16,.8)';
@@ -336,7 +337,7 @@
 
   function paint(p, t, dt) {
     draw2d(p); beat(p);
-    if (ident) ident.style.opacity = (1 - Math.max(0, Math.min(1, (p - 0.18) / 0.34)) * 0.72).toFixed(3);
+    if (ident) ident.style.opacity = (1 - Math.max(0, Math.min(1, (p - 0.16) / 0.30)) * 0.88).toFixed(3);
     if (gpu && !gpu.lost && full()) drawGPU(p, t, dt);
   }
 
