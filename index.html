@@ -164,17 +164,35 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
 .foot a{color:var(--dim);border-bottom-color:rgba(152,160,172,.25)}
 .foot > *{overflow-wrap:anywhere}
 
-@media (prefers-reduced-motion:reduce){
-  .stage{height:auto}
-  .stage-pin{position:static;height:auto;padding-bottom:2rem}
-  .stage-inner{height:auto}
-  .beat-slot{display:block;min-height:0;padding-top:1.6rem}
-  .beat{position:static;opacity:1;transform:none;filter:none;margin-bottom:1.4rem;transition:none}
-  #rail{position:relative;height:210px;margin-top:1.5rem}
-  .rise,.card{opacity:1;transform:none;transition:none}
-  .scrollcue i{animation:none}
-}
+/* Reduced motion keeps the scroll story (you drive it) and drops what moves on its own:
+   the particle field, the blur/slide transitions, the pulsing cue. */
+:root[data-motion="reduced"]{scroll-behavior:auto}
+:root[data-motion="reduced"] #field{display:none}
+:root[data-motion="reduced"] .beat{transition:none;filter:none;transform:none}
+:root[data-motion="reduced"] .rise,
+:root[data-motion="reduced"] .card{opacity:1;transform:none;transition:none}
+:root[data-motion="reduced"] .scrollcue i{animation:none;transform:scaleX(1);opacity:.7}
+
+/* motion switch */
+.motion{position:absolute;top:clamp(1rem,3vh,1.8rem);right:var(--gut);z-index:4;
+  font-family:var(--mono);font-size:.54rem;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);background:none;border:0;cursor:pointer;
+  padding:.4rem .1rem;display:flex;align-items:center;gap:.5rem;pointer-events:auto}
+.motion:hover{color:var(--dim)}
+.motion:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+.motion i{display:block;width:5px;height:5px;border-radius:50%;background:var(--copper);
+  box-shadow:0 0 0 3px rgba(216,148,76,.18)}
+:root[data-motion="reduced"] .motion i{background:var(--faint);box-shadow:none}
 </style>
+<script>
+/* set before first paint so nothing flashes */
+(function(){
+  var d = document.documentElement, saved = null;
+  try { saved = localStorage.getItem('motion'); } catch (e) {}
+  d.setAttribute('data-motion',
+    saved || (matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduced' : 'full'));
+})();
+</script>
 </head>
 <body>
 
@@ -184,6 +202,9 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
     <canvas id="field" aria-hidden="true"></canvas>
     <canvas id="rail" role="img" aria-label="Voltage trace of the 3.3 volt rail: steady on USB power, three servo inrush dips on battery, collapse below the 2.43 volt brownout threshold, a boot loop, then steady again after the fix."></canvas>
     <div class="stage-inner">
+      <button class="motion" id="motionToggle" type="button">
+        <i aria-hidden="true"></i><span id="motionLabel">Motion on</span>
+      </button>
       <div class="wrap ident">
         <h1>Ahmet<br>Kazankaya</h1>
         <p class="role">AI-assisted developer · automation engineer</p>
