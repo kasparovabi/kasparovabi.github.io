@@ -1,8 +1,3 @@
-/* The machine.
-   The page claims "one human, several agents" and never showed the machine.
-   This draws the actual pipeline a task travels through here: routing, the
-   gates it must clear, the human approval point, and the audit trail.
-   Numbers come from the real systems, measured, not written by hand. */
 (function () {
   'use strict';
 
@@ -24,8 +19,7 @@
   var azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var yavas = azHareket ? 2.2 : 1.0;
 
-  /* the stages a unit of work actually goes through */
-  var ASAMALAR = [
+    var ASAMALAR = [
     { ad: 'TASK', alt: 'one repo' },
     { ad: 'ROUTE', alt: 'cheapest model' },
     { ad: 'guard-20', alt: 'write rules' },
@@ -61,16 +55,12 @@
 
     var n = ASAMALAR.length;
     var pay = 8;
-    /* six stages side by side need ~90px each to stay readable; below that
-       the labels clip, so the pipeline stacks vertically instead */
-    var dikey = W < n * 108;
+        var dikey = W < n * 108;
     var kw = dikey ? (W - pay * 2) : (W - pay * (n + 1)) / n;
     var kh = dikey ? Math.max(20, (H - 46 - pay * (n + 1)) / n) : 46;
     var ky = 30;
 
-    /* work units flowing through; one of them is rejected at the gate and
-       goes back, because that is what the gate is for */
-    var akis = [];
+        var akis = [];
     for (var u = 0; u < 3; u++) {
       var faz = (t * 0.13 / yavas + u * 0.33) % 1;
       var red = (u === 1);
@@ -89,8 +79,7 @@
       var aktif = (vurgu === i);
       var onay = (i === 4);
 
-      /* something sitting in this stage right now */
-      var dolu = akis.some(function (f) {
+            var dolu = akis.some(function (f) {
         return f.p >= i - 0.4 && f.p < i + 0.6;
       });
 
@@ -108,9 +97,7 @@
       ctx.fillStyle = onay ? COPPER : (aktif || dolu ? BONE : DIM);
       ctx.fillText(a.ad, x + 8, yy + (dikey ? kh / 2 + 3 : 19));
       ctx.fillStyle = FAINT;
-      /* clip on a word boundary: slicing two characters at a time left
-         half words like 'that' hanging in the box */
-      var alt = a.alt;
+            var alt = a.alt;
       while (ctx.measureText(alt).width > kw - 16 && alt.indexOf(' ') > 0) {
         alt = alt.slice(0, alt.lastIndexOf(' '));
       }
@@ -125,8 +112,7 @@
       }
     }
 
-    /* the units themselves */
-    for (var k = 0; k < akis.length; k++) {
+        for (var k = 0; k < akis.length; k++) {
       var f = akis[k];
       var idx = Math.max(0, Math.min(n - 1, Math.floor(f.p)));
       var ic = f.p - idx;
@@ -144,8 +130,7 @@
       ctx.fill();
     }
 
-    /* audit trail: every run leaves a line */
-    if (dikey) return;
+        if (dikey) return;
     var ty = H - 22;
     ctx.strokeStyle = 'rgba(152,160,172,.16)';
     ctx.beginPath(); ctx.moveTo(8, ty); ctx.lineTo(W - 8, ty); ctx.stroke();

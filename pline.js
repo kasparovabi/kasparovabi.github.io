@@ -1,8 +1,3 @@
-/* Hero figure, drawn live as current lines.
-   Never becomes a photograph. The lines respond to two things: the pointer,
-   which pushes them aside like a probe touching a live circuit, and the
-   fault on the rail, which makes the whole figure unstable as the voltage
-   collapses. Degradation increases toward the bottom so the hands dissolve. */
 (function () {
   'use strict';
 
@@ -17,7 +12,7 @@
   fetch('portrait-lines.json')
     .then(function (r) { return r.json(); })
     .then(function (d) { veri = d; boyut(); })
-    .catch(function () { /* no lines, no figure: the page still reads */ });
+    .catch(function () {  });
 
   function boyut() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -28,9 +23,7 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  /* the rail scene publishes its progress and health; if it is not there the
-     figure simply stays calm */
-  window.__portreDurum = function (p, s) { prog = p; saglik = s; };
+    window.__portreDurum = function (p, s) { prog = p; saglik = s; };
 
   cv.addEventListener('pointermove', function (e) {
     var r = cv.getBoundingClientRect();
@@ -56,8 +49,7 @@
     ctx.clearRect(0, 0, W, H);
 
     var sx = W / veri.w, sy = H / veri.h;
-    /* rail health drives instability: a collapsing rail shakes the figure */
-    var kriz = 1 - Math.max(0, Math.min(1, saglik));
+        var kriz = 1 - Math.max(0, Math.min(1, saglik));
     var salinim = azHareket ? 0.35 : 1;
 
     for (var i = 0; i < veri.teller.length; i++) {
@@ -69,8 +61,7 @@
         var y = o[j][0] * sy;
         var v = o[j][1] / 99;
 
-        /* vertical breakdown: the hands should not read as hands */
-        var n = o[j][0] / veri.h;
+                var n = o[j][0] / veri.h;
         var boz = Math.max(0, (n - 0.34) / 0.66);
         boz = boz * boz * 1.55;
 
@@ -80,15 +71,13 @@
         var kay = Math.sin(o[j][0] * 0.09 + tel.x * 0.31) * boz * 13 * sx
                 + Math.sin(o[j][0] * 0.031 + tel.x * 0.7) * boz * 6 * sx;
 
-        /* the rail fault reaches the figure */
-        if (kriz > 0.01) {
+                if (kriz > 0.01) {
           kay += Math.sin(y * 0.06 + t * 6.0 + i * 0.4) * kriz * 9 * salinim;
         }
 
         var x = bx + kay;
 
-        /* pointer as a probe: lines are pushed out of the way */
-        if (fare.acik) {
+                if (fare.acik) {
           var dx = x - fare.x, dy = y - fare.y;
           var r2 = dx * dx + dy * dy;
           var R = 120;

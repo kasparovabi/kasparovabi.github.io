@@ -1,8 +1,3 @@
-/* Stack map.
-   The stack was a flat list of seventy tool names with no hierarchy, so a
-   reader could not tell which layer anything belonged to. This draws it as
-   layers with the tools placed in them, and marks which layers a given case
-   actually touches when you hover a layer. */
 (function () {
   'use strict';
 
@@ -18,8 +13,7 @@
 
   var DIM = '#98a0ac', FAINT = '#69727f', COPPER = '#d8944c', PATINA = '#7fb094';
 
-  /* bottom to top: the order the work actually stacks in */
-  var KATMANLAR = [
+    var KATMANLAR = [
     { ad: 'DEVICE', araclar: ['ESP-IDF', 'PlatformIO', 'Arduino', 'servo', 'audio'] },
     { ad: 'RUNTIME', araclar: ['Python', 'TypeScript', 'Swift', 'C++', 'Go', 'SQL'] },
     { ad: 'SERVICE', araclar: ['FastAPI', 'NestJS', 'PostgreSQL', 'Redis', 'Supabase', 'Prisma'] },
@@ -58,8 +52,7 @@
     var solW = Math.min(150, W * 0.26);
 
     for (var i = 0; i < n; i++) {
-      /* drawn top down, but indexed bottom up so the device layer sits low */
-      var k = KATMANLAR[n - 1 - i];
+            var k = KATMANLAR[n - 1 - i];
       var y = pay + i * (kh + pay);
       var aktif = (vurgu === n - 1 - i);
 
@@ -73,8 +66,7 @@
       ctx.fillStyle = aktif ? COPPER : DIM;
       ctx.fillText(k.ad, 12, y + kh / 2 + 3);
 
-      /* tools as chips, wrapped inside the layer */
-      ctx.font = '11px "Martian Mono", ui-monospace, monospace';
+            ctx.font = '11px "Martian Mono", ui-monospace, monospace';
       var cx = solW, cy = y + kh / 2;
       for (var j = 0; j < k.araclar.length; j++) {
         var s = k.araclar[j];
@@ -90,8 +82,7 @@
       }
     }
 
-    /* a signal travelling up through the layers, so the diagram is not static */
-    var faz = (t * 0.11) % 1;
+        var faz = (t * 0.11) % 1;
     var yy = H - pay - faz * (H - pay * 2);
     ctx.strokeStyle = 'rgba(127,176,148,.30)';
     ctx.lineWidth = 1;

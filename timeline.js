@@ -1,8 +1,3 @@
-/* Career timeline.
-   The history section is a list of nine jobs, which hides the thing that
-   actually explains the CV: ten years of visual production, then a hard turn
-   into software. The bar shows that turn, and marks where each tool habit
-   started. Hovering a year reads out what was going on. */
 (function () {
   'use strict';
 
@@ -20,8 +15,7 @@
   var DIM = '#98a0ac', FAINT = '#69727f', COPPER = '#d8944c', PATINA = '#7fb094';
   var BASLA = 2016, BITIS = 2026.7;
 
-  /* two tracks, because the point is the overlap between them */
-  var IZLER = [
+    var IZLER = [
     {
       ad: 'VISUAL PRODUCTION',
       renk: COPPER,
@@ -105,9 +99,7 @@
         ctx.fill();
         ctx.strokeStyle = vurgu ? iz.renk : 'rgba(152,160,172,.20)';
         ctx.lineWidth = 1; ctx.stroke();
-        /* clip the label to its own block: at bw>92 a narrow block let its
-           text run into the next one and the two overlapped */
-        var tw = ctx.measureText(r.ad).width;
+                var tw = ctx.measureText(r.ad).width;
         if (bw > tw + 16) {
           ctx.fillStyle = vurgu ? '#ece9e2' : FAINT;
           ctx.fillText(r.ad, bx + 7, yy + 13);
@@ -115,8 +107,7 @@
       }
     }
 
-    /* the overlap is the story: two tracks running at once from 2023 */
-    var ox = x(2023.0), oy = ust - 2, oh = (izH + bosluk) + izH + 4;
+        var ox = x(2023.0), oy = ust - 2, oh = (izH + bosluk) + izH + 4;
     ctx.setLineDash([2, 4]);
     ctx.strokeStyle = 'rgba(236,233,226,.28)';
     ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(ox, oy + oh); ctx.stroke();

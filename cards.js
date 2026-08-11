@@ -1,8 +1,3 @@
-/* Case card scenes.
-   Each card gets a small canvas that shows what the case actually does, not a
-   decoration. 2D canvas rather than WebGPU: six GPU contexts on one page is a
-   real cost and none of these needs it.
-   Only cards in view animate; the rest are paused by an IntersectionObserver. */
 (function () {
   'use strict';
 
@@ -28,8 +23,7 @@
     c.fillText(s, x, y);
   }
 
-  /* ---- 1. task management: mail lands, becomes a task, crosses the board ---- */
-  function sahneGorev(c, W, H, t) {
+    function sahneGorev(c, W, H, t) {
     var kolon = ['INBOX', 'ASSIGNED', 'DONE'];
     var kw = W / 3;
     for (var i = 0; i < 3; i++) {
@@ -56,8 +50,7 @@
     }
   }
 
-  /* ---- 2. etsy factory: products meet the gate, one is turned back ---- */
-  function sahneFabrika(c, W, H, t) {
+    function sahneFabrika(c, W, H, t) {
     var gx = W * 0.58, yo = H * 0.55;
     c.strokeStyle = 'rgba(152,160,172,.2)'; c.lineWidth = 1;
     c.beginPath(); c.moveTo(8, yo); c.lineTo(W - 8, yo); c.stroke();
@@ -87,8 +80,7 @@
     }
   }
 
-  /* ---- 3. rifki: silence in, a phrase invented out of nothing ---- */
-  function sahneSes(c, W, H, t) {
+    function sahneSes(c, W, H, t) {
     var orta = H * 0.52;
     var dongu = (t * 0.30 / yavas) % 1;
     var sessiz = dongu > 0.42;
@@ -118,8 +110,7 @@
     }
   }
 
-  /* ---- 4. audit-20: nineteen passes, then one that falsifies them ---- */
-  function sahneKapi(c, W, H, t) {
+    function sahneKapi(c, W, H, t) {
     var dongu = (t * 0.14 / yavas) % 1;
     var sut = 10, satir = 2, gw = (W - 20) / sut, gh = 15;
     var acik = Math.floor(dongu * 26);
@@ -149,8 +140,7 @@
     etiket(c, 'CI GATE', 10, 16, DIM);
   }
 
-  /* ---- 5. cebimde claude: phone to mac and back ---- */
-  function sahneTelefon(c, W, H, t) {
+    function sahneTelefon(c, W, H, t) {
     var px = 26, mx = W - 34, y = H * 0.5;
     c.strokeStyle = 'rgba(152,160,172,.22)'; c.lineWidth = 1;
     c.beginPath(); c.moveTo(px + 14, y); c.lineTo(mx - 16, y); c.stroke();
@@ -175,8 +165,7 @@
            gidis ? COPPER : PATINA);
   }
 
-  /* ---- 6. disclosure: 103 days of commits, none of them the fix ---- */
-  function sahneAcik(c, W, H, t) {
+    function sahneAcik(c, W, H, t) {
     var y = H * 0.56;
     c.strokeStyle = 'rgba(152,160,172,.22)'; c.lineWidth = 1;
     c.beginPath(); c.moveTo(10, y); c.lineTo(W - 10, y); c.stroke();

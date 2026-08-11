@@ -1,7 +1,3 @@
-/* Scroll progress rail.
-   A thin voltage trace pinned to the left edge: it uses the same fault curve
-   as the hero, so position on the page is read the same way as position in
-   the fault. The dot marks where you are, the segment behind it is drawn. */
 (function () {
   'use strict';
 
@@ -17,8 +13,7 @@
   var ctx = cv.getContext('2d');
   var W = 0, H = 0, dpr = 1;
 
-  /* same curve as the hero rail, sampled vertically */
-  function volts(t) {
+    function volts(t) {
     var NOM = 3.3;
     if (t < 0.20) return NOM;
     if (t < 0.235) return NOM - 0.05;
@@ -53,12 +48,8 @@
     return Math.max(0, Math.min(1, window.scrollY / span));
   }
 
-  /* inset so the dips are not clipped against the viewport edge */
-  function x(v) { return 13 + (v / 4.0) * (W - 26); }
-  /* compress the whole fault into the page so the tail is not a flat line:
-     volts() returns a constant after t=0.80, which left the last fifth of
-     the indicator dead */
-  function tOf(p) { return Math.min(0.985, p * 0.86); }
+    function x(v) { return 13 + (v / 4.0) * (W - 26); }
+    function tOf(p) { return Math.min(0.985, p * 0.86); }
 
   function draw() {
     if (!W || !H) return;
@@ -66,8 +57,7 @@
     var p = progress();
     var N = 160, i, t, vy;
 
-    /* full trace, faint */
-    ctx.beginPath();
+        ctx.beginPath();
     for (i = 0; i <= N; i++) {
       t = i / N; vy = 10 + t * (H - 20);
       i ? ctx.lineTo(x(volts(tOf(t))), vy) : ctx.moveTo(x(volts(tOf(t))), vy);
@@ -75,8 +65,7 @@
     ctx.strokeStyle = 'rgba(152,160,172,.20)';
     ctx.lineWidth = 1; ctx.stroke();
 
-    /* travelled part */
-    var M = Math.max(1, Math.floor(N * p));
+        var M = Math.max(1, Math.floor(N * p));
     ctx.beginPath();
     for (i = 0; i <= M; i++) {
       t = i / N; vy = 10 + t * (H - 20);
@@ -85,8 +74,7 @@
     ctx.strokeStyle = p > 0.78 ? 'rgba(127,176,148,.9)' : 'rgba(216,148,76,.85)';
     ctx.lineWidth = 1.6; ctx.lineJoin = 'round'; ctx.stroke();
 
-    /* head */
-    var hv = volts(tOf(p)), hx = x(hv), hy = 10 + p * (H - 20);
+        var hv = volts(tOf(p)), hx = x(hv), hy = 10 + p * (H - 20);
     ctx.beginPath(); ctx.arc(hx, hy, 5.5, 0, Math.PI * 2);
     ctx.fillStyle = 'rgba(8,11,16,.9)'; ctx.fill();
     ctx.beginPath(); ctx.arc(hx, hy, 3.1, 0, Math.PI * 2);
