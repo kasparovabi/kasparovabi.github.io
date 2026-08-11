@@ -115,7 +115,11 @@ h2.lab{font-size:inherit;font-weight:inherit;margin:0;font-family:inherit}
   background:linear-gradient(180deg,transparent,rgba(8,11,16,.55) 45%,rgba(8,11,16,.88) 100%);
   pointer-events:none}
 
-.ident{margin-top:clamp(.8rem,4vh,2.4rem)}
+.ident{margin-top:clamp(.8rem,4vh,2.4rem);position:relative;z-index:4}
+/* the field runs bright behind this block; a soft shadow keeps the copy
+   readable without needing a solid plate over the animation */
+.ident h1,.ident .role,.ident .claim,.ident .sub-claim{
+  text-shadow:0 2px 18px rgba(8,11,16,.92), 0 0 6px rgba(8,11,16,.75)}
 .ident h1{
   font-family:var(--display);font-weight:800;
   font-size:clamp(2.9rem,9.6vw,7rem);line-height:.85;letter-spacing:-.042em;margin:0;

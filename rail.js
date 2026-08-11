@@ -504,7 +504,10 @@
 
   function paint(p, t, dt) {
     draw2d(p); beat(p);
-    if (ident) ident.style.opacity = (1 - Math.max(0, Math.min(1, (p - 0.16) / 0.30)) * 0.88).toFixed(3);
+    /* the identity block used to fade to 0.12, which made the name and role
+       unreadable exactly where a recruiter is still reading. It now stays
+       legible; only a light dim marks the transition into the scene. */
+    if (ident) ident.style.opacity = (1 - Math.max(0, Math.min(1, (p - 0.16) / 0.30)) * 0.18).toFixed(3);
     if (gpu && !gpu.lost) drawGPU(p, t, dt);
   }
 
