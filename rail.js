@@ -159,7 +159,7 @@
 
   /* compute module: moves the current */
   var WGSL_COMPUTE = [
-    'struct P { pos: vec2<f32>, vel: vec2<f32>, seed: f32, pad: f32 };',
+    'struct P { pos: vec2<f32>, vel: vec2<f32>, seed: f32, zdep: f32 };',
     U_STRUCT,
     '@group(0) @binding(0) var<storage, read_write> ps: array<P>;',
     '@group(0) @binding(1) var<uniform> u: U;',
@@ -173,18 +173,28 @@
     /* LOCAL voltage at this particle's own x -- this is what makes the cloud
        take the shape of the trace instead of sitting in one flat band */
     '  let tx = tOfX(p.pos.x, u);',
-    '  let vloc = voltsw(tx);',
+    /* the curve only exists behind the playhead. Ahead of it the field is a
+       flat neutral stream, so the fault is WRITTEN by scrolling rather than
+       being there from the first frame. */
+    '  let form = smoothstep(u.prog + 0.02, u.prog - 0.19, tx);',
+    '  let vflat = 3.3;',
+    '  let vloc = mix(vflat, voltsw(tx), form);',
     '  let health = clamp(vloc / 3.3, 0.0, 1.0);',
     '  let lane = 0.45 + p.seed * 1.15;',
-    '  let speed = mix(26.0, 190.0, health * health) * lane;',
-    '  let chaos = mix(74.0, 6.0, health) * (0.6 + p.seed * 0.8);',
+    '  let spdFlat = 150.0;',
+    '  let speed = mix(spdFlat, mix(26.0, 190.0, health * health), form) * lane;',
+    '  let chaos = mix(9.0, mix(74.0, 6.0, health), form) * (0.6 + p.seed * 0.8);',
     '  let wob = sin(p.pos.x * 0.011 + u.time * 1.7 + p.seed * 6.283) * chaos;',
     /* tight around the curve when the rail is healthy, blown apart at the dip;
        the spread is a fraction of the plot height, not the viewport */
     '  let plot = max(u.gbot - u.gtop, 1.0);',
-    '  let spread = plot * mix(0.30, 0.020, health);',
+    /* unformed stream: a calm wide band. Formed: tight on the curve, blown
+       apart only where the rail actually collapses. */
+    '  let sprFlat = plot * 0.105;',
+    '  let sprForm = plot * mix(0.30, 0.020, health);',
+    '  let spread = mix(sprFlat, sprForm, form);',
     '  let home = yOfV(vloc, u) + (p.seed - 0.5) * 2.0 * spread;',
-    '  let pull = (home - p.pos.y) * mix(0.10, 0.72, health);',
+    '  let pull = (home - p.pos.y) * mix(0.06, mix(0.10, 0.72, health), form);',
     '  p.vel.x = mix(p.vel.x, speed, 0.09);',
     '  p.vel.y = mix(p.vel.y, wob + pull, 0.07);',
     /* pointer: particles are pushed out of the cursor and fall back onto the
@@ -199,6 +209,16 @@
     '      p.vel = p.vel + normalize(d) * f * f * 2600.0 * u.dt;',
     '    }',
     '  }',
+    /* threshold kick: crossing 2.43 V is the moment the chip resets, so a
+       particle passing that line gets thrown. Makes the threshold readable
+       as an event rather than a label. */
+    '  let yThr = yOfV(2.43, u);',
+    '  let before = p.pos.y;',
+    '  let after = p.pos.y + p.vel.y * u.dt;',
+    '  if (form > 0.35 && ((before - yThr) * (after - yThr)) < 0.0) {',
+    '    p.vel.y = p.vel.y + (h11(p.seed * 5.7 + u.time) - 0.5) * 620.0;',
+    '    p.vel.x = p.vel.x * 1.22;',
+    '  }',
     '  p.pos = p.pos + p.vel * u.dt;',
     '  if (p.pos.x > u.res.x + 14.0) {',
     '    p.pos.x = -14.0 - h11(p.seed * 3.1 + u.time) * u.res.x * 0.32;',
@@ -206,6 +226,8 @@
     '  }',
     '  if (p.pos.y < -30.0) { p.pos.y = u.res.y + 30.0; }',
     '  if (p.pos.y > u.res.y + 30.0) { p.pos.y = -30.0; }',
+    /* depth is stable per particle so the field reads as a volume, not noise */
+    '  p.zdep = 0.35 + h11(p.seed * 2.3) * 0.65;',
     '  ps[i] = p;',
     '}'
   ].join('\n');
@@ -216,33 +238,56 @@
     '@group(0) @binding(0) var<uniform> u: U;',
     WGSL_VOLTS,
     'struct VO { @builtin(position) pos: vec4<f32>, @location(0) uv: vec2<f32>,'
-    + ' @location(1) sd: f32, @location(2) lv: f32, @location(3) rev: f32 };',
+    + ' @location(1) sd: f32, @location(2) lv: f32, @location(3) rev: f32,'
+    + ' @location(4) dep: f32, @location(5) glow: f32 };',
     '@vertex',
     'fn vmain(@builtin(vertex_index) vi: u32,',
     '         @location(0) ipos: vec2<f32>,',
     '         @location(1) ivel: vec2<f32>,',
-    '         @location(2) iseed: f32) -> VO {',
+    '         @location(2) iseed: f32,',
+    '         @location(3) izdep: f32) -> VO {',
     '  var q = array<vec2<f32>, 6>(',
     '    vec2<f32>(-1.0,-1.0), vec2<f32>(1.0,-1.0), vec2<f32>(-1.0,1.0),',
     '    vec2<f32>(-1.0,1.0), vec2<f32>(1.0,-1.0), vec2<f32>(1.0,1.0));',
     '  let c = q[vi];',
     '  let tx = tOfX(ipos.x, u);',
-    '  let hv = clamp(voltsw(tx) / 3.3, 0.0, 1.0);',
-    /* the playhead reveals the trace: ahead of the scrub the current is faint,
-       so the curve writes itself as you scroll instead of being there already */
-    '  let rev = smoothstep(u.prog + 0.055, u.prog - 0.16, tx) * 0.86 + 0.14;',
-    '  let sz = mix(3.2, 1.6, hv);',
-    '  let streak = vec2<f32>(1.0 + clamp(abs(ivel.x) * 0.012, 0.0, 2.6), 1.0);',
-    '  let w = ipos + c * sz * streak;',
+    '  let form = smoothstep(u.prog + 0.02, u.prog - 0.19, tx);',
+    '  let hv = clamp(mix(3.3, voltsw(tx), form) / 3.3, 0.0, 1.0);',
+    /* unformed stream stays dim and neutral; the trace brightens as it forms */
+    '  let rev = 0.62 + form * 0.38;',
+    /* depth: far particles are smaller and dimmer, so the current reads as a
+       volume with the trace running through it */
+    '  let dep = izdep;',
+    '  let persp = mix(0.62, 1.18, dep);',
+    '  let sz = mix(3.2, 1.6, hv) * persp;',
+    /* motion blur: stretch the quad along the velocity vector. The previous
+       position comes from integrating backwards one frame with the same
+       velocity, which is exact for this integrator. */
+    '  let prev = ipos - ivel * u.dt;',
+    '  let mv = ipos - prev;',
+    '  let sp = length(mv);',
+    '  var fwd = vec2<f32>(1.0, 0.0);',
+    '  if (sp > 0.0001) { fwd = mv / sp; }',
+    '  let side = vec2<f32>(-fwd.y, fwd.x);',
+    '  let stretch = 1.0 + clamp(sp * 0.30, 0.0, 3.4);',
+    '  let w = ipos + fwd * c.x * sz * stretch + side * c.y * sz;',
+    /* glow only where the rail is actually failing */
+    '  let glow = smoothstep(0.62, 0.20, hv) * form;',
     '  var o: VO;',
+    '  o.dep = dep; o.glow = glow;',
     '  o.pos = vec4<f32>((w / u.res) * vec2<f32>(2.0, -2.0) + vec2<f32>(-1.0, 1.0), 0.0, 1.0);',
-    '  o.uv = c; o.sd = iseed; o.lv = hv; o.rev = rev;',
+    '  o.uv = c; o.sd = iseed; o.lv = hv; o.rev = rev * mix(0.82, 1.0, form);',
     '  return o;',
     '}',
     '@fragment',
     'fn fmain(in: VO) -> @location(0) vec4<f32> {',
-    '  let d = 1.0 - clamp(length(in.uv), 0.0, 1.0);',
-    '  let a = pow(d, 2.4);',
+    '  let r = clamp(length(in.uv), 0.0, 1.0);',
+    '  let d = 1.0 - r;',
+    /* conditional bloom: below the brownout threshold the core keeps its size
+       but gains a wide soft halo, so the collapse radiates */
+    '  let core = pow(d, 2.4);',
+    '  let halo = pow(d, 0.85) * in.glow * 0.62;',
+    '  let a = core + halo;',
     '  let bad = vec3<f32>(0.86, 0.30, 0.22);',
     '  let warm = vec3<f32>(0.86, 0.58, 0.30);',
     '  let good = vec3<f32>(0.44, 0.69, 0.57);',
@@ -251,7 +296,12 @@
     '  col = mix(col, good, smoothstep(0.82, 1.0, u.prog));',
     '  let flick = 0.75 + 0.25 * sin(u.time * 3.1 + in.sd * 12.0);',
     '  let e = in.rev;',
-    '  return vec4<f32>(col * a * flick * 0.86 * e, a * 0.42 * e);',
+    /* far particles cool and dim; near ones carry the colour */
+    '  let cool = vec3<f32>(0.42, 0.52, 0.62);',
+    '  col = mix(cool, col, in.dep * 0.72 + 0.28);',
+    '  let dim = mix(0.68, 1.0, in.dep);',
+    '  let hot = 1.0 + in.glow * 1.35;',
+    '  return vec4<f32>(col * a * flick * 1.25 * e * dim * hot, a * 0.58 * e * dim);',
     '}'
   ].join('\n');
 
@@ -292,7 +342,8 @@
               attributes: [
                 { shaderLocation: 0, offset: 0, format: 'float32x2' },
                 { shaderLocation: 1, offset: 8, format: 'float32x2' },
-                { shaderLocation: 2, offset: 16, format: 'float32' }
+                { shaderLocation: 2, offset: 16, format: 'float32' },
+                { shaderLocation: 3, offset: 20, format: 'float32' }
               ]
             }]
           },
@@ -335,7 +386,7 @@
       data[o + 2] = 40 + Math.random() * 90;
       data[o + 3] = (Math.random() - 0.5) * 8;
       data[o + 4] = Math.random();
-      data[o + 5] = 0;
+      data[o + 5] = 0.35 + Math.random() * 0.65;
     }
     if (g.buf) g.buf.destroy();
     g.buf = g.dev.createBuffer({
