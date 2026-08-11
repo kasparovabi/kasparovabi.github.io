@@ -193,7 +193,11 @@
     /* the curve only exists behind the playhead. Ahead of it the field is a
        flat neutral stream, so the fault is WRITTEN by scrolling rather than
        being there from the first frame. */
-    '  let form = smoothstep(u.prog + 0.02, u.prog - 0.19, tx);',
+    /* formed everywhere BEHIND the playhead, flat only ahead of it. The old
+       window started 0.19 before the head, so the collapse itself was always
+       in the not-yet-formed zone: the dot sat low while the cloud stayed
+       high and flat. */
+    '  let form = 1.0 - smoothstep(u.prog, u.prog + 0.085, tx);',
     '  let vflat = 3.3;',
     '  let vloc = mix(vflat, voltsw(tx), form);',
     '  let health = clamp(vloc / 3.3, 0.0, 1.0);',
@@ -273,7 +277,11 @@
     '    vec2<f32>(-1.0,1.0), vec2<f32>(1.0,-1.0), vec2<f32>(1.0,1.0));',
     '  let c = q[vi];',
     '  let tx = tOfX(ipos.x, u);',
-    '  let form = smoothstep(u.prog + 0.02, u.prog - 0.19, tx);',
+    /* formed everywhere BEHIND the playhead, flat only ahead of it. The old
+       window started 0.19 before the head, so the collapse itself was always
+       in the not-yet-formed zone: the dot sat low while the cloud stayed
+       high and flat. */
+    '  let form = 1.0 - smoothstep(u.prog, u.prog + 0.085, tx);',
     '  let hv = clamp(mix(3.3, voltsw(tx), form) / 3.3, 0.0, 1.0);',
     /* unformed stream stays dim and neutral; the trace brightens as it forms */
     '  let rev = 0.62 + form * 0.38;',
