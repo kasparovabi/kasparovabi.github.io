@@ -30,7 +30,7 @@
 
   /* ---- 1. task management: mail lands, becomes a task, crosses the board ---- */
   function sahneGorev(c, W, H, t) {
-    var kolon = ['GELEN', 'ATANDI', 'BITTI'];
+    var kolon = ['INBOX', 'ASSIGNED', 'DONE'];
     var kw = W / 3;
     for (var i = 0; i < 3; i++) {
       c.strokeStyle = 'rgba(152,160,172,.16)';
@@ -65,7 +65,7 @@
     c.strokeStyle = 'rgba(216,148,76,.6)';
     c.beginPath(); c.moveTo(gx, 14); c.lineTo(gx, H - 12); c.stroke();
     c.setLineDash([]);
-    etiket(c, 'ONAY', gx - 14, 10, COPPER);
+    etiket(c, 'GATE', gx - 14, 10, COPPER);
 
     for (var k = 0; k < 4; k++) {
       var faz = (t * 0.19 / yavas + k * 0.25) % 1;
@@ -102,7 +102,7 @@
     }
     c.strokeStyle = sessiz ? 'rgba(152,160,172,.45)' : COPPER;
     c.lineWidth = 1.4; c.stroke();
-    etiket(c, sessiz ? 'SESSIZLIK' : 'SES', 10, 14, sessiz ? FAINT : COPPER);
+    etiket(c, sessiz ? 'SILENCE' : 'SPEECH', 10, 14, sessiz ? FAINT : COPPER);
 
     if (sessiz) {
       var g = Math.min(1, (dongu - 0.42) / 0.34);
@@ -113,7 +113,7 @@
       c.strokeStyle = ALARM; c.lineWidth = 1; c.stroke();
       c.font = '9px "Martian Mono", ui-monospace, monospace';
       c.fillStyle = ALARM;
-      c.fillText('"tesekkur ederim"', W - kutuW - 3, orta + 27);
+      c.fillText('"thank you" (invented)', W - kutuW - 3, orta + 27);
       c.globalAlpha = 1;
     }
   }
@@ -141,12 +141,12 @@
     if (acik >= 20) {
       var g = Math.min(1, (acik - 20) / 5);
       c.globalAlpha = g;
-      etiket(c, '20. gecis oncekileri yalanliyor', 10, H - 6, ALARM);
+      etiket(c, 'pass 20 falsifies the other nineteen', 10, H - 6, ALARM);
       c.globalAlpha = 1;
     } else {
-      etiket(c, acik + ' / 20 gecis', 10, H - 6, FAINT);
+      etiket(c, acik + ' / 20 passes', 10, H - 6, FAINT);
     }
-    etiket(c, 'CI KAPISI', 10, 16, DIM);
+    etiket(c, 'CI GATE', 10, 16, DIM);
   }
 
   /* ---- 5. cebimde claude: phone to mac and back ---- */
@@ -157,7 +157,7 @@
 
     yuvarlak(c, px - 9, y - 16, 18, 32, 3);
     c.strokeStyle = DIM; c.lineWidth = 1.2; c.stroke();
-    etiket(c, 'TELEFON', px - 20, y + 28, FAINT);
+    etiket(c, 'PHONE', px - 18, y + 28, FAINT);
 
     yuvarlak(c, mx - 16, y - 12, 32, 24, 2);
     c.strokeStyle = DIM; c.lineWidth = 1.2; c.stroke();
@@ -171,7 +171,7 @@
                   : (mx - 16) - yum * (mx - 16 - px - 14);
     c.beginPath(); c.arc(x, y, 3.6, 0, Math.PI * 2);
     c.fillStyle = gidis ? COPPER : PATINA; c.fill();
-    etiket(c, gidis ? 'komut' : 'ekran goruntusu', x - 22, y - 12,
+    etiket(c, gidis ? 'command' : 'screenshot', x - 22, y - 12,
            gidis ? COPPER : PATINA);
   }
 
@@ -195,16 +195,16 @@
 
     c.fillStyle = ALARM;
     c.beginPath(); c.arc(12, y, 3.4, 0, Math.PI * 2); c.fill();
-    etiket(c, 'rapor', 6, y + 14, ALARM);
+    etiket(c, 'report', 6, y + 14, ALARM);
 
     if (gun >= 103) {
       var fx = 12 + (103 / 118) * (W - 24);
       c.fillStyle = PATINA;
       c.beginPath(); c.arc(fx, y, 4.2, 0, Math.PI * 2); c.fill();
       c.fillRect(fx - 0.8, y - 16, 1.6, 16);
-      etiket(c, 'duzeltme', fx - 16, y + 14, PATINA);
+      etiket(c, 'fix', fx - 8, y + 14, PATINA);
     }
-    etiket(c, gun + ' gun / ' + Math.min(gun, 103) + ' sessiz', 10, 14,
+    etiket(c, 'day ' + gun + ' / ' + Math.min(gun, 103) + ' silent', 10, 14,
            gun >= 103 ? PATINA : FAINT);
   }
 

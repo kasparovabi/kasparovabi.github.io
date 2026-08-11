@@ -20,11 +20,11 @@
 
   /* bottom to top: the order the work actually stacks in */
   var KATMANLAR = [
-    { ad: 'CIHAZ', araclar: ['ESP-IDF', 'PlatformIO', 'Arduino', 'servo', 'audio'] },
-    { ad: 'CALISMA ZAMANI', araclar: ['Python', 'TypeScript', 'Swift', 'C++', 'Go', 'SQL'] },
-    { ad: 'SERVIS', araclar: ['FastAPI', 'NestJS', 'PostgreSQL', 'Redis', 'Supabase', 'Prisma'] },
-    { ad: 'ARAYUZ', araclar: ['Next.js', 'React', 'SwiftUI', 'Tauri', 'Expo', 'PySide6'] },
-    { ad: 'DAGITIM', araclar: ['Docker', 'AWS EC2', 'Cloudflare', 'Tailscale', 'launchd', 'CI'] }
+    { ad: 'DEVICE', araclar: ['ESP-IDF', 'PlatformIO', 'Arduino', 'servo', 'audio'] },
+    { ad: 'RUNTIME', araclar: ['Python', 'TypeScript', 'Swift', 'C++', 'Go', 'SQL'] },
+    { ad: 'SERVICE', araclar: ['FastAPI', 'NestJS', 'PostgreSQL', 'Redis', 'Supabase', 'Prisma'] },
+    { ad: 'INTERFACE', araclar: ['Next.js', 'React', 'SwiftUI', 'Tauri', 'Expo', 'PySide6'] },
+    { ad: 'DELIVERY', araclar: ['Docker', 'AWS EC2', 'Cloudflare', 'Tailscale', 'launchd', 'CI'] }
   ];
 
   var W = 0, H = 0, dpr = 1, ctx = cv.getContext('2d');
