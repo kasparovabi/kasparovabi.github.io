@@ -488,7 +488,6 @@
 
   /* ---------- beats ---------- */
   var ident = document.querySelector('.ident');
-  var portre = document.querySelector('.hero-portre');
   var beats = [].slice.call(document.querySelectorAll('.beat'));
   var CUTS = [0.00, 0.155, 0.315, 0.455, 0.60, 0.79];
   var shown = -1;
@@ -510,11 +509,10 @@
        legible; only a light dim marks the transition into the scene. */
     /* the figure resolves from measurement into photograph across the first
        half of the scene, so the reader meets the signal before the person */
-    if (portre) {
-      var kk = Math.max(0, Math.min(1, (p - 0.10) / 0.34));
-      var yum = kk * kk * (3 - 2 * kk);
-      portre.style.setProperty('--foto', yum.toFixed(3));
-      portre.style.setProperty('--akim', (1 - yum * 0.88).toFixed(3));
+    /* the figure never becomes a photograph; it just feels the fault */
+    if (window.__portreDurum) {
+      var vh = volts(Math.max(0.002, p));
+      window.__portreDurum(p, Math.max(0, Math.min(1, vh / NOMINAL)));
     }
     if (ident) ident.style.opacity = (1 - Math.max(0, Math.min(1, (p - 0.16) / 0.30)) * 0.18).toFixed(3);
     if (gpu && !gpu.lost) drawGPU(p, t, dt);

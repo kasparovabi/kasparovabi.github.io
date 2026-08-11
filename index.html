@@ -155,21 +155,15 @@ h2.lab{font-size:inherit;font-weight:inherit;margin:0;font-family:inherit}
 /* ============ hero portrait ============ */
 /* the figure sits inside the field rather than on top of it: the particle
    canvas runs behind it and the lower edge is masked away so the two meet */
-/* the figure starts as a measurement and resolves into a person: the
-   current-line layer fades out as you scroll and the photograph comes up
-   underneath it. Same idea as the trace, which is flat until scrolled. */
-.hero-portre{position:absolute;right:3vw;bottom:-2svh;z-index:1;pointer-events:none;
-  height:min(84svh,800px);aspect-ratio:1408/1760;opacity:.95;
+/* the figure stays a measurement: never a photograph. Drawn live as current
+   lines so it can respond to the pointer and to the fault on the rail. */
+.hero-portre{position:absolute;right:3vw;bottom:-2svh;z-index:1;
+  height:min(84svh,800px);aspect-ratio:1408/1760;
   -webkit-mask-image:linear-gradient(to bottom,#000 72%,rgba(0,0,0,.55) 88%,transparent 99%);
   mask-image:linear-gradient(to bottom,#000 72%,rgba(0,0,0,.55) 88%,transparent 99%)}
-.hero-portre img{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:contain;object-position:bottom;display:block}
-.hp-foto{opacity:var(--foto,0);filter:contrast(1.05) saturate(.88) brightness(.92)}
-.hp-akim{opacity:var(--akim,1)}
-@media (prefers-reduced-motion:reduce){.hp-foto{opacity:.55}.hp-akim{opacity:.55}}
 /* the copy must not run under the figure on wide screens */
 @media (min-width:900px){.stage-inner .ident{max-width:min(58%,680px)}}
-@media (max-width:899px){.hero-portre{opacity:.30;right:-6vw;height:min(62svh,520px)}}
+@media (max-width:899px){.hero-portre{opacity:.34;right:-6vw;height:min(62svh,520px)}}
 /* keep the caption legible over the current field */
 .stage-inner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:56%;z-index:-1;
   background:linear-gradient(180deg,transparent,rgba(8,11,16,.55) 45%,rgba(8,11,16,.88) 100%);
@@ -338,10 +332,7 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
   <div class="stage-pin">
     <canvas id="field" aria-hidden="true"></canvas>
     <canvas id="rail" role="img" aria-label="Voltage trace of the 3.3 volt rail: steady on USB power, three servo inrush dips on battery, collapse below the 2.43 volt brownout threshold, a boot loop, then steady again after the fix."></canvas>
-    <div class="hero-portre" aria-hidden="true">
-      <img class="hp-foto" src="portrait-foto.webp" alt="" width="1408" height="1760" decoding="async">
-      <img class="hp-akim" src="portrait-akim.webp" alt="" width="1408" height="1760" decoding="async">
-    </div>
+    <canvas class="hero-portre" id="pline" aria-hidden="true"></canvas>
     <div class="stage-inner">
       <div class="wrap ident">
         <h1>Ahmet<br>Kazankaya</h1>
@@ -600,7 +591,8 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
 <script src="stackmap.js" defer></script>
 <script src="timeline.js" defer></script>
 <script src="machine.js" defer></script>
-<script src="rail.js?v=3" defer></script>
+<script src="pline.js" defer></script>
+<script src="rail.js?v=4" defer></script>
 <script src="crosswalk-data.js" defer></script>
 <script src="portrait.js" defer></script>
 <script src="splat-data.js" defer></script>
