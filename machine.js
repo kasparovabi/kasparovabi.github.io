@@ -26,12 +26,12 @@
 
   /* the stages a unit of work actually goes through */
   var ASAMALAR = [
-    { ad: 'TASK', alt: 'scoped, one repo' },
+    { ad: 'TASK', alt: 'one repo' },
     { ad: 'ROUTE', alt: 'cheapest model' },
-    { ad: 'guard-20', alt: 'write time rules' },
-    { ad: 'audit-20', alt: 'CI gate, 20 passes' },
-    { ad: 'APPROVE', alt: 'human, always' },
-    { ad: 'SHIP', alt: 'or roll back' }
+    { ad: 'guard-20', alt: 'write rules' },
+    { ad: 'audit-20', alt: '20 passes' },
+    { ad: 'APPROVE', alt: 'human' },
+    { ad: 'SHIP', alt: 'or revert' }
   ];
 
   var W = 0, H = 0, ctx = cv.getContext('2d'), vurgu = -1;
@@ -61,8 +61,12 @@
 
     var n = ASAMALAR.length;
     var pay = 8;
-    var kw = (W - pay * (n + 1)) / n;
-    var ky = 30, kh = 46;
+    /* six stages side by side need ~90px each to stay readable; below that
+       the labels clip, so the pipeline stacks vertically instead */
+    var dikey = W < n * 108;
+    var kw = dikey ? (W - pay * 2) : (W - pay * (n + 1)) / n;
+    var kh = dikey ? Math.max(20, (H - 46 - pay * (n + 1)) / n) : 46;
+    var ky = 30;
 
     /* work units flowing through; one of them is rejected at the gate and
        goes back, because that is what the gate is for */
@@ -80,7 +84,8 @@
 
     for (var i = 0; i < n; i++) {
       var a = ASAMALAR[i];
-      var x = pay + i * (kw + pay);
+      var x = dikey ? pay : pay + i * (kw + pay);
+      var yy = dikey ? (18 + i * (kh + pay * 0.5)) : ky;
       var aktif = (vurgu === i);
       var onay = (i === 4);
 
@@ -89,7 +94,7 @@
         return f.p >= i - 0.4 && f.p < i + 0.6;
       });
 
-      kutu(x, ky, kw, kh, 3);
+      kutu(x, yy, kw, kh, 3);
       ctx.fillStyle = aktif ? 'rgba(216,148,76,.13)'
         : (dolu ? 'rgba(127,176,148,.10)' : 'rgba(15,20,28,.6)');
       ctx.fill();
@@ -101,7 +106,7 @@
       ctx.setLineDash([]);
 
       ctx.fillStyle = onay ? COPPER : (aktif || dolu ? BONE : DIM);
-      ctx.fillText(a.ad, x + 8, ky + 19);
+      ctx.fillText(a.ad, x + 8, yy + (dikey ? kh / 2 + 3 : 19));
       ctx.fillStyle = FAINT;
       /* clip on a word boundary: slicing two characters at a time left
          half words like 'that' hanging in the box */
@@ -109,10 +114,11 @@
       while (ctx.measureText(alt).width > kw - 16 && alt.indexOf(' ') > 0) {
         alt = alt.slice(0, alt.lastIndexOf(' '));
       }
-      ctx.fillText(alt, x + 8, ky + 34);
+      if (!dikey) ctx.fillText(alt, x + 8, yy + 34);
+      else ctx.fillText(alt, x + 92, yy + kh / 2 + 3);
 
-      if (i < n - 1) {
-        var ax = x + kw + 1, ay = ky + kh / 2;
+      if (i < n - 1 && !dikey) {
+        var ax = x + kw + 1, ay = yy + kh / 2;
         ctx.strokeStyle = 'rgba(152,160,172,.28)';
         ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(ax + pay - 2, ay); ctx.stroke();
@@ -124,15 +130,22 @@
       var f = akis[k];
       var idx = Math.max(0, Math.min(n - 1, Math.floor(f.p)));
       var ic = f.p - idx;
-      var bx = pay + idx * (kw + pay) + ic * (kw + pay);
-      var by = ky + kh + 16;
+      var bx, by;
+      if (dikey) {
+        bx = W - 16;
+        by = 18 + (idx + ic) * (kh + pay * 0.5) + kh / 2;
+      } else {
+        bx = pay + (idx + ic) * (kw + pay) + kw / 2;
+        by = ky + kh + 16;
+      }
       ctx.beginPath();
-      ctx.arc(Math.max(10, Math.min(W - 10, bx + kw / 2)), by, 3.4, 0, Math.PI * 2);
+      ctx.arc(Math.max(10, Math.min(W - 10, bx)), Math.min(H - 30, by), 3.4, 0, Math.PI * 2);
       ctx.fillStyle = f.red ? ALARM : (f.p > 4.4 ? PATINA : COPPER);
       ctx.fill();
     }
 
     /* audit trail: every run leaves a line */
+    if (dikey) return;
     var ty = H - 22;
     ctx.strokeStyle = 'rgba(152,160,172,.16)';
     ctx.beginPath(); ctx.moveTo(8, ty); ctx.lineTo(W - 8, ty); ctx.stroke();
