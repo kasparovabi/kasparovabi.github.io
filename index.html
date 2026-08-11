@@ -151,6 +151,18 @@ h2.lab{font-size:inherit;font-weight:inherit;margin:0;font-family:inherit}
 .stage-inner{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;
   padding:clamp(1.5rem,4vh,2.6rem) 0;pointer-events:none;isolation:isolate}
 .stage-inner .wrap{pointer-events:auto}
+
+/* ============ hero portrait ============ */
+/* the figure sits inside the field rather than on top of it: the particle
+   canvas runs behind it and the lower edge is masked away so the two meet */
+.hero-portre{position:absolute;right:1vw;bottom:-4svh;z-index:1;pointer-events:none;
+  height:min(92svh,880px);width:auto;object-fit:contain;object-position:bottom;opacity:.88;
+  -webkit-mask-image:linear-gradient(to bottom,#000 46%,rgba(0,0,0,.5) 72%,transparent 92%);
+  mask-image:linear-gradient(to bottom,#000 46%,rgba(0,0,0,.5) 72%,transparent 92%);
+  filter:contrast(1.06) saturate(.85) brightness(.94)}
+/* the copy must not run under the figure on wide screens */
+@media (min-width:900px){.stage-inner .ident{max-width:min(58%,680px)}}
+@media (max-width:899px){.hero-portre{opacity:.30;right:-6vw;height:min(62svh,520px)}}
 /* keep the caption legible over the current field */
 .stage-inner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:56%;z-index:-1;
   background:linear-gradient(180deg,transparent,rgba(8,11,16,.55) 45%,rgba(8,11,16,.88) 100%);
@@ -319,6 +331,8 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
   <div class="stage-pin">
     <canvas id="field" aria-hidden="true"></canvas>
     <canvas id="rail" role="img" aria-label="Voltage trace of the 3.3 volt rail: steady on USB power, three servo inrush dips on battery, collapse below the 2.43 volt brownout threshold, a boot loop, then steady again after the fix."></canvas>
+    <img class="hero-portre" src="portrait-alpha.webp" alt="" aria-hidden="true"
+         width="1152" height="1440" decoding="async">
     <div class="stage-inner">
       <div class="wrap ident">
         <h1>Ahmet<br>Kazankaya</h1>
