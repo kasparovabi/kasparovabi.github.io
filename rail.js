@@ -53,7 +53,9 @@
   function railGeom() {
     /* keep the trace clear of the caption block that grows from the bottom */
     var padX = Math.max(18, W * 0.045);
-    var top = H * 0.40, bot = H * 0.72;
+    /* keep the band clear of the identity block above it: at 0.40 the top of
+       the scatter crossed the headline */
+    var top = H * 0.47, bot = H * 0.74;
     return {
       padX: padX, top: top, bot: bot,
       y: function (v) { return bot - (v / VMAX) * (bot - top); },
@@ -67,18 +69,24 @@
     var g = railGeom(), yT = g.y(THRESHOLD);
 
     ctx.save();
-    ctx.setLineDash([2, 7]); ctx.lineWidth = 1;
-    ctx.strokeStyle = 'rgba(212,83,63,' + (p > 0.30 ? 0.55 : 0.14) + ')';
+    /* dark under-stroke first: the dashed line alone disappeared into the
+       particle field once the glow was on */
+    ctx.lineWidth = 3.5; ctx.strokeStyle = 'rgba(8,11,16,.72)';
+    ctx.beginPath(); ctx.moveTo(g.padX, yT); ctx.lineTo(W - g.padX, yT); ctx.stroke();
+    ctx.setLineDash([3, 6]); ctx.lineWidth = 1.4;
+    ctx.strokeStyle = 'rgba(224,101,79,' + (p > 0.30 ? 0.92 : 0.42) + ')';
     ctx.beginPath(); ctx.moveTo(g.padX, yT); ctx.lineTo(W - g.padX, yT); ctx.stroke();
     ctx.restore();
-    if (p > 0.30) {
-      ctx.font = '11px "Martian Mono", ui-monospace, monospace';
-      var bl = '2.43 V  BROWNOUT', bw = ctx.measureText(bl).width;
-      ctx.fillStyle = 'rgba(8,11,16,.82)';
-      ctx.fillRect(g.padX - 5, yT - 20, bw + 10, 15);
-      ctx.fillStyle = 'rgba(212,83,63,.9)';
-      ctx.fillText(bl, g.padX, yT - 9);
-    }
+    /* the field behind these is bright and busy, so the readouts need solid
+       plates and a border -- at 0.82 alpha they washed out completely */
+    ctx.font = '600 12px "Martian Mono", ui-monospace, monospace';
+    var bl = '2.43 V  BROWNOUT', bw = ctx.measureText(bl).width;
+    ctx.fillStyle = '#080b10';
+    ctx.fillRect(g.padX - 6, yT - 22, bw + 12, 18);
+    ctx.strokeStyle = 'rgba(212,83,63,.55)'; ctx.lineWidth = 1;
+    ctx.strokeRect(g.padX - 6, yT - 22, bw + 12, 18);
+    ctx.fillStyle = p > 0.30 ? '#e0654f' : 'rgba(212,83,63,.62)';
+    ctx.fillText(bl, g.padX, yT - 9);
 
     var N = Math.max(240, Math.floor(W / 2)), i, t;
     /* the trace itself is no longer drawn here: the particles ARE the curve.
@@ -103,15 +111,24 @@
     ctx.globalAlpha = .45; ctx.strokeStyle = 'rgba(152,160,172,.4)'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(hx, g.top - 14); ctx.lineTo(hx, g.bot); ctx.stroke();
     ctx.restore();
-    ctx.beginPath(); ctx.arc(hx, hy, 3.4, 0, Math.PI * 2);
-    ctx.fillStyle = vh < THRESHOLD ? '#d4533f' : (p > 0.78 ? '#7fb094' : '#d8944c');
-    ctx.fill();
-    ctx.font = '12px "Martian Mono", ui-monospace, monospace';
+    var hcol = vh < THRESHOLD ? '#e0654f' : (p > 0.78 ? '#7fb094' : '#d8944c');
+    /* dark moat first, so the dot separates from the glowing field behind it */
+    ctx.beginPath(); ctx.arc(hx, hy, 8.5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(8,11,16,.9)'; ctx.fill();
+    ctx.beginPath(); ctx.arc(hx, hy, 5.2, 0, Math.PI * 2);
+    ctx.fillStyle = hcol; ctx.fill();
+    ctx.beginPath(); ctx.arc(hx, hy, 9.5, 0, Math.PI * 2);
+    ctx.strokeStyle = hcol; ctx.lineWidth = 1.4; ctx.globalAlpha = .75;
+    ctx.stroke(); ctx.globalAlpha = 1;
+
+    ctx.font = '700 15px "Martian Mono", ui-monospace, monospace';
     var lbl = vh.toFixed(2) + ' V', lw = ctx.measureText(lbl).width;
-    var lx = Math.min(W - g.padX - lw, hx + 10), ly = Math.max(g.top - 6, hy - 12);
-    ctx.fillStyle = 'rgba(8,11,16,.8)';
-    ctx.fillRect(lx - 4, ly - 10, lw + 8, 15);
-    ctx.fillStyle = vh < THRESHOLD ? 'rgba(212,83,63,.98)' : 'rgba(236,233,226,.92)';
+    var lx = Math.min(W - g.padX - lw, hx + 16), ly = Math.max(g.top - 4, hy - 16);
+    ctx.fillStyle = '#080b10';
+    ctx.fillRect(lx - 7, ly - 14, lw + 14, 22);
+    ctx.strokeStyle = hcol; ctx.lineWidth = 1;
+    ctx.strokeRect(lx - 7, ly - 14, lw + 14, 22);
+    ctx.fillStyle = hcol;
     ctx.fillText(lbl, lx, ly);
   }
 
@@ -183,7 +200,7 @@
     '  let lane = 0.45 + p.seed * 1.15;',
     '  let spdFlat = 150.0;',
     '  let speed = mix(spdFlat, mix(26.0, 190.0, health * health), form) * lane;',
-    '  let chaos = mix(9.0, mix(74.0, 6.0, health), form) * (0.6 + p.seed * 0.8);',
+    '  let chaos = mix(9.0, mix(34.0, 5.0, health), form) * (0.6 + p.seed * 0.8);',
     '  let wob = sin(p.pos.x * 0.011 + u.time * 1.7 + p.seed * 6.283) * chaos;',
     /* tight around the curve when the rail is healthy, blown apart at the dip;
        the spread is a fraction of the plot height, not the viewport */
@@ -191,10 +208,15 @@
     /* unformed stream: a calm wide band. Formed: tight on the curve, blown
        apart only where the rail actually collapses. */
     '  let sprFlat = plot * 0.105;',
-    '  let sprForm = plot * mix(0.30, 0.020, health);',
+    /* scatter must stay small enough that the cloud still reads as the curve.
+       At 0.30 the collapse turned into a fog that lost the trace entirely. */
+    '  let sprForm = plot * mix(0.115, 0.020, health);',
     '  let spread = mix(sprFlat, sprForm, form);',
     '  let home = yOfV(vloc, u) + (p.seed - 0.5) * 2.0 * spread;',
-    '  let pull = (home - p.pos.y) * mix(0.06, mix(0.10, 0.72, health), form);',
+    /* the pull floor is what lets particles reach the bottom of the dip: at
+       0.10 they were swept past the drop horizontally before they could
+       descend, so the cloud never went as low as the trace did */
+    '  let pull = (home - p.pos.y) * mix(0.06, mix(0.42, 0.80, health), form);',
     '  p.vel.x = mix(p.vel.x, speed, 0.09);',
     '  p.vel.y = mix(p.vel.y, wob + pull, 0.07);',
     /* pointer: particles are pushed out of the cursor and fall back onto the
@@ -272,7 +294,9 @@
     '  let stretch = 1.0 + clamp(sp * 0.30, 0.0, 3.4);',
     '  let w = ipos + fwd * c.x * sz * stretch + side * c.y * sz;',
     /* glow only where the rail is actually failing */
-    '  let glow = smoothstep(0.62, 0.20, hv) * form;',
+/* glow only below the real brownout threshold (2.43/3.3 = 0.736), and only
+       once well past it, so the boot loop does not bathe the whole scene */
+    '  let glow = smoothstep(0.46, 0.13, hv) * form;',
     '  var o: VO;',
     '  o.dep = dep; o.glow = glow;',
     '  o.pos = vec4<f32>((w / u.res) * vec2<f32>(2.0, -2.0) + vec2<f32>(-1.0, 1.0), 0.0, 1.0);',
@@ -286,7 +310,7 @@
     /* conditional bloom: below the brownout threshold the core keeps its size
        but gains a wide soft halo, so the collapse radiates */
     '  let core = pow(d, 2.4);',
-    '  let halo = pow(d, 0.85) * in.glow * 0.62;',
+    '  let halo = pow(d, 1.35) * in.glow * 0.26;',
     '  let a = core + halo;',
     '  let bad = vec3<f32>(0.86, 0.30, 0.22);',
     '  let warm = vec3<f32>(0.86, 0.58, 0.30);',
@@ -300,7 +324,7 @@
     '  let cool = vec3<f32>(0.42, 0.52, 0.62);',
     '  col = mix(cool, col, in.dep * 0.72 + 0.28);',
     '  let dim = mix(0.68, 1.0, in.dep);',
-    '  let hot = 1.0 + in.glow * 1.35;',
+    '  let hot = 1.0 + in.glow * 0.55;',
     '  return vec4<f32>(col * a * flick * 1.25 * e * dim * hot, a * 0.58 * e * dim);',
     '}'
   ].join('\n');
