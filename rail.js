@@ -81,19 +81,22 @@
     }
 
     var N = Math.max(240, Math.floor(W / 2)), i, t;
-    ctx.beginPath();
-    for (i = 0; i <= N; i++) { t = i / N; i ? ctx.lineTo(g.x(t), g.y(volts(t))) : ctx.moveTo(g.x(t), g.y(volts(t))); }
-    ctx.strokeStyle = 'rgba(150,160,175,.10)'; ctx.lineWidth = 1; ctx.stroke();
+    /* the trace itself is no longer drawn here: the particles ARE the curve.
+       Only the axis furniture (threshold line, labels, playhead) stays 2D. */
 
     var head = Math.max(0.002, p);
-    var grad = ctx.createLinearGradient(g.padX, 0, W - g.padX, 0);
-    grad.addColorStop(0, 'rgba(152,160,172,.5)');
-    grad.addColorStop(Math.min(.98, Math.max(.02, head * 0.55)), 'rgba(192,122,99,.85)');
-    grad.addColorStop(Math.min(1, Math.max(.03, head)), p > 0.78 ? '#7fb094' : '#d4533f');
-    ctx.beginPath();
-    var M = Math.max(2, Math.floor(N * head));
-    for (i = 0; i <= M; i++) { t = i / N; i ? ctx.lineTo(g.x(t), g.y(volts(t))) : ctx.moveTo(g.x(t), g.y(volts(t))); }
-    ctx.strokeStyle = grad; ctx.lineWidth = 1.8; ctx.lineJoin = 'round'; ctx.stroke();
+    /* The trace is drawn by the particle field, not here. Without WebGPU there
+       would be no curve at all, so the 2D fallback keeps a thin stroke. */
+    if (!gpuLive) {
+      var grad = ctx.createLinearGradient(g.padX, 0, W - g.padX, 0);
+      grad.addColorStop(0, 'rgba(152,160,172,.5)');
+      grad.addColorStop(Math.min(.98, Math.max(.02, head * 0.55)), 'rgba(192,122,99,.85)');
+      grad.addColorStop(Math.min(1, Math.max(.03, head)), p > 0.78 ? '#7fb094' : '#d4533f');
+      ctx.beginPath();
+      var M = Math.max(2, Math.floor(N * head));
+      for (i = 0; i <= M; i++) { t = i / N; i ? ctx.lineTo(g.x(t), g.y(volts(t))) : ctx.moveTo(g.x(t), g.y(volts(t))); }
+      ctx.strokeStyle = grad; ctx.lineWidth = 1.8; ctx.lineJoin = 'round'; ctx.stroke();
+    }
 
     var vh = volts(head), hx = g.x(head), hy = g.y(vh);
     ctx.save();
@@ -114,9 +117,45 @@
 
   /* ---------- WebGPU layer: the current ---------- */
   var gpu = null;
+  /* true only once the GPU pass has actually drawn; the 2D fallback keys
+     off this so a failed init never leaves the scene without a trace */
+  var gpuLive = false;
 
   var U_STRUCT =
-    'struct U { res: vec2<f32>, time: f32, prog: f32, volt: f32, band: f32, dt: f32, pad: f32 };';
+    'struct U { res: vec2<f32>, time: f32, prog: f32, volt: f32, band: f32, dt: f32, pad: f32,'
+    + ' padX: f32, gtop: f32, gbot: f32, pad2: f32,'
+    + ' mouse: vec2<f32>, mAct: f32, pad3: f32 };';
+
+  /* the fault curve, ported to WGSL so every particle can evaluate it at its
+     own x. This is what turns the cloud into the trace instead of a band. */
+  var WGSL_VOLTS = [
+    'fn voltsw(t: f32) -> f32 {',
+    '  let NOM = 3.3;',
+    '  if (t < 0.20) { return NOM - 0.004 * sin(t * 260.0); }',
+    '  if (t < 0.235) { return NOM - 0.05; }',
+    '  if (t < 0.40) {',
+    '    let k = (t - 0.235) / 0.055; let i = floor(k); let f = k - i;',
+    '    if (i < 3.0) { return NOM - 0.05 - sin(f * 3.14159265) * (0.42 + i * 0.12); }',
+    '    return NOM - 0.24;',
+    '  }',
+    '  if (t < 0.46) { return (NOM - 0.24) - ((t - 0.40) / 0.06) * 1.35; }',
+    '  if (t < 0.76) {',
+    '    let c = (t - 0.46) / 0.10; let n = floor(c); let p = c - n;',
+    '    if (p < 0.42) { return 0.15 + (p / 0.42) * 2.80; }',
+    '    if (p < 0.62) { return 2.95 - ((p - 0.42) / 0.20) * 0.85; }',
+    '    return max(0.1, 2.10 - ((p - 0.62) / 0.38) * 2.0);',
+    '  }',
+    '  if (t < 0.80) { return 0.12 + ((t - 0.76) / 0.04) * (NOM - 0.12); }',
+    '  return NOM - 0.003 * sin(t * 300.0);',
+    '}',
+    'fn tOfX(x: f32, u: U) -> f32 {',
+    '  let span = max(u.res.x - u.padX * 2.0, 1.0);',
+    '  return clamp((x - u.padX) / span, 0.0, 1.0);',
+    '}',
+    'fn yOfV(v: f32, u: U) -> f32 {',
+    '  return u.gbot - (v / 4.0) * (u.gbot - u.gtop);',
+    '}'
+  ].join('\n');
 
   /* compute module: moves the current */
   var WGSL_COMPUTE = [
@@ -125,23 +164,41 @@
     '@group(0) @binding(0) var<storage, read_write> ps: array<P>;',
     '@group(0) @binding(1) var<uniform> u: U;',
     'fn h11(n: f32) -> f32 { return fract(sin(n * 78.233) * 43758.5453); }',
+    WGSL_VOLTS,
     '@compute @workgroup_size(64)',
     'fn cmain(@builtin(global_invocation_id) g: vec3<u32>) {',
     '  let i = g.x;',
     '  if (i >= arrayLength(&ps)) { return; }',
     '  var p = ps[i];',
-    '  let health = clamp(u.volt, 0.0, 1.0);',
+    /* LOCAL voltage at this particle's own x -- this is what makes the cloud
+       take the shape of the trace instead of sitting in one flat band */
+    '  let tx = tOfX(p.pos.x, u);',
+    '  let vloc = voltsw(tx);',
+    '  let health = clamp(vloc / 3.3, 0.0, 1.0);',
     '  let lane = 0.45 + p.seed * 1.15;',
-    '  let speed = mix(14.0, 190.0, health * health) * lane;',
-    '  let chaos = mix(98.0, 14.0, health) * (0.6 + p.seed * 0.8);',
+    '  let speed = mix(26.0, 190.0, health * health) * lane;',
+    '  let chaos = mix(74.0, 6.0, health) * (0.6 + p.seed * 0.8);',
     '  let wob = sin(p.pos.x * 0.011 + u.time * 1.7 + p.seed * 6.283) * chaos;',
-    /* each particle keeps its own offset from the trace, so a calm rail stays a
-       band with depth instead of collapsing into a one pixel wire */
-    '  let spread = u.res.y * mix(0.26, 0.075, health);',
-    '  let home = u.band + (p.seed - 0.5) * 2.0 * spread;',
-    '  let pull = (home - p.pos.y) * mix(0.05, 0.55, health);',
+    /* tight around the curve when the rail is healthy, blown apart at the dip;
+       the spread is a fraction of the plot height, not the viewport */
+    '  let plot = max(u.gbot - u.gtop, 1.0);',
+    '  let spread = plot * mix(0.30, 0.020, health);',
+    '  let home = yOfV(vloc, u) + (p.seed - 0.5) * 2.0 * spread;',
+    '  let pull = (home - p.pos.y) * mix(0.10, 0.72, health);',
     '  p.vel.x = mix(p.vel.x, speed, 0.09);',
     '  p.vel.y = mix(p.vel.y, wob + pull, 0.07);',
+    /* pointer: particles are pushed out of the cursor and fall back onto the
+       curve when it leaves. This is the interaction -- the trace is a fluid
+       you can disturb, not a picture of one. */
+    '  if (u.mAct > 0.5) {',
+    '    let d = p.pos - u.mouse;',
+    '    let r = length(d);',
+    '    let R = 128.0;',
+    '    if (r < R && r > 0.001) {',
+    '      let f = (1.0 - r / R);',
+    '      p.vel = p.vel + normalize(d) * f * f * 2600.0 * u.dt;',
+    '    }',
+    '  }',
     '  p.pos = p.pos + p.vel * u.dt;',
     '  if (p.pos.x > u.res.x + 14.0) {',
     '    p.pos.x = -14.0 - h11(p.seed * 3.1 + u.time) * u.res.x * 0.32;',
@@ -157,7 +214,9 @@
   var WGSL_RENDER = [
     U_STRUCT,
     '@group(0) @binding(0) var<uniform> u: U;',
-    'struct VO { @builtin(position) pos: vec4<f32>, @location(0) uv: vec2<f32>, @location(1) sd: f32 };',
+    WGSL_VOLTS,
+    'struct VO { @builtin(position) pos: vec4<f32>, @location(0) uv: vec2<f32>,'
+    + ' @location(1) sd: f32, @location(2) lv: f32, @location(3) rev: f32 };',
     '@vertex',
     'fn vmain(@builtin(vertex_index) vi: u32,',
     '         @location(0) ipos: vec2<f32>,',
@@ -167,12 +226,17 @@
     '    vec2<f32>(-1.0,-1.0), vec2<f32>(1.0,-1.0), vec2<f32>(-1.0,1.0),',
     '    vec2<f32>(-1.0,1.0), vec2<f32>(1.0,-1.0), vec2<f32>(1.0,1.0));',
     '  let c = q[vi];',
-    '  let sz = mix(3.4, 1.7, clamp(u.volt, 0.0, 1.0));',
+    '  let tx = tOfX(ipos.x, u);',
+    '  let hv = clamp(voltsw(tx) / 3.3, 0.0, 1.0);',
+    /* the playhead reveals the trace: ahead of the scrub the current is faint,
+       so the curve writes itself as you scroll instead of being there already */
+    '  let rev = smoothstep(u.prog + 0.055, u.prog - 0.16, tx) * 0.86 + 0.14;',
+    '  let sz = mix(3.2, 1.6, hv);',
     '  let streak = vec2<f32>(1.0 + clamp(abs(ivel.x) * 0.012, 0.0, 2.6), 1.0);',
     '  let w = ipos + c * sz * streak;',
     '  var o: VO;',
     '  o.pos = vec4<f32>((w / u.res) * vec2<f32>(2.0, -2.0) + vec2<f32>(-1.0, 1.0), 0.0, 1.0);',
-    '  o.uv = c; o.sd = iseed;',
+    '  o.uv = c; o.sd = iseed; o.lv = hv; o.rev = rev;',
     '  return o;',
     '}',
     '@fragment',
@@ -182,11 +246,12 @@
     '  let bad = vec3<f32>(0.86, 0.30, 0.22);',
     '  let warm = vec3<f32>(0.86, 0.58, 0.30);',
     '  let good = vec3<f32>(0.44, 0.69, 0.57);',
-    '  let hv = clamp(u.volt, 0.0, 1.0);',
+    '  let hv = in.lv;',
     '  var col = mix(bad, warm, smoothstep(0.22, 0.78, hv));',
     '  col = mix(col, good, smoothstep(0.82, 1.0, u.prog));',
     '  let flick = 0.75 + 0.25 * sin(u.time * 3.1 + in.sd * 12.0);',
-    '  return vec4<f32>(col * a * flick * 0.82, a * 0.44);',
+    '  let e = in.rev;',
+    '  return vec4<f32>(col * a * flick * 0.86 * e, a * 0.42 * e);',
     '}'
   ].join('\n');
 
@@ -244,7 +309,8 @@
           primitive: { topology: 'triangle-list' }
         });
 
-        var uni = dev.createBuffer({ size: 48, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
+        /* 16 floats: res(2) time prog volt band dt pad padX gtop gbot pad2 mouse(2) mAct pad3 */
+        var uni = dev.createBuffer({ size: 80, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
         var g = { dev: dev, gctx: gctx, cPipe: cPipe, rPipe: rPipe, cBGL: cBGL, rBGL: rBGL,
                   uni: uni, buf: null, cBG: null, rBG: null, n: 0, lost: false };
 
@@ -264,7 +330,8 @@
     for (var i = 0; i < n; i++) {
       var o = i * 6;
       data[o] = Math.random() * w;
-      data[o + 1] = h * (0.28 + Math.random() * 0.62);
+      /* seeded near the plot band; the compute pass pulls them onto the curve */
+      data[o + 1] = h * (0.38 + Math.random() * 0.36);
       data[o + 2] = 40 + Math.random() * 90;
       data[o + 3] = (Math.random() - 0.5) * 8;
       data[o + 4] = Math.random();
@@ -290,7 +357,7 @@
     seedParticles(gpu, cgpu.width, cgpu.height);
   }
 
-  var uArr = new Float32Array(12);
+  var uArr = new Float32Array(20);
   function drawGPU(p, time, dt) {
     if (!gpu || gpu.lost || !gpu.buf || !cgpu.width) return;
     var vh = volts(Math.max(0.002, p));
@@ -299,6 +366,11 @@
     uArr[0] = cgpu.width; uArr[1] = cgpu.height;
     uArr[2] = time; uArr[3] = p;
     uArr[4] = health; uArr[5] = geom.y(vh) * dpr; uArr[6] = dt; uArr[7] = 0;
+    /* plot geometry in device pixels so the shader can rebuild the curve */
+    uArr[8] = geom.padX * dpr; uArr[9] = geom.top * dpr;
+    uArr[10] = geom.bot * dpr; uArr[11] = 0;
+    uArr[12] = mouse.x * dpr; uArr[13] = mouse.y * dpr;
+    uArr[14] = mouse.on ? 1 : 0; uArr[15] = 0;
     gpu.dev.queue.writeBuffer(gpu.uni, 0, uArr);
 
     var enc = gpu.dev.createCommandEncoder();
@@ -317,7 +389,19 @@
     rp.setVertexBuffer(0, gpu.buf);
     rp.draw(6, gpu.n); rp.end();
     gpu.dev.queue.submit([enc.finish()]);
+    gpuLive = true;
   }
+
+  /* ---------- pointer ---------- */
+  var mouse = { x: -9999, y: -9999, on: false };
+  function pointerMove(e) {
+    var r = c2d.getBoundingClientRect();
+    var x = e.clientX - r.left, y = e.clientY - r.top;
+    mouse.x = x; mouse.y = y;
+    mouse.on = (x >= 0 && y >= 0 && x <= r.width && y <= r.height);
+  }
+  window.addEventListener('pointermove', pointerMove, { passive: true });
+  window.addEventListener('pointerleave', function () { mouse.on = false; }, { passive: true });
 
   /* ---------- beats ---------- */
   var ident = document.querySelector('.ident');
