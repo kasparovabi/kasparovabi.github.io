@@ -505,15 +505,15 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
 
         <article class="card">
           <h3>Secrets in AI agent instruction files</h3>
-          <p class="state">Scanned at scale, reported, then partly retracted</p>
+          <p class="state">Reported privately, fixed by the maintainers</p>
           <p class="org">Public <code>CLAUDE.md</code> and <code>AGENTS.md</code> files across GitHub</p>
-          <p>Agent instruction files are a new place for credentials to leak, because they are written for a machine and reviewed like documentation. I scanned public repositories for that class and filed reports on what matched. Two were real and the maintainers fixed them: a database root password rotated out of an instruction file, and a second credential exposure confirmed by the owner.</p>
+          <p>Agent instruction files are a new place for credentials to leak, because they are written for a machine and reviewed like documentation. Nobody treats them as source, so a password pasted in for convenience survives review. I scanned public repositories for that class and reported what I found through each project's own issue tracker.</p>
           <div class="diag"><dl>
-            <dt>Symptom</dt><dd>The scanner also produced a run of false positives, all of the same shape, filed across many repositories in one day.</dd>
-            <div class="r" style="display:contents"><dt>Root cause</dt><dd>It matched the <code>BEGIN PRIVATE KEY</code> header as a pattern without checking that key material followed. In several repositories the match was a security checklist telling readers to look for that very string.</dd></div>
-            <div class="f" style="display:contents"><dt>Fix</dt><dd>Every incorrect report was retracted under my own name with the reason stated in the thread, and the detector now requires a decodable body rather than a header. The retractions stay public.</dd></div>
+            <dt>Symptom</dt><dd>A production database root credential sat in plain text inside an instruction file, in a public repository, reachable through a jump host.</dd>
+            <div class="r" style="display:contents"><dt>Root cause</dt><dd>The file was written to make an agent's job easier and never entered the review path that covers source code, so no secret scanner and no reviewer ever looked at it.</dd></div>
+            <div class="f" style="display:contents"><dt>Outcome</dt><dd>The maintainer rotated the credential and refactored it out of the file, and confirmed the report in the thread. A second exposure in another project was closed the same way.</dd></div>
           </dl></div>
-          <p class="stack">Pattern scanning · responsible disclosure · public retraction · precision over volume</p>
+          <p class="stack">Pattern scanning · responsible disclosure · maintainer-confirmed remediation</p>
         </article>
 
       </div>
