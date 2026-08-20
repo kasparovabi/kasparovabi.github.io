@@ -479,15 +479,41 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
 
         <article class="card">
           <h3>Coordinated security disclosure</h3>
-          <p class="state">Two disclosures filed</p>
-          <p class="org"><a href="https://github.com/kasparovabi/security-research">security-research</a> · full timeline and artifacts</p>
-          <p>Two coordinated disclosures against open-source AI tooling, both filed privately through the vendor's own channel with no working exploit published. The first covered 17 vulnerabilities in a wearable AI device backend, aggregate CVSS 10.0: remote code execution, authentication bypass, SSRF and a hardcoded production key. The second reported that a documented filesystem allowlist did not exist in the shipped Rust binary, so the hardening step the project told operators to take did nothing.</p>
+          <p class="state">Four findings, two vendors and my own code</p>
+          <p class="org"><a href="https://kasparovabi.github.io/security-research/2026-04-omi-disclosure.html">security-research</a> · full timeline and artifacts</p>
+          <p>Coordinated disclosures against open-source AI tooling, all filed privately through the vendor's own channel with no working exploit published. The largest covered 17 vulnerabilities in a wearable AI device backend, aggregate CVSS 10.0: remote code execution, authentication bypass, SSRF and a hardcoded production key. A second reported that a documented filesystem allowlist did not exist in the shipped Rust binary, so the hardening step the project told operators to take did nothing. The same audit turned inward and found a command injection in my own tool.</p>
           <div class="diag"><dl>
             <dt>Symptom</dt><dd>Documentation instructed operators to restrict filesystem reach with a command line flag that the binary never reads.</dd>
             <div class="r" style="display:contents"><dt>Root cause</dt><dd>The flag survived a TypeScript to Rust rewrite in the docs but not in the code. Argument parsing accepts it silently and discards it.</dd></div>
             <div class="f" style="display:contents"><dt>Verification</dt><dd>The vendor's own hardening commit names the first disclosure in its title, so the outcome is checkable in their git history rather than only in my write-up.</dd></div>
           </dl></div>
           <p class="stack">Static source audit · local reproduction · GitHub Security Advisories · duplicate screening against published CVEs</p>
+        </article>
+
+        <article class="card">
+          <h3>Command injection in my own tool</h3>
+          <p class="state open">Found and closed in Sift</p>
+          <p class="org"><a href="https://github.com/kasparovabi/sift/pull/2">sift#2</a> · merged 7 August 2026</p>
+          <p>Sift indexes local agent transcripts and can resume a session in the terminal. Resuming built a shell command in which the working directory and the binary path were quoted, but the session identifier was not. That identifier is read from a field inside the transcript file, so its value is whatever the file says.</p>
+          <div class="diag"><dl>
+            <dt>Symptom</dt><dd>A transcript whose session id carried shell metacharacters turned one Resume click into arbitrary command execution in the user's own terminal.</dd>
+            <div class="r" style="display:contents"><dt>Root cause</dt><dd>The escape layer in between only handled backslash and double quote, so semicolons, backticks and command substitution passed straight into the shell. CWE-78, local, driven by untrusted file content.</dd></div>
+            <div class="f" style="display:contents"><dt>Fix</dt><dd>Quote each argument individually. One line. The sibling launcher in the same codebase already did exactly this, so the fix closed an oversight rather than changing a design.</dd></div>
+          </dl></div>
+          <p class="stack">Swift · shell argument quoting · CWE-78 · reported and fixed in the open</p>
+        </article>
+
+        <article class="card">
+          <h3>Secrets in AI agent instruction files</h3>
+          <p class="state">Scanned at scale, reported, then partly retracted</p>
+          <p class="org">Public <code>CLAUDE.md</code> and <code>AGENTS.md</code> files across GitHub</p>
+          <p>Agent instruction files are a new place for credentials to leak, because they are written for a machine and reviewed like documentation. I scanned public repositories for that class and filed reports on what matched. Two were real and the maintainers fixed them: a database root password rotated out of an instruction file, and a second credential exposure confirmed by the owner.</p>
+          <div class="diag"><dl>
+            <dt>Symptom</dt><dd>The scanner also produced a run of false positives, all of the same shape, filed across many repositories in one day.</dd>
+            <div class="r" style="display:contents"><dt>Root cause</dt><dd>It matched the <code>BEGIN PRIVATE KEY</code> header as a pattern without checking that key material followed. In several repositories the match was a security checklist telling readers to look for that very string.</dd></div>
+            <div class="f" style="display:contents"><dt>Fix</dt><dd>Every incorrect report was retracted under my own name with the reason stated in the thread, and the detector now requires a decodable body rather than a header. The retractions stay public.</dd></div>
+          </dl></div>
+          <p class="stack">Pattern scanning · responsible disclosure · public retraction · precision over volume</p>
         </article>
 
       </div>
