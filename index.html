@@ -478,6 +478,19 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
         </article>
 
         <article class="card">
+          <h3>A timing fault in someone else's menu bar</h3>
+          <p class="state open">Merged upstream</p>
+          <p class="org"><a href="https://github.com/meyusufdemirci/iMenu-MacOS/pull/1">iMenu-MacOS#1</a> · opened 11 August, merged 23 August 2026</p>
+          <p>iMenu is a native macOS menu bar manager written by someone else. Hiding an item is not an API call there, the app synthesises a ⌘ drag and lets the system menu bar move the icon itself. That hide landed on an idle machine and missed under load, which is the signature of an ordering problem rather than a logic error, and it is the kind of bug a test suite cannot see.</p>
+          <div class="diag"><dl>
+            <dt>Symptom</dt><dd>The same gesture worked sometimes and did nothing other times, with no error raised anywhere and the full suite green either way.</dd>
+            <div class="r" style="display:contents"><dt>Root cause</dt><dd>The drag samples already paused between each other, but the four edges of the gesture did not. Key down, press, drop and key up were posted in a single run loop pass, so the menu bar was handed the next event before it had entered rearrange mode, picked the item up, or processed the drop against the item's new position.</dd></div>
+            <div class="f" style="display:contents"><dt>Fix</dt><dd>Four settle delays, one per edge, named and documented separately so each can be tuned on its own. 270 ms added to a gesture that already spent about 120 ms in step delays, so it stays inside one user action.<small>134 tests passed before and after, because they exercise geometry and seams rather than the timing of posted events. I said so in the pull request instead of claiming a verification I could not run on the maintainer's machine.</small></dd></div>
+          </dl></div>
+          <p class="stack">Swift · CGEvent synthesis · Accessibility API · unfamiliar codebase, upstream contribution</p>
+        </article>
+
+        <article class="card">
           <h3>Coordinated security disclosure</h3>
           <p class="state">Four findings, two vendors and my own code</p>
           <p class="org"><a href="https://kasparovabi.github.io/security-research/2026-04-omi-disclosure.html">security-research</a> · full timeline and artifacts</p>
@@ -529,14 +542,14 @@ footer{padding:clamp(2.6rem,7vh,4rem) 0 clamp(3rem,9vh,5rem);border-top:1px soli
         <div id="machine"></div>
 
         <dl class="rows">
-          <div class="rw"><dt>Skills</dt><dd>141 procedures the agents load on demand rather than carrying in context. The bodies total 1.7 MB; the index that decides which one to open is under 10 KB.</dd></div>
-          <div class="rw"><dt>Scheduled work</dt><dd>13 cron jobs and 6 launchd agents. One of them audits open source AI tooling for vulnerabilities every day and has run 9 consecutive days.</dd></div>
-          <div class="rw"><dt>Results</dt><dd>64 repositories audited, 14 pull requests opened, 2 coordinated disclosures filed. 2 findings were closed before sending: one duplicated a published CVE, the other did not reproduce when I ran the code.</dd></div>
+          <div class="rw"><dt>Skills</dt><dd>160 procedures the agents load on demand rather than carrying in context. The bodies total 2.2 MB; the index that decides which one to open is 21 KB.</dd></div>
+          <div class="rw"><dt>Scheduled work</dt><dd>17 cron jobs and 9 scheduled launchd agents. One of them audits open source AI tooling for vulnerabilities every day and has run 18 consecutive days.</dd></div>
+          <div class="rw"><dt>Results</dt><dd>186 repositories inspected and 26 pull requests opened into other people's repositories, 11 of them merged. 4 security findings filed privately through vendor channels. 2 more were closed before sending: one duplicated a published CVE, the other did not reproduce when I ran the code.</dd></div>
           <div class="rw"><dt>Approval gate</dt><dd>Security reports, force pushes and anything touching production data stop and wait for a human. The agents can propose; they cannot send.</dd></div>
           <div class="rw"><dt>Audit trail</dt><dd>Every run writes a log. When a scheduled job silently failed for a day, the gap in that trail is how it was found, and a recovery watchdog now covers it.</dd></div>
         </dl>
 
-        <p class="note" style="margin-top:1.4rem"><b>What this is not</b><span>The agents do not decide what is worth building, and they are wrong often enough that the gates exist for a reason. Two of the four findings my own security loop produced this month were rejected by those gates before they reached a maintainer. That rejection rate is the argument for the architecture, not against it.</span></p>
+        <p class="note" style="margin-top:1.4rem"><b>What this is not</b><span>The agents do not decide what is worth building, and they are wrong often enough that the gates exist for a reason. Two of the six findings my own security loop produced were rejected by those gates before they reached a maintainer. That rejection rate is the argument for the architecture, not against it.</span></p>
       </div>
     </div>
   </section>
