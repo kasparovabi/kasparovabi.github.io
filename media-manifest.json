@@ -22,7 +22,7 @@
     },
     "pozla-recap": {
       "video": "assets/videos/pozla-recap.mp4",
-      "source": "Original Recap application render using 20 AI generated portrait photos."
+      "source": "Original subjectcut extraction and unchanged OnceClone animation, using generated event photos with transparent subject layers. The local render does not exercise the production queue."
     },
     "anikamerasi": {
       "video": "assets/videos/anikamerasi.mp4",
@@ -31,10 +31,6 @@
     "latent": {
       "video": "assets/videos/latent.mp4",
       "source": "Isolated iOS simulator recording"
-    },
-    "cutaway": {
-      "video": "assets/videos/cutaway.mp4",
-      "source": "Native application recording using the user provided IMG_2432.MOV. Local Whisper transcription, English translation and manually prepared video excerpts. Not live AI search results."
     },
     "maarif-platform-web": {
       "video": "assets/videos/maarif-platform-web.mp4",

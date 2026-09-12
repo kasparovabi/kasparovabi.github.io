@@ -71,3 +71,10 @@ Poz and Pozla Gallery now use the existing 20 AI generated portrait photos. Poz 
 The 17 new H.264 recordings total 9.8 MB, run approximately 9 to 14 seconds, and load on demand. Posters come from the same recordings. Contact sheets were reviewed and recordings with an obstructing onboarding overlay or unhelpful book scrolling were replaced. TypeScript passed for the modified Poz copy. All 17 new project dialogs were exercised in the browser. The existing 49 project and 44 resource check passed.
 
 Video provenance and demo limitations are recorded in media-manifest.json. Ten existing still captures remain for projects without a useful new interaction recording. Thirteen projects still have no verified interface capture; they retain honest source or work in progress cards. This update does not change those verification limits. Original projects and production remain unchanged.
+
+
+## Original behavior correction
+
+The user requires English translation without changing application behavior. The Cutaway prepared result fixture was reverted and its recording withdrawn. The original English interface builds and transcribes the supplied video into 14 sentences; real clip search stops because the isolated credential namespace has no configured account. No synthetic search result is substituted.
+
+Recap now uses the original subjectcut executable to supply transparent subject layers to the unchanged OnceClone composition. All 20 cutouts were generated; the render completed and overlapping subject transition frames were visually reviewed. The corrected recording replaces the earlier incomplete one. There are now 25 videos. Existing offline fixtures in other projects must be reviewed against the new language-only boundary before further claims of functional fidelity.
