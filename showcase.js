@@ -7,13 +7,13 @@ let fanHover=null, fanFrame=0, fanCurrent=4, fanTarget=4, fanVisible=true;
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 function caption(index){const p=featured[index];if(!p)return;$('#selected-category').textContent=p.category;$('#selected-title').textContent=p.name+' ↗';$('#selected-index').textContent=String(index+1).padStart(2,'0')+' / '+String(featured.length).padStart(2,'0');}
 function layoutFan(){
- const width=$('#stage').clientWidth, cardWidth=Math.min(340,width*.62), spacing=Math.min(220,cardWidth*.65);
+ const width=$('#stage').clientWidth, cardWidth=Math.min(340,width*.62), spacing=Math.min(220,cardWidth*.65), edgeInset=cardWidth*.53+18;
  document.querySelectorAll('.project-window').forEach((el,i)=>{
   const rel=i-fanCurrent;
   const distance=Math.abs(rel), raised=fanHover===i, mobile=featured[i].category==='Mobile';
   const h=cardWidth*.67, w=cardWidth;
   el.style.width=w+'px';el.style.height=h+'px';el.style.transition=reducedMotion.matches?'none':Math.abs(fanTarget-fanCurrent)>.002?'filter .2s,box-shadow .2s':'transform .22s ease-out,filter .2s,box-shadow .2s';
-  el.style.transform=`translate3d(calc(-50% + ${rel*spacing+(fanCurrent-(featured.length-1)/2)*width/(featured.length-1)}px),calc(-50% + ${distance*distance*4.8}px),0px) rotateY(${-rel*7}deg) scale(${1-distance*.045+(raised?.06:0)})`;
+  el.style.transform=`translate3d(calc(-50% + ${rel*spacing+(fanCurrent-(featured.length-1)/2)*(width-2*edgeInset)/(featured.length-1)}px),calc(-50% + ${distance*distance*4.8}px),0px) rotateY(${-rel*7}deg) scale(${1-distance*.045+(raised?.06:0)})`;
   el.style.zIndex=raised?100:Math.round(30-distance);el.classList.toggle('active',i===selected);el.classList.toggle('raised',raised);el.classList.toggle('dimmed',distance>1&&!raised);el.classList.toggle('portrait-capture',mobile);
   el.setAttribute('aria-label','Open '+featured[i].name);
  });
@@ -40,7 +40,7 @@ function renderDeck(){
  });select(Math.floor(featured.length/2));
 }
 let touchStart=null,suppressClick=false;
-$('#stage').addEventListener('pointermove',e=>{if(e.pointerType==='touch'||$('#project-dialog').open)return;const r=$('#stage').getBoundingClientRect();const nx=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));fanTarget=nx*(featured.length-1);fanHover=Math.round(fanTarget);selected=fanHover;caption(selected);wakeFan();},{passive:true});
+$('#stage').addEventListener('pointermove',e=>{if(e.pointerType==='touch'||$('#project-dialog').open)return;const r=$('#stage').getBoundingClientRect();const inset=Math.min(340,r.width*.62)*.53+18;const nx=Math.max(0,Math.min(1,(e.clientX-r.left-inset)/(r.width-2*inset)));fanTarget=nx*(featured.length-1);fanHover=Math.round(fanTarget);selected=fanHover;caption(selected);wakeFan();},{passive:true});
 $('#stage').addEventListener('pointerleave',()=>{fanHover=null;caption(selected);wakeFan();});
 $('#stage').addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){touchStart={x:e.clientX,y:e.clientY};suppressClick=false;}},{passive:true});
 $('#stage').addEventListener('pointerup',e=>{if(!touchStart)return;const dx=e.clientX-touchStart.x,dy=e.clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)){suppressClick=true;select(selected+(dx<0?1:-1));setTimeout(()=>suppressClick=false,300);}},{passive:true});

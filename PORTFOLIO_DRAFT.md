@@ -38,3 +38,7 @@ Removed endpoint browsing after user found intermediate cards inaccessible. Fan 
 ### Pointer-anchored scrolling
 
 The fan now scrolls continuously across the collection, with the selected card anchored to the pointer horizontal position instead of the viewport center. Retained flat hit testing and smooth hover scaling. Browser verification at all nine horizontal selection positions: moving into the fan then clicking without repositioning opened the corresponding project in every case. Separately verified Africa Atlas and Sift under the exact pointer position after long cross-stage movements.
+
+### Keep endpoint cards inside the viewport
+
+Inset both the pointer mapping and card anchor by half the enlarged card width plus 18px. Pointer travel through this edge buffer retains the endpoint selection, so approaching the full visible card does not select its neighbour. Verified both endpoint dialogs by mouse clicks on desktop; at mobile width 390, the enlarged final card ended at 357 inside the 375px stage, leaving 18px clearance.
