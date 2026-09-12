@@ -2,7 +2,7 @@
   "videos": {
     "dsh-studio": {
       "video": "assets/videos/dsh-studio.mp4",
-      "source": "Existing isolated demo recording"
+      "source": "Original repository demo recording. The restored native application builds and connects to the local server. Agent execution was not retested in this review."
     },
     "maarif-sablon": {
       "video": "assets/videos/maarif-sablon.mp4",
@@ -26,7 +26,7 @@
     },
     "anikamerasi": {
       "video": "assets/videos/anikamerasi.mp4",
-      "source": "Isolated iOS simulator capture of the portfolio sample album with 20 AI generated portrait photos."
+      "source": "Original iOS onboarding recorded from the full application using generated portrait photos. Simulator build passed. Event creation, camera capture, uploads and purchases were not exercised."
     },
     "latent": {
       "video": "assets/videos/latent.mp4",
@@ -35,10 +35,6 @@
     "maarif-platform-web": {
       "video": "assets/videos/maarif-platform-web.mp4",
       "source": "Actual local communications directory navigation. Service status and live availability were not tested."
-    },
-    "maarif-gorev": {
-      "video": "assets/videos/maarif-gorev.mp4",
-      "source": "Actual task board interface with clearly synthetic people, tasks and metrics."
     },
     "maarif-tabela": {
       "video": "assets/videos/maarif-tabela.mp4",
@@ -51,10 +47,6 @@
     "maarif-kartvizit": {
       "video": "assets/videos/maarif-kartvizit.mp4",
       "source": "Actual browser interaction recorded from the separate English portfolio copy with local example content."
-    },
-    "pozla-web": {
-      "video": "assets/videos/pozla-web.mp4",
-      "source": "Original invitation, gallery and photo viewer recorded locally with 20 AI generated portrait photos. No uploads or event backend."
     },
     "maarif-platform": {
       "video": "assets/videos/maarif-platform.mp4",
@@ -72,17 +64,9 @@
       "video": "assets/videos/maarif-imza.mp4",
       "source": "Actual browser interaction recorded from the separate English portfolio copy with local example content."
     },
-    "maarif-ai": {
-      "video": "assets/videos/maarif-ai.mp4",
-      "source": "Original chat interface, specialist picker and local draft with a visibly fictional conversation. No AI request was sent."
-    },
     "karart": {
       "video": "assets/videos/karart.mp4",
       "source": "Actual color transformation engine on its local browser fixture. Extension transport is mocked."
-    },
-    "poz": {
-      "video": "assets/videos/poz.mp4",
-      "source": "Original capture counter, film filter and roll reveal recorded locally using AI generated portrait photos. Camera hardware and uploads are disabled."
     },
     "ubus-kaos-kafesi": {
       "video": "assets/videos/ubus-kaos-kafesi.mp4",
@@ -95,10 +79,6 @@
     "ai-desktop-pet-brain": {
       "video": "assets/videos/ai-desktop-pet-brain.mp4",
       "source": "Actual face animations selected with manual controls. No robot connection or autonomous behavior."
-    },
-    "ai-desktop-toy-wiring-guide": {
-      "video": "assets/videos/ai-desktop-toy-wiring-guide.mp4",
-      "source": "Actual wiring guide step navigation using the offline preview. No camera or AI connection."
     },
     "cutaway": {
       "video": "assets/videos/cutaway.mp4",

@@ -1,3 +1,7 @@
+# Current audit checkpoint
+
+The notes below describe earlier previews. Current state: 49 projects, 9 featured, 23 images, 21 videos. Five previous videos and thirteen previous images are withdrawn from display after the original-flow review. Full translation and runtime completion are not claimed. See ../review/FIDELITY_REVIEW.md and ../review/ISE_ALIM_DEGERLENDIRMESI.md. Curated project-overrides.json prevents the old inventory generator from restoring invalidated media or outdated claims. No deployment.
+
 # Product showcase draft
 
 ## Reference refinement — 12 September
