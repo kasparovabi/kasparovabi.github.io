@@ -12,8 +12,8 @@ function layoutFan(){
   const rel=i-fanCurrent;
   const distance=Math.abs(rel), raised=fanHover===i, mobile=featured[i].category==='Mobile';
   const h=mobile?Math.min(280,cardWidth*1.03,$('#stage').clientHeight*.72):cardWidth*.67, w=mobile?h*.52:cardWidth;
-  el.style.width=w+'px';el.style.height=h+'px';
-  el.style.transform=`translate3d(calc(-50% + ${rel*spacing}px),calc(-50% + ${distance*distance*4.8-(raised?24:0)}px),${-distance*42+(raised?105:0)}px) rotateY(${-rel*7*(raised?.4:1)}deg) scale(${1-distance*.045+(raised?.035:0)})`;
+  el.style.width=w+'px';el.style.height=h+'px';el.style.transition=reducedMotion.matches?'none':Math.abs(fanTarget-fanCurrent)>.002?'filter .2s,box-shadow .2s':'transform .22s ease-out,filter .2s,box-shadow .2s';
+  el.style.transform=`translate3d(calc(-50% + ${rel*spacing}px),calc(-50% + ${distance*distance*4.8}px),${-distance*42}px) rotateY(${-rel*7}deg) scale(${1-distance*.045+(raised?.06:0)})`;
   el.style.zIndex=raised?100:Math.round(30-distance);el.classList.toggle('active',i===selected);el.classList.toggle('raised',raised);el.classList.toggle('dimmed',distance>1&&!raised);el.classList.toggle('phone-window',mobile);
   el.setAttribute('aria-label','Open '+featured[i].name);
  });
@@ -32,15 +32,15 @@ function renderDeck(){
  $('#deck').innerHTML=featured.map((p,i)=>`<button class="project-window" data-index="${i}" aria-label="Open ${esc(p.name)}"><span class="window-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>${esc(p.name)}</span><span aria-hidden="true">↗</span></span><img src="${esc(p.image)}" alt="${esc(p.name)} interface" ${i?'loading="lazy"':'fetchpriority="high"'} draggable="false"><span class="window-open" aria-hidden="true">↗</span></button>`).join('');
  document.querySelectorAll('.project-window').forEach((button,i)=>{
   button.addEventListener('click',()=>{if(suppressClick)return;openProject(featured[i]);});
-  button.addEventListener('pointerenter',e=>{if(e.pointerType==='touch')return;fanHover=i;caption(i);layoutFan();});
+  button.addEventListener('pointerenter',e=>{if(e.pointerType==='touch')return;fanTarget=fanCurrent;fanHover=i;caption(i);layoutFan();});
   button.addEventListener('pointerleave',()=>{if(fanHover===i){fanHover=null;caption(selected);layoutFan();}});
-  button.addEventListener('focus',()=>{fanHover=i;caption(i);layoutFan();});
+  button.addEventListener('focus',()=>{fanTarget=fanCurrent;fanHover=i;caption(i);layoutFan();});
   button.addEventListener('blur',()=>{fanHover=null;caption(selected);layoutFan();});
   button.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();select(selected+(e.key==='ArrowRight'?1:-1));document.querySelectorAll('.project-window')[selected].focus();}});
  });select(Math.floor(featured.length/2));
 }
 let touchStart=null,suppressClick=false;
-$('#stage').addEventListener('pointermove',e=>{if(e.pointerType==='touch'||$('#project-dialog').open)return;const r=$('#stage').getBoundingClientRect();const nx=Math.max(-1,Math.min(1,((e.clientX-r.left)/r.width-.5)*2));fanTarget=Math.max(0,Math.min(featured.length-1,(featured.length-1)/2+nx*featured.length*.46));wakeFan();},{passive:true});
+$('#stage').addEventListener('pointermove',e=>{if(e.pointerType==='touch'||$('#project-dialog').open)return;const r=$('#stage').getBoundingClientRect();const nx=((e.clientX-r.left)/r.width-.5)*2;/* Keep the approach to a card stable; only empty outer edges browse. */if(e.target.closest('.project-window')||Math.abs(nx)<.72){fanTarget=fanCurrent;return;}fanTarget=nx<0?0:featured.length-1;wakeFan();},{passive:true});
 $('#stage').addEventListener('pointerleave',()=>{fanHover=null;caption(selected);wakeFan();});
 $('#stage').addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){touchStart={x:e.clientX,y:e.clientY};suppressClick=false;}},{passive:true});
 $('#stage').addEventListener('pointerup',e=>{if(!touchStart)return;const dx=e.clientX-touchStart.x,dy=e.clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)){suppressClick=true;select(selected+(dx<0?1:-1));setTimeout(()=>suppressClick=false,300);}},{passive:true});

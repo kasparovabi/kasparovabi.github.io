@@ -26,3 +26,7 @@ Pending: owner feedback on the visual direction and selection; short real-use cl
 - Removed the extra phone shell around screenshots which already include a device. Added headroom for lifted portrait captures.
 - Browser verification: pointer traversal reached DSH Studio and Pozla Recap; direct Pozla card click opened the matching dialog. All 36 project screenshots loaded after traversing the archive (no pending or broken images); all 44 checked resources returned HTTP 200. Mobile width 390 had no horizontal overflow.
 - The local preview server had stopped, consistent with delayed image requests failing. Restarted independently of the command session; logs and PID are in the preparation review directory. Production was not changed.
+
+### Stable pointer approach
+
+Browse only from the empty outer edges; the central approach area and card hover stop lateral motion. Hover retains the card angle and uses a short scale transition instead of abruptly changing depth and rotation. Verified actual mouse paths from both edges to the centered card: DSH Studio and Pozla Recap stayed under the pointer and opened the correct dialog on direct click.
