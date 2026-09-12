@@ -1,14 +1,14 @@
 {
   "featured": [
-    "dsh-studio",
     "afrika-uyaniyor",
-    "maarif-sablon",
-    "anikamerasi",
     "rauf-tuncer-site",
-    "cutaway",
-    "latent",
+    "anikamerasi",
+    "maarif-sablon",
+    "dsh-studio",
     "sift",
-    "pozla-recap"
+    "pozla-recap",
+    "cutaway",
+    "latent"
   ],
   "projects": [
     {
@@ -20,7 +20,9 @@
       "video": "assets/videos/afrika-uyaniyor.mp4",
       "scope": "English original 54 country atlas; browser search, country modal and neighbor navigation verified; historical source snapshot clearly labeled.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarif-platform-web",
@@ -31,7 +33,9 @@
       "video": "assets/videos/maarif-platform-web.mp4",
       "scope": "Actual local communications directory navigation. Service status and live availability were not tested.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarif-gorev",
@@ -42,7 +46,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarif-tabela",
@@ -53,7 +59,9 @@
       "video": "assets/videos/maarif-tabela.mp4",
       "scope": "Original sign previews and export engine. The previous unrelated export warning change was removed. Full export validation of the restored copy is pending.",
       "verified": false,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarif-sablon",
@@ -64,7 +72,21 @@
       "video": "assets/videos/maarif-sablon.mp4",
       "scope": "All 7 English template routes static exported with Next 16.2.3; browser editor and actual 1280x1024 JPG inspected; other 6 exports not exercised",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation.",
+      "problem": "Routine institutional announcements share a visual system but carry different names, dates and contact details. Recreating each layout manually makes consistency harder to maintain.",
+      "contribution": "I designed and built the template collection, editing forms, live previews and image export, including the layout rules for each announcement type.",
+      "implementation": "Typed template data feeds React layouts. The editor measures the available space to scale its preview, while export uses the original canvas dimensions and embedded fonts.",
+      "result": "A user can choose a template, enter the announcement details and export a JPG. Seven template routes cover appointment, departure, HR information, condolences and celebrations.",
+      "stack": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "html-to-image"
+      ],
+      "repo": null,
+      "caseStudy": "projects/maarif-sablon.html"
     },
     {
       "id": "kipirda",
@@ -75,7 +97,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarifet",
@@ -86,7 +110,9 @@
       "video": "assets/videos/maarifet.mp4",
       "scope": "Original book renderer and week navigation with four clearly fictional workshop weeks. No cloud generation.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "video-indir",
@@ -97,7 +123,9 @@
       "video": null,
       "scope": "Corporate container source and UI; browser sample video downloaded and played; npm test passed including auth, SSRF, preview generation, and download.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarif-kartvizit",
@@ -108,7 +136,9 @@
       "video": "assets/videos/maarif-kartvizit.mp4",
       "scope": "12 existing PDF engine tests passed; production build passed; browser standard and executive previews rendered; both PDF files downloaded.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "dsh-studio",
@@ -119,7 +149,21 @@
       "video": "assets/videos/dsh-studio.mp4",
       "scope": "Original repository demo recording. The restored native application builds and connects to the local server. Agent execution was not retested in this review.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation.",
+      "problem": "Working with a coding agent involves more than sending a prompt. Sessions, streamed output, tool approvals and model settings need to stay understandable as work progresses.",
+      "contribution": "I designed and built the macOS application: the session browser, live conversation interface, controls and integration with the dsh server.",
+      "implementation": "SwiftUI presents sessions while JSON RPC and a WebSocket event stream connect the interface to the existing dsh harness. History recovery reads the local session log when the server cannot serve a damaged transcript.",
+      "result": "The application brings session navigation, streaming output, approvals and configuration into one native workspace. The original repository includes the demonstration shown here.",
+      "stack": [
+        "Swift",
+        "SwiftUI",
+        "JSON RPC",
+        "WebSocket"
+      ],
+      "repo": "https://github.com/kasparovabi/dsh-studio",
+      "caseStudy": "projects/dsh-studio.html"
     },
     {
       "id": "etsy-factory",
@@ -130,7 +174,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "pozla-web",
@@ -141,7 +187,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "pozla-recap",
@@ -152,7 +200,9 @@
       "video": "assets/videos/pozla-recap.mp4",
       "scope": "Original subjectcut extraction and unchanged OnceClone animation, using generated event photos with transparent subject layers. The local render does not exercise the production queue.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "peri",
@@ -163,7 +213,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "kiebatch",
@@ -174,7 +226,9 @@
       "video": null,
       "scope": "XcodeGen and signed Debug build passed; English native batch UI verified. Paid generation and PSD conversion not executed.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "cutaway",
@@ -185,7 +239,9 @@
       "video": "assets/videos/cutaway.mp4",
       "scope": "Original app transcription and live contextual clip search using the supplied video. Recording shows a real external candidate and sentence selection. Candidate playback was unavailable; relevance is not claimed.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "anikamerasi",
@@ -196,7 +252,9 @@
       "video": "assets/videos/anikamerasi.mp4",
       "scope": "Original iOS onboarding recorded from the full application using generated portrait photos. Simulator build passed. Event creation, camera capture, uploads and purchases were not exercised.",
       "verified": true,
-      "evidence": "Original onboarding recording"
+      "evidence": "Original onboarding recording",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "claude-skill-pack",
@@ -207,7 +265,9 @@
       "video": null,
       "scope": "Source inspection only. 168 tracked files and 49 skill entry points. Agent execution and external integrations were not tested.",
       "verified": false,
-      "evidence": "Source & test notes"
+      "evidence": "Source & test notes",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "sift",
@@ -218,7 +278,21 @@
       "video": "assets/videos/sift.mp4",
       "scope": "Existing English browser version; 18 synthetic sessions indexed, pagination search and session reading verified in browser; 31 tests passed and terminal POST returned 403. Native clients not exercised.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation.",
+      "problem": "Useful decisions and solutions accumulate across Claude Code and Codex transcripts. Remembering a previous solution does not necessarily mean remembering which session contains it.",
+      "contribution": "I designed and built Sift, from transcript ingestion and local indexing to the search interface and the flow for returning to a session.",
+      "implementation": "Provider specific readers normalize local transcripts into a SQLite index. FTS5 provides full text search with ranked results. The interface can open the original session in the appropriate agent.",
+      "result": "Search, filters and readable session details provide a route back to earlier work. The demonstration uses example transcripts with the real indexing and reading flow.",
+      "stack": [
+        "Swift",
+        "SwiftUI",
+        "SQLite",
+        "FTS5"
+      ],
+      "repo": "https://github.com/kasparovabi/sift",
+      "caseStudy": "projects/sift.html"
     },
     {
       "id": "claude-mythos-scaffold",
@@ -229,7 +303,9 @@
       "video": null,
       "scope": "Source inspection only. 51 tracked files and 1 skill entry points. Agent execution and external integrations were not tested.",
       "verified": false,
-      "evidence": "Source & test notes"
+      "evidence": "Source & test notes",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "claude-audit-20",
@@ -240,7 +316,9 @@
       "video": null,
       "scope": "Source inspection only. 24 tracked files and 2 skill entry points. Agent execution and external integrations were not tested.",
       "verified": false,
-      "evidence": "Source & test notes"
+      "evidence": "Source & test notes",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarif-platform",
@@ -251,7 +329,9 @@
       "video": "assets/videos/maarif-platform.mp4",
       "scope": "520 EN keys complete; real landing/panel browser and POST403 verified; reused Next16.1.6; live backend excluded and exact declared version build unverified",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "busted",
@@ -262,7 +342,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "vien-preview",
@@ -273,7 +355,9 @@
       "video": "assets/videos/vien-preview.mp4",
       "scope": "English default and visible labels; browser full studio preview and gallery image navigation verified. Contact delivery not validated.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarif-imza-intl",
@@ -284,7 +368,9 @@
       "video": "assets/videos/maarif-imza-intl.mp4",
       "scope": "Browser: English labels, sample identity, live preview; imza copy action and conditional department field; intl language switching and bundled images.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarif-imza",
@@ -295,7 +381,9 @@
       "video": "assets/videos/maarif-imza.mp4",
       "scope": "Browser: English labels, sample identity, live preview; imza copy action and conditional department field; intl language switching and bundled images.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "maarif-ai",
@@ -306,7 +394,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "good-job-games-ai-player-feedback-analyzer",
@@ -317,7 +407,9 @@
       "video": null,
       "scope": "English workflow; five synthetic parser fixtures and malformed input rejection pass. Existing n8n sticky note execution paths and integration remain unverified.",
       "verified": false,
-      "evidence": "Work in progress"
+      "evidence": "Work in progress",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "karart",
@@ -328,7 +420,9 @@
       "video": "assets/videos/karart.mp4",
       "scope": "Actual color transformation engine on its local browser fixture. Extension transport is mocked.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "dsh-studio-phone-private",
@@ -339,7 +433,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "dshstudiowin",
@@ -350,7 +446,9 @@
       "video": null,
       "scope": "Isolated English synthetic source preview; RPC/server disabled; native verification pending WinApp0.6+ (installed0.5.0)",
       "verified": false,
-      "evidence": "Work in progress"
+      "evidence": "Work in progress",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "cebimde-claude",
@@ -361,7 +459,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "poz",
@@ -372,7 +472,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "operasyon-aksam",
@@ -383,7 +485,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "dripreader",
@@ -394,7 +498,9 @@
       "video": null,
       "scope": "Existing 875 key English locale enabled with zero keys missing vs Turkish; TypeScript passed; separate bundle IDs and disabled automatic cloud startup. Native build/UI unverified.",
       "verified": false,
-      "evidence": "Work in progress"
+      "evidence": "Work in progress",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "latent",
@@ -405,7 +511,9 @@
       "video": "assets/videos/latent.mp4",
       "scope": "iOS simulator build/install/English empty editor verified; local mode only; no media export or reconstruction verification",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "ubus-kaos-kafesi",
@@ -416,7 +524,9 @@
       "video": "assets/videos/ubus-kaos-kafesi.mp4",
       "scope": "Actual local game setup and character selection. No online multiplayer session.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "iphone-vizor",
@@ -427,7 +537,9 @@
       "video": null,
       "scope": "English current AirPlay diagnostics ran on Windows: UxPlay installed, Bonjour running and network passed; no settings changed or physical iPhone mirroring tested.",
       "verified": false,
-      "evidence": "Source & test notes"
+      "evidence": "Source & test notes",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "palestine-video-bot",
@@ -438,7 +550,9 @@
       "video": null,
       "scope": "English CLI and logs; actual SQLite lifecycle and SRT/ASS generation passed with synthetic fixtures; no download, model, translation service or GPU render.",
       "verified": false,
-      "evidence": "Source & test notes"
+      "evidence": "Source & test notes",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "oyun-yapiyorum",
@@ -449,7 +563,9 @@
       "video": "assets/videos/oyun-yapiyorum.mp4",
       "scope": "Actual WebGL gameplay with keyboard driving and steering. Mission completion is not claimed.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "aoe-agents",
@@ -460,7 +576,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "rauf-tuncer-site",
@@ -471,7 +589,9 @@
       "video": "assets/videos/rauf-tuncer-site.mp4",
       "scope": "English 10 page static export, TypeScript, real browser homepage and local contact preview passed; reused Next 16.1.6 vs requested 16.2.11; archive claims not independently verified",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "imlec",
@@ -482,7 +602,9 @@
       "video": null,
       "scope": "English voice configuration, prompt and UI; isolated preview instantiated and four state methods passed on Windows Qt offscreen. Native screenshot, real speech and AI integration unverified.",
       "verified": false,
-      "evidence": "Work in progress"
+      "evidence": "Work in progress",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "beatcut",
@@ -493,7 +615,9 @@
       "video": null,
       "scope": "English main CLI and Studio controls; Windows dry run passed on synthetic 12 second click track with specified 120 BPM. Studio/model/render paths unverified.",
       "verified": false,
-      "evidence": "Work in progress"
+      "evidence": "Work in progress",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "ai-desktop-pet-brain",
@@ -504,7 +628,9 @@
       "video": "assets/videos/ai-desktop-pet-brain.mp4",
       "scope": "Actual face animations selected with manual controls. No robot connection or autonomous behavior.",
       "verified": true,
-      "evidence": "Recorded interface preview"
+      "evidence": "Recorded interface preview",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "ai-desktop-toy-wiring-guide",
@@ -515,7 +641,9 @@
       "video": null,
       "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
       "verified": false,
-      "evidence": "Capture pending"
+      "evidence": "Capture pending",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "glassloop",
@@ -526,7 +654,9 @@
       "video": null,
       "scope": "English startup and isolated save identity; actual Windows Unity build exited 198 due missing headless license entitlement; gameplay not verified",
       "verified": false,
-      "evidence": "Work in progress"
+      "evidence": "Work in progress",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     },
     {
       "id": "flow-auto",
@@ -537,7 +667,9 @@
       "video": null,
       "scope": "Windows source folder rechecked: only package files, node_modules and browser profile; declared index.js absent. No runnable application source.",
       "verified": false,
-      "evidence": "Work in progress"
+      "evidence": "Work in progress",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I built this automation experiment independently. Its application source is being recovered."
     },
     {
       "id": "siftwinui",
@@ -548,7 +680,9 @@
       "video": null,
       "scope": "77 Windows core tests passed; isolated English synthetic startup source prepared; native WinUI build/run pending WinApp0.6+ (installed0.5.0)",
       "verified": false,
-      "evidence": "Work in progress"
+      "evidence": "Work in progress",
+      "role": "Solo creator · Product, design and engineering",
+      "ownership": "I designed and built this project independently, including its interface and implementation."
     }
   ]
 }

@@ -5,7 +5,9 @@
     "image": "assets/projects/afrika-uyaniyor.png",
     "scope": "English original 54 country atlas; browser search, country modal and neighbor navigation verified; historical source snapshot clearly labeled.",
     "verified": true,
-    "evidence": "Interface preview"
+    "evidence": "Interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarif-platform-web": {
     "name": "Communications Hub",
@@ -13,7 +15,9 @@
     "image": "assets/projects/maarif-platform-web.png",
     "scope": "Actual local communications directory navigation. Service status and live availability were not tested.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarif-gorev": {
     "name": "Task Board",
@@ -21,7 +25,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarif-tabela": {
     "name": "Sign Studio",
@@ -29,7 +35,9 @@
     "image": "assets/projects/maarif-tabela.png",
     "scope": "Original sign previews and export engine. The previous unrelated export warning change was removed. Full export validation of the restored copy is pending.",
     "verified": false,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarif-sablon": {
     "name": "Template Studio",
@@ -37,7 +45,21 @@
     "image": "assets/projects/maarif-sablon.png",
     "scope": "All 7 English template routes static exported with Next 16.2.3; browser editor and actual 1280x1024 JPG inspected; other 6 exports not exercised",
     "verified": true,
-    "evidence": "Interface preview"
+    "evidence": "Interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation.",
+    "problem": "Routine institutional announcements share a visual system but carry different names, dates and contact details. Recreating each layout manually makes consistency harder to maintain.",
+    "contribution": "I designed and built the template collection, editing forms, live previews and image export, including the layout rules for each announcement type.",
+    "implementation": "Typed template data feeds React layouts. The editor measures the available space to scale its preview, while export uses the original canvas dimensions and embedded fonts.",
+    "result": "A user can choose a template, enter the announcement details and export a JPG. Seven template routes cover appointment, departure, HR information, condolences and celebrations.",
+    "stack": [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "html-to-image"
+    ],
+    "repo": null,
+    "caseStudy": "projects/maarif-sablon.html"
   },
   "kipirda": {
     "name": "Kıpırda",
@@ -45,7 +67,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarifet": {
     "name": "Maarifet",
@@ -53,7 +77,9 @@
     "image": "assets/projects/maarifet.png",
     "scope": "Original book renderer and week navigation with four clearly fictional workshop weeks. No cloud generation.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "video-indir": {
     "name": "Video Downloader",
@@ -61,7 +87,9 @@
     "image": "assets/projects/video-indir-kurumsal.png",
     "scope": "Corporate container source and UI; browser sample video downloaded and played; npm test passed including auth, SSRF, preview generation, and download.",
     "verified": true,
-    "evidence": "Interface preview"
+    "evidence": "Interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarif-kartvizit": {
     "name": "Business Card Studio",
@@ -69,7 +97,9 @@
     "image": "assets/projects/maarif-kartvizit.png",
     "scope": "12 existing PDF engine tests passed; production build passed; browser standard and executive previews rendered; both PDF files downloaded.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "dsh-studio": {
     "name": "DSH Studio",
@@ -77,7 +107,21 @@
     "image": "assets/projects/dsh-studio.png",
     "scope": "Original repository demo recording. The restored native application builds and connects to the local server. Agent execution was not retested in this review.",
     "verified": true,
-    "evidence": "Interface preview"
+    "evidence": "Interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation.",
+    "problem": "Working with a coding agent involves more than sending a prompt. Sessions, streamed output, tool approvals and model settings need to stay understandable as work progresses.",
+    "contribution": "I designed and built the macOS application: the session browser, live conversation interface, controls and integration with the dsh server.",
+    "implementation": "SwiftUI presents sessions while JSON RPC and a WebSocket event stream connect the interface to the existing dsh harness. History recovery reads the local session log when the server cannot serve a damaged transcript.",
+    "result": "The application brings session navigation, streaming output, approvals and configuration into one native workspace. The original repository includes the demonstration shown here.",
+    "stack": [
+      "Swift",
+      "SwiftUI",
+      "JSON RPC",
+      "WebSocket"
+    ],
+    "repo": "https://github.com/kasparovabi/dsh-studio",
+    "caseStudy": "projects/dsh-studio.html"
   },
   "etsy-factory": {
     "name": "Etsy Factory",
@@ -85,7 +129,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "pozla-web": {
     "name": "Pozla Gallery",
@@ -93,7 +139,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "pozla-recap": {
     "name": "Pozla Recap",
@@ -101,7 +149,9 @@
     "image": "assets/projects/pozla-recap.png",
     "scope": "Original subjectcut extraction and unchanged OnceClone animation, using generated event photos with transparent subject layers. The local render does not exercise the production queue.",
     "verified": true,
-    "evidence": "Interface preview"
+    "evidence": "Interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "peri": {
     "name": "Peri",
@@ -109,7 +159,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "kiebatch": {
     "name": "KieBatch",
@@ -117,7 +169,9 @@
     "image": "assets/projects/kiebatch.png",
     "scope": "XcodeGen and signed Debug build passed; English native batch UI verified. Paid generation and PSD conversion not executed.",
     "verified": true,
-    "evidence": "Interface preview"
+    "evidence": "Interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "cutaway": {
     "name": "Cutaway",
@@ -125,7 +179,9 @@
     "image": "assets/projects/cutaway.png",
     "scope": "Original app transcription and live contextual clip search using the supplied video. Recording shows a real external candidate and sentence selection. Candidate playback was unavailable; relevance is not claimed.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "anikamerasi": {
     "name": "Pozla Camera",
@@ -133,7 +189,9 @@
     "image": "assets/projects/anikamerasi.png",
     "scope": "Original iOS onboarding recorded from the full application using generated portrait photos. Simulator build passed. Event creation, camera capture, uploads and purchases were not exercised.",
     "verified": true,
-    "evidence": "Original onboarding recording"
+    "evidence": "Original onboarding recording",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "claude-skill-pack": {
     "name": "Skill Pack",
@@ -141,7 +199,9 @@
     "image": null,
     "scope": "Source inspection only. 168 tracked files and 49 skill entry points. Agent execution and external integrations were not tested.",
     "verified": false,
-    "evidence": "Source & test notes"
+    "evidence": "Source & test notes",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "sift": {
     "name": "Sift",
@@ -149,7 +209,21 @@
     "image": "assets/projects/sift.png",
     "scope": "Existing English browser version; 18 synthetic sessions indexed, pagination search and session reading verified in browser; 31 tests passed and terminal POST returned 403. Native clients not exercised.",
     "verified": true,
-    "evidence": "Interface preview"
+    "evidence": "Interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation.",
+    "problem": "Useful decisions and solutions accumulate across Claude Code and Codex transcripts. Remembering a previous solution does not necessarily mean remembering which session contains it.",
+    "contribution": "I designed and built Sift, from transcript ingestion and local indexing to the search interface and the flow for returning to a session.",
+    "implementation": "Provider specific readers normalize local transcripts into a SQLite index. FTS5 provides full text search with ranked results. The interface can open the original session in the appropriate agent.",
+    "result": "Search, filters and readable session details provide a route back to earlier work. The demonstration uses example transcripts with the real indexing and reading flow.",
+    "stack": [
+      "Swift",
+      "SwiftUI",
+      "SQLite",
+      "FTS5"
+    ],
+    "repo": "https://github.com/kasparovabi/sift",
+    "caseStudy": "projects/sift.html"
   },
   "claude-mythos-scaffold": {
     "name": "Mythos Scaffold",
@@ -157,7 +231,9 @@
     "image": null,
     "scope": "Source inspection only. 51 tracked files and 1 skill entry points. Agent execution and external integrations were not tested.",
     "verified": false,
-    "evidence": "Source & test notes"
+    "evidence": "Source & test notes",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "claude-audit-20": {
     "name": "Audit 20",
@@ -165,7 +241,9 @@
     "image": null,
     "scope": "Source inspection only. 24 tracked files and 2 skill entry points. Agent execution and external integrations were not tested.",
     "verified": false,
-    "evidence": "Source & test notes"
+    "evidence": "Source & test notes",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarif-platform": {
     "name": "Maarif Platform",
@@ -173,7 +251,9 @@
     "image": "assets/projects/maarif-platform.png",
     "scope": "520 EN keys complete; real landing/panel browser and POST403 verified; reused Next16.1.6; live backend excluded and exact declared version build unverified",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "busted": {
     "name": "Busted",
@@ -181,7 +261,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "vien-preview": {
     "name": "Vien",
@@ -189,7 +271,9 @@
     "image": "assets/projects/vien-preview.png",
     "scope": "English default and visible labels; browser full studio preview and gallery image navigation verified. Contact delivery not validated.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarif-imza-intl": {
     "name": "Global Signatures",
@@ -197,7 +281,9 @@
     "image": "assets/projects/maarif-imza-intl.png",
     "scope": "Browser: English labels, sample identity, live preview; imza copy action and conditional department field; intl language switching and bundled images.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarif-imza": {
     "name": "Signature Studio",
@@ -205,7 +291,9 @@
     "image": "assets/projects/maarif-imza.png",
     "scope": "Browser: English labels, sample identity, live preview; imza copy action and conditional department field; intl language switching and bundled images.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "maarif-ai": {
     "name": "Maarif AI",
@@ -213,7 +301,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "good-job-games-ai-player-feedback-analyzer": {
     "name": "Player Feedback",
@@ -221,7 +311,9 @@
     "image": null,
     "scope": "English workflow; five synthetic parser fixtures and malformed input rejection pass. Existing n8n sticky note execution paths and integration remain unverified.",
     "verified": false,
-    "evidence": "Work in progress"
+    "evidence": "Work in progress",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "karart": {
     "name": "Karart",
@@ -229,7 +321,9 @@
     "image": "assets/projects/karart.png",
     "scope": "Actual color transformation engine on its local browser fixture. Extension transport is mocked.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "dsh-studio-phone-private": {
     "name": "DSH Pocket",
@@ -237,7 +331,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "dshstudiowin": {
     "name": "DSH for Windows",
@@ -245,7 +341,9 @@
     "image": null,
     "scope": "Isolated English synthetic source preview; RPC/server disabled; native verification pending WinApp0.6+ (installed0.5.0)",
     "verified": false,
-    "evidence": "Work in progress"
+    "evidence": "Work in progress",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "cebimde-claude": {
     "name": "Cebimde Claude",
@@ -253,7 +351,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "poz": {
     "name": "Poz",
@@ -261,7 +361,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "operasyon-aksam": {
     "name": "Evening Outlook",
@@ -269,7 +371,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "dripreader": {
     "name": "DripReader",
@@ -277,7 +381,9 @@
     "image": null,
     "scope": "Existing 875 key English locale enabled with zero keys missing vs Turkish; TypeScript passed; separate bundle IDs and disabled automatic cloud startup. Native build/UI unverified.",
     "verified": false,
-    "evidence": "Work in progress"
+    "evidence": "Work in progress",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "latent": {
     "name": "Latent",
@@ -285,7 +391,9 @@
     "image": "assets/projects/latent.png",
     "scope": "iOS simulator build/install/English empty editor verified; local mode only; no media export or reconstruction verification",
     "verified": true,
-    "evidence": "Interface preview"
+    "evidence": "Interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "ubus-kaos-kafesi": {
     "name": "Chaos Café",
@@ -293,7 +401,9 @@
     "image": "assets/projects/ubus-kaos-kafesi.png",
     "scope": "Actual local game setup and character selection. No online multiplayer session.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "iphone-vizor": {
     "name": "iPhone Vizor",
@@ -301,7 +411,9 @@
     "image": null,
     "scope": "English current AirPlay diagnostics ran on Windows: UxPlay installed, Bonjour running and network passed; no settings changed or physical iPhone mirroring tested.",
     "verified": false,
-    "evidence": "Source & test notes"
+    "evidence": "Source & test notes",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "palestine-video-bot": {
     "name": "Video Pipeline",
@@ -309,7 +421,9 @@
     "image": null,
     "scope": "English CLI and logs; actual SQLite lifecycle and SRT/ASS generation passed with synthetic fixtures; no download, model, translation service or GPU render.",
     "verified": false,
-    "evidence": "Source & test notes"
+    "evidence": "Source & test notes",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "oyun-yapiyorum": {
     "name": "Snow Shovel",
@@ -317,7 +431,9 @@
     "image": "assets/projects/oyun-yapiyorum.png",
     "scope": "Actual WebGL gameplay with keyboard driving and steering. Mission completion is not claimed.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "aoe-agents": {
     "name": "AoE Agents",
@@ -325,7 +441,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "rauf-tuncer-site": {
     "name": "Rauf Tuncer",
@@ -333,7 +451,9 @@
     "image": "assets/projects/rauf-tuncer-site.png",
     "scope": "English 10 page static export, TypeScript, real browser homepage and local contact preview passed; reused Next 16.1.6 vs requested 16.2.11; archive claims not independently verified",
     "verified": true,
-    "evidence": "Interface preview"
+    "evidence": "Interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "imlec": {
     "name": "İmleç",
@@ -341,7 +461,9 @@
     "image": null,
     "scope": "English voice configuration, prompt and UI; isolated preview instantiated and four state methods passed on Windows Qt offscreen. Native screenshot, real speech and AI integration unverified.",
     "verified": false,
-    "evidence": "Work in progress"
+    "evidence": "Work in progress",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "beatcut": {
     "name": "BeatCut",
@@ -349,7 +471,9 @@
     "image": null,
     "scope": "English main CLI and Studio controls; Windows dry run passed on synthetic 12 second click track with specified 120 BPM. Studio/model/render paths unverified.",
     "verified": false,
-    "evidence": "Work in progress"
+    "evidence": "Work in progress",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "ai-desktop-pet-brain": {
     "name": "Desktop Pet",
@@ -357,7 +481,9 @@
     "image": "assets/projects/ai-desktop-pet-brain.png",
     "scope": "Actual face animations selected with manual controls. No robot connection or autonomous behavior.",
     "verified": true,
-    "evidence": "Recorded interface preview"
+    "evidence": "Recorded interface preview",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "ai-desktop-toy-wiring-guide": {
     "name": "Build a Companion",
@@ -365,7 +491,9 @@
     "image": null,
     "scope": "Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.",
     "verified": false,
-    "evidence": "Capture pending"
+    "evidence": "Capture pending",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "glassloop": {
     "name": "GlassLoop",
@@ -373,7 +501,9 @@
     "image": null,
     "scope": "English startup and isolated save identity; actual Windows Unity build exited 198 due missing headless license entitlement; gameplay not verified",
     "verified": false,
-    "evidence": "Work in progress"
+    "evidence": "Work in progress",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   },
   "flow-auto": {
     "name": "Flow Auto",
@@ -381,7 +511,9 @@
     "image": null,
     "scope": "Windows source folder rechecked: only package files, node_modules and browser profile; declared index.js absent. No runnable application source.",
     "verified": false,
-    "evidence": "Work in progress"
+    "evidence": "Work in progress",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I built this automation experiment independently. Its application source is being recovered."
   },
   "siftwinui": {
     "name": "Sift for Windows",
@@ -389,6 +521,8 @@
     "image": null,
     "scope": "77 Windows core tests passed; isolated English synthetic startup source prepared; native WinUI build/run pending WinApp0.6+ (installed0.5.0)",
     "verified": false,
-    "evidence": "Work in progress"
+    "evidence": "Work in progress",
+    "role": "Solo creator · Product, design and engineering",
+    "ownership": "I designed and built this project independently, including its interface and implementation."
   }
 }
