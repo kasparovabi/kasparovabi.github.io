@@ -34,3 +34,7 @@ Browse only from the empty outer edges; the central approach area and card hover
 ### Adjacent-card hit testing correction
 
 Removed endpoint browsing after user found intermediate cards inaccessible. Fan now has bounded pointer parallax and direct hover selection without recentering. Removed negative Z placement and flattened the deck stacking context: visible rear cards had not received hit tests. Uniform card hit areas retain access to portrait projects without adding a device shell. Browser evidence: all nine featured cards opened their matching dialogs by actual coordinate clicks on visible portions, including both adjacent cards and both endpoints.
+
+### Pointer-anchored scrolling
+
+The fan now scrolls continuously across the collection, with the selected card anchored to the pointer horizontal position instead of the viewport center. Retained flat hit testing and smooth hover scaling. Browser verification at all nine horizontal selection positions: moving into the fan then clicking without repositioning opened the corresponding project in every case. Separately verified Africa Atlas and Sift under the exact pointer position after long cross-stage movements.
