@@ -11,7 +11,7 @@ function layoutFan(){
  document.querySelectorAll('.project-window').forEach((el,i)=>{
   let rel=i-selected;if(rel>4)rel-=featured.length;if(rel< -4)rel+=featured.length;
   const distance=Math.abs(rel), raised=fanHover===i, mobile=featured[i].category==='Mobile';
-  const h=mobile?Math.min(300,cardWidth*1.03):cardWidth*.67, w=mobile?h*.52:cardWidth;
+  const h=mobile?Math.min(280,cardWidth*1.03,$('#stage').clientHeight*.72):cardWidth*.67, w=mobile?h*.52:cardWidth;
   el.style.width=w+'px';el.style.height=h+'px';
   el.style.transform=`translate3d(calc(-50% + ${rel*spacing+fanDrift}px),calc(-50% + ${distance*distance*4.8-(raised?24:0)}px),${-distance*42+(raised?105:0)}px) rotateY(${-rel*7*(raised?.4:1)}deg) scale(${1-distance*.045+(raised?.035:0)})`;
   el.style.zIndex=raised?100:30-distance;el.classList.toggle('active',i===selected);el.classList.toggle('raised',raised);el.classList.toggle('dimmed',distance>1&&!raised);el.classList.toggle('phone-window',mobile);
