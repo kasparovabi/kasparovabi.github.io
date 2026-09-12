@@ -19,3 +19,10 @@ Original homepage retained verbatim as `cv.html`; its supporting assets and exis
 Verified: JavaScript syntax, live browser project navigation and dialog opening, Escape closing/focus return, combined Mobile + Latent filter, zero-result search, and a 390 × 844 CSS iframe layout with a working project dialog. This narrow layout check is not a physical phone test.
 
 Pending: owner feedback on the visual direction and selection; short real-use clips; project-specific contribution stories; broader device/accessibility checks; publication after review.
+
+## Pointer fan refinement — 12 September
+
+- Mouse position now traverses the full featured collection, with hover lift and direct card opening. Visible previous/next controls removed; keyboard arrows and touch swipes retained.
+- Removed the extra phone shell around screenshots which already include a device. Added headroom for lifted portrait captures.
+- Browser verification: pointer traversal reached DSH Studio and Pozla Recap; direct Pozla card click opened the matching dialog. All 36 project screenshots loaded after traversing the archive (no pending or broken images); all 44 checked resources returned HTTP 200. Mobile width 390 had no horizontal overflow.
+- The local preview server had stopped, consistent with delayed image requests failing. Restarted independently of the command session; logs and PID are in the preparation review directory. Production was not changed.

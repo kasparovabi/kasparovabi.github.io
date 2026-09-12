@@ -5,3 +5,13 @@
 @media(max-width:900px){.stage{height:330px}.hero h1{font-size:7.8vw}}
 @media(max-width:560px){.hero h1{font-size:12vw}.hero-heading{padding-top:35px}.intro em{font-size:12px}.stage{height:295px;margin-top:14px}.project-window{top:45%}.fan-hint{font-size:7px;letter-spacing:.11em;margin-bottom:17px}.selection-controls{margin-bottom:25px}.phone-window{border-width:4px;border-radius:16px}.window-bar{height:18px;font-size:7px;padding:0 6px}.project-window:not(.phone-window) img{height:calc(100% - 18px)}.window-open{width:24px;height:24px;font-size:12px;right:7px;bottom:7px}}
 @media(prefers-reduced-motion:reduce){.project-window{transition:none}.floor{display:none}}
+
+/* The source capture already contains a device. Keep its pixels, without a second shell. */
+.project-window{transition:filter .2s,box-shadow .2s}
+.phone-window,.phone-window.active,.phone-window.raised{border:0;border-radius:0;background:transparent;box-shadow:none}
+.phone-window img{border:0;border-radius:0;background:transparent;object-fit:contain}
+.phone-window .window-open{display:none}
+.selection-controls{gap:0}
+
+/* Reserve headroom for the lifted portrait capture at every viewport height. */
+.project-window{top:50%}
