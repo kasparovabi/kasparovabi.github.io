@@ -1,5 +1,13 @@
 # Product showcase — first draft
 
+## Reference refinement — 12 September
+
+The supplied fan HTML was inspected for layout and interaction behavior. Its embedded photographs and videos were not copied. The product fan now uses depth, Y-axis rotation, restrained pointer drift and a lifted hover/focus state. Each card opens its project directly. Arrow buttons, keyboard navigation and a horizontal touch-swipe handler remain available. Animation work stops when the fan is outside the viewport or a dialog is open; reduced-motion preferences remove animated transitions.
+
+The warm cream/green palette was replaced with cold gray, ink and red; typography, controls, corners and shadows were adjusted together. The featured Poz card now uses the Pozla iOS onboarding capture (`anikamerasi`), rendered in portrait proportions.
+
+Verified in browser: 9 cards, keyboard focus/lift, arrow selection, Pozla iOS dialog, Escape and focus restoration, Mobile + Pozla returning one archive result, no console errors in the inspected log. A 390 × 844 viewport showed no horizontal overflow and the correct phone card; viewport override was reset afterward. Physical touch gesture verification and video capture remain pending.
+
 Separate branch: `portfolio/product-showcase`. This draft has not been deployed to the live GitHub Pages site.
 
 Run `python3 -m http.server 8932 --bind 127.0.0.1` from this directory.
