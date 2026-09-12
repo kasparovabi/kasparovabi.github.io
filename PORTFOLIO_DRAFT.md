@@ -52,3 +52,11 @@ Hover or keyboard focus plays a muted inline preview, with only one active previ
 Verification: all eight MP4 resources returned HTTP 200 and decoded; frame contact sheets reviewed. Browser playback observed without media errors. Mobile Pozla playback advanced beyond seven seconds with readyState 4. Mobile video bottom 434 was above the project heading at 521, with no horizontal overflow. All 49 project copy records passed the prohibited dash check, as did the rendered homepage text and title. Not a production deployment.
 
 Capture originals and packaging script live in the preparation folder, output/playwright/videos and scripts/package_portfolio_videos.py. The project generator now preserves media assignments.
+
+## Populated media, 12 September 2026
+
+Pozla now includes 20 distinct AI generated portrait photos, packaged at 900 by 1600 pixels. The isolated portfolio target has a local sample album and full screen photo viewer; these wrapper screens are marked as an offline demo. Original onboarding photo placeholders were replaced with the generated images. The Recap application renders all 20 images.
+
+Cutaway uses the exact video selected by the user, IMG_2432.MOV. Local Whisper large-v3-turbo produced the transcript. Three selected sentences were translated into English and matched manually to six second excerpts from the same supplied video. The native UI labels them as prepared excerpts. This capture does not claim that live AI search was run. Earlier still image motion and stock footage experiments are not in the portfolio.
+
+Validation: both native targets built successfully. Native photo opening and video playback were observed. All three portfolio video elements loaded and played in the browser. Desktop and 390px mobile checks found no broken images or horizontal overflow. 20 distinct JPEG hashes and exact 9:16 dimensions checked. Project prose passed the prohibited punctuation check. No deployment.

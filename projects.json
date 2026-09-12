@@ -150,7 +150,7 @@
       "description": "Turn an event’s photographs into a moving collage.",
       "image": "assets/projects/pozla-recap.png",
       "video": "assets/videos/pozla-recap.mp4",
-      "scope": "Original OnceClone English fixture; Studio playback and seek verified, original texture assets restored. No MP4 export or production worker.",
+      "scope": "Original Recap application render using 20 AI generated portrait photos.",
       "verified": true,
       "evidence": "Interface preview"
     },
@@ -182,8 +182,8 @@
       "category": "Desktop",
       "description": "Find the moment you need in a video library.",
       "image": "assets/projects/cutaway.png",
-      "video": null,
-      "scope": "XcodeGen generation and native Debug build passed. English startup UI verified in separate bundle. No model backed search or transcription run.",
+      "video": "assets/videos/cutaway.mp4",
+      "scope": "Native application recording using the user provided IMG_2432.MOV. Local Whisper transcription, English translation and manually prepared video excerpts. Not live AI search results.",
       "verified": true,
       "evidence": "Interface preview"
     },
@@ -191,10 +191,10 @@
       "id": "anikamerasi",
       "name": "Pozla Camera",
       "category": "Mobile",
-      "description": "An event camera experience, beginning with a playful introduction.",
+      "description": "A shared event camera, with a playful introduction and a roll of memories.",
       "image": "assets/projects/anikamerasi.png",
       "video": "assets/videos/anikamerasi.mp4",
-      "scope": "Separate iOS target; original 3 page English onboarding; simulator build/install and all Next/Start transitions verified. No capture, auth or StoreKit.",
+      "scope": "Isolated iOS simulator capture of the portfolio sample album with 20 AI generated portrait photos.",
       "verified": true,
       "evidence": "Interface preview"
     },
