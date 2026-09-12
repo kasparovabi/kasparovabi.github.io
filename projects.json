@@ -28,10 +28,10 @@
       "category": "Web",
       "description": "A single directory for a collection of institutional tools.",
       "image": "assets/projects/maarif-platform-web.png",
-      "video": null,
-      "scope": "English original panel directory; browser categories, cards and heading verified; snapshot labels, API guard, no production proxies.",
+      "video": "assets/videos/maarif-platform-web.mp4",
+      "scope": "Actual local communications directory navigation. Service status and live availability were not tested.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "maarif-gorev",
@@ -39,10 +39,10 @@
       "category": "Web",
       "description": "A team’s work, presented as an at a glance display.",
       "image": "assets/projects/maarif-gorev.png",
-      "video": null,
-      "scope": "TV surface English with checked in synthetic data; TypeScript and browser task cards/chart verified; native employee/admin editing surfaces outside demo",
+      "video": "assets/videos/maarif-gorev.mp4",
+      "scope": "Actual task board interface with clearly synthetic people, tasks and metrics.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "maarif-tabela",
@@ -50,10 +50,10 @@
       "category": "Web",
       "description": "Design institutional signs and prepare them for print.",
       "image": "assets/projects/maarif-tabela.png",
-      "video": null,
+      "video": "assets/videos/maarif-tabela.mp4",
       "scope": "Four sign previews and CMYK downloads verified in browser. 133/137 existing tests pass; four missing helper failures reproduced on unchanged baseline. Additional export isolation test passes.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "maarif-sablon",
@@ -83,10 +83,10 @@
       "category": "Web",
       "description": "Turn a structured workshop plan into a readable book.",
       "image": "assets/projects/maarifet.png",
-      "video": null,
-      "scope": "Original English book pipeline; browser cover/credits/contents and four weeks; anchor navigation; seven existing book model tests pass after TipTap alignment.",
+      "video": "assets/videos/maarifet.mp4",
+      "scope": "Original book renderer and week navigation with four clearly fictional workshop weeks. No cloud generation.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "video-indir",
@@ -105,10 +105,10 @@
       "category": "Web",
       "description": "Create consistent business cards with print ready PDF output.",
       "image": "assets/projects/maarif-kartvizit.png",
-      "video": null,
+      "video": "assets/videos/maarif-kartvizit.mp4",
       "scope": "12 existing PDF engine tests passed; production build passed; browser standard and executive previews rendered; both PDF files downloaded.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "dsh-studio",
@@ -138,10 +138,10 @@
       "category": "Web",
       "description": "An invitation opens into a shared, polaroid style photo gallery.",
       "image": "assets/projects/pozla-web.png",
-      "video": null,
-      "scope": "English invitation and original polaroid gallery; six synthetic images; name entry and lightbox browser verified; no camera, upload or orders.",
+      "video": "assets/videos/pozla-web.mp4",
+      "scope": "Original invitation, gallery and photo viewer recorded locally with 20 AI generated portrait photos. No uploads or event backend.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "pozla-recap",
@@ -248,10 +248,10 @@
       "category": "Web",
       "description": "A shared entry point for institutional digital services.",
       "image": "assets/projects/maarif-platform.png",
-      "video": null,
+      "video": "assets/videos/maarif-platform.mp4",
       "scope": "520 EN keys complete; real landing/panel browser and POST403 verified; reused Next16.1.6; live backend excluded and exact declared version build unverified",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "busted",
@@ -270,10 +270,10 @@
       "category": "Web",
       "description": "An image led studio website and gallery.",
       "image": "assets/projects/vien-preview.png",
-      "video": null,
+      "video": "assets/videos/vien-preview.mp4",
       "scope": "English default and visible labels; browser full studio preview and gallery image navigation verified. Contact delivery not validated.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "maarif-imza-intl",
@@ -281,10 +281,10 @@
       "category": "Web",
       "description": "A multilingual email signature builder.",
       "image": "assets/projects/maarif-imza-intl.png",
-      "video": null,
+      "video": "assets/videos/maarif-imza-intl.mp4",
       "scope": "Browser: English labels, sample identity, live preview; imza copy action and conditional department field; intl language switching and bundled images.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "maarif-imza",
@@ -292,10 +292,10 @@
       "category": "Web",
       "description": "Build and preview a branded email signature.",
       "image": "assets/projects/maarif-imza.png",
-      "video": null,
+      "video": "assets/videos/maarif-imza.mp4",
       "scope": "Browser: English labels, sample identity, live preview; imza copy action and conditional department field; intl language switching and bundled images.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "maarif-ai",
@@ -303,10 +303,10 @@
       "category": "AI & automation",
       "description": "A conversational workspace with selectable models and specialist roles.",
       "image": "assets/projects/maarif-ai.png",
-      "video": null,
-      "scope": "English native chat components; labeled fictional conversation; browser model selection and local draft notice; API mutation 403. Bounded chat preview only.",
+      "video": "assets/videos/maarif-ai.mp4",
+      "scope": "Original chat interface, specialist picker and local draft with a visibly fictional conversation. No AI request was sent.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "good-job-games-ai-player-feedback-analyzer",
@@ -324,11 +324,11 @@
       "name": "Karart",
       "category": "Developer tools",
       "description": "A browser content engine for adapting a page’s appearance.",
-      "image": "assets/projects/karart-engine.png",
-      "video": null,
-      "scope": "Existing package/color/worker tests pass. Actual content engine runs on English browser fixture. Chrome installation and popup integration not validated.",
+      "image": "assets/projects/karart.png",
+      "video": "assets/videos/karart.mp4",
+      "scope": "Actual color transformation engine on its local browser fixture. Extension transport is mocked.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "dsh-studio-phone-private",
@@ -369,10 +369,10 @@
       "category": "Web",
       "description": "A shared camera experience with a limited number of shots.",
       "image": "assets/projects/poz.png",
-      "video": null,
-      "scope": "English offline guest camera; real filter pipeline on synthetic scenes; 8 shot limit and reveal browser verified; host/backend/payment/hardware not verified",
+      "video": "assets/videos/poz.mp4",
+      "scope": "Original capture counter, film filter and roll reveal recorded locally using AI generated portrait photos. Camera hardware and uploads are disabled.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "operasyon-aksam",
@@ -413,10 +413,10 @@
       "category": "Creative tools",
       "description": "A local party game of recipes, characters and questionable decisions.",
       "image": "assets/projects/ubus-kaos-kafesi.png",
-      "video": null,
-      "scope": "English local pass and play verified with three characters, ingredient selection, recipe submission, voting and round score. Multiplayer not connected in demo.",
+      "video": "assets/videos/ubus-kaos-kafesi.mp4",
+      "scope": "Actual local game setup and character selection. No online multiplayer session.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "iphone-vizor",
@@ -446,10 +446,10 @@
       "category": "Creative tools",
       "description": "A small interactive snow shoveling game in the browser.",
       "image": "assets/projects/oyun-yapiyorum.png",
-      "video": null,
-      "scope": "TypeScript and Vite build pass; English WebGL scene, countdown, timeout and Retry verified. HUD contrast improved.",
+      "video": "assets/videos/oyun-yapiyorum.mp4",
+      "scope": "Actual WebGL gameplay with keyboard driving and steering. Mission completion is not claimed.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "aoe-agents",
@@ -501,10 +501,10 @@
       "category": "AI & automation",
       "description": "An expressive face for a desktop companion.",
       "image": "assets/projects/ai-desktop-pet-brain.png",
-      "video": null,
-      "scope": "English manual face preview: browser wake and Happy mood verified, English voice selected; JavaScript syntax passed. Robot, Bluetooth, Claude and SSE transport not exercised.",
+      "video": "assets/videos/ai-desktop-pet-brain.mp4",
+      "scope": "Actual face animations selected with manual controls. No robot connection or autonomous behavior.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "ai-desktop-toy-wiring-guide",
@@ -512,10 +512,10 @@
       "category": "Web",
       "description": "An interactive guide through a desktop toy’s wiring and assembly.",
       "image": "assets/projects/ai-desktop-toy-wiring-guide.png",
-      "video": null,
-      "scope": "32 English guide steps; TypeScript and Vite passed; browser group navigation, critical confirmation and progress verified; generated compiler cache excluded",
+      "video": "assets/videos/ai-desktop-toy-wiring-guide.mp4",
+      "scope": "Actual wiring guide step navigation using the offline preview. No camera or AI connection.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview"
     },
     {
       "id": "glassloop",

@@ -1,4 +1,4 @@
-# Product showcase — first draft
+# Product showcase draft
 
 ## Reference refinement — 12 September
 
@@ -12,7 +12,7 @@ Separate branch: `portfolio/product-showcase`. This draft has not been deployed 
 
 Run `python3 -m http.server 8932 --bind 127.0.0.1` from this directory.
 
-The home page presents nine featured projects in an interactive fan of product windows. All 49 selected projects are available through category filters and search. Project dialogs show the actual captured interface and a bounded verification note. There are 36 screenshots; projects without a verified interface capture use clearly labeled source notes or work-in-progress cards. No videos have been recorded or added in this draft. The data structure supports an optional video for a later iteration.
+The home page presents nine featured projects in an interactive fan of product windows. All 49 selected projects are available through category filters and search. Project dialogs show the actual captured interface and a bounded verification note. There are 36 screenshots; projects without a verified interface capture use clearly labeled source notes or work-in-progress cards. The current draft includes 26 video previews. Ten projects retain still interface captures and thirteen retain source or work in progress cards.
 
 Original homepage retained verbatim as `cv.html`; its supporting assets and existing CV files remain intact. Portrait and contact information come from the existing website. Text and project names are first-draft editorial copy, ready for owner review.
 
@@ -60,3 +60,14 @@ Pozla now includes 20 distinct AI generated portrait photos, packaged at 900 by 
 Cutaway uses the exact video selected by the user, IMG_2432.MOV. Local Whisper large-v3-turbo produced the transcript. Three selected sentences were translated into English and matched manually to six second excerpts from the same supplied video. The native UI labels them as prepared excerpts. This capture does not claim that live AI search was run. Earlier still image motion and stock footage experiments are not in the portfolio.
 
 Validation: both native targets built successfully. Native photo opening and video playback were observed. All three portfolio video elements loaded and played in the browser. Desktop and 390px mobile checks found no broken images or horizontal overflow. 20 distinct JPEG hashes and exact 9:16 dimensions checked. Project prose passed the prohibited punctuation check. No deployment.
+
+
+## Remaining web media, 12 September 2026
+
+Added 17 real browser recordings, bringing the total to 26 videos across the 49 projects. New recordings cover the communications directory, task board, book preview, chat UI, public portal, wiring guide, business card editor, signage editor, architecture site, both signature tools, color engine, desktop face controls, disposable camera, local game setup, event gallery and snow driving game.
+
+Poz and Pozla Gallery now use the existing 20 AI generated portrait photos. Poz runs the original film filter and reveals the completed roll. The gallery uses its original invitation, polaroid layout and photo viewer. No camera or upload backend was invoked.
+
+The 17 new H.264 recordings total 9.8 MB, run approximately 9 to 14 seconds, and load on demand. Posters come from the same recordings. Contact sheets were reviewed and recordings with an obstructing onboarding overlay or unhelpful book scrolling were replaced. TypeScript passed for the modified Poz copy. All 17 new project dialogs were exercised in the browser. The existing 49 project and 44 resource check passed.
+
+Video provenance and demo limitations are recorded in media-manifest.json. Ten existing still captures remain for projects without a useful new interaction recording. Thirteen projects still have no verified interface capture; they retain honest source or work in progress cards. This update does not change those verification limits. Original projects and production remain unchanged.
