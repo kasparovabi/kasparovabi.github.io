@@ -99,6 +99,10 @@
     "ai-desktop-toy-wiring-guide": {
       "video": "assets/videos/ai-desktop-toy-wiring-guide.mp4",
       "source": "Actual wiring guide step navigation using the offline preview. No camera or AI connection."
+    },
+    "cutaway": {
+      "video": "assets/videos/cutaway.mp4",
+      "source": "Original app transcription and live contextual clip search using the supplied video. Recording shows a real external candidate and sentence selection. Candidate playback was unavailable; relevance is not claimed."
     }
   }
 }

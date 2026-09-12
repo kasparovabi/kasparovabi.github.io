@@ -78,3 +78,6 @@ Video provenance and demo limitations are recorded in media-manifest.json. Ten e
 The user requires English translation without changing application behavior. The Cutaway prepared result fixture was reverted and its recording withdrawn. The original English interface builds and transcribes the supplied video into 14 sentences; real clip search stops because the isolated credential namespace has no configured account. No synthetic search result is substituted.
 
 Recap now uses the original subjectcut executable to supply transparent subject layers to the unchanged OnceClone composition. All 20 cutouts were generated; the render completed and overlapping subject transition frames were visually reviewed. The corrected recording replaces the earlier incomplete one. There are now 25 videos. Existing offline fixtures in other projects must be reviewed against the new language-only boundary before further claims of functional fidelity.
+
+
+The user accepts any real found example for the Cutaway demonstration. Added a recording of the original app's actual external search result and source sentence selection. The candidate's in-app preview was unavailable; the recording does not claim playback or relevance. Original search and ranking behavior was not modified. The portfolio video loads and plays. Current total is 26 videos.

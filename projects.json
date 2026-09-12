@@ -182,9 +182,10 @@
       "category": "Desktop",
       "description": "Find funny reaction clips that fit the spoken moments in your video.",
       "image": "assets/projects/cutaway.png",
-      "scope": "Original application interface. The prepared excerpt recording was withdrawn because it did not demonstrate contextual reaction clip search. A recording of the original search workflow is pending.",
+      "scope": "Original app transcription and live contextual clip search using the supplied video. Recording shows a real external candidate and sentence selection. Candidate playback was unavailable; relevance is not claimed.",
       "verified": true,
-      "evidence": "Interface preview"
+      "evidence": "Recorded interface preview",
+      "video": "assets/videos/cutaway.mp4"
     },
     {
       "id": "anikamerasi",
