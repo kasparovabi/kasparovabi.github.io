@@ -20,3 +20,9 @@
 .portrait-capture img{object-fit:contain;background:#e8ecf2}
 
 #deck{transform-style:flat;pointer-events:none}.project-window{pointer-events:auto}
+
+.preview-media{display:block;position:relative;width:100%;height:100%;min-height:0;overflow:hidden}.project-window>.preview-media{height:calc(100% - 23px)}.preview-media>img{width:100%;height:100%;object-fit:contain}.preview-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#e8ecf2;opacity:0;pointer-events:none}.preview-video.is-playing{opacity:1}.video-label{position:absolute;bottom:8px;left:8px;padding:4px 7px;background:#171a20;color:#fff;font-size:9px;line-height:1.3;border-radius:2px;pointer-events:none}.card-visual .preview-media{min-height:0}.card-type,.card-arrow{z-index:2}@media(max-width:560px){.project-window>.preview-media{height:calc(100% - 18px)}}
+
+.stage{overflow:clip;user-select:none;-webkit-user-select:none}body{overflow-x:clip}
+
+.detail-media video{display:block;max-height:44svh;max-width:100%;width:auto}

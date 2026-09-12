@@ -42,3 +42,13 @@ The fan now scrolls continuously across the collection, with the selected card a
 ### Keep endpoint cards inside the viewport
 
 Inset both the pointer mapping and card anchor by half the enlarged card width plus 18px. Pointer travel through this edge buffer retains the endpoint selection, so approaching the full visible card does not select its neighbour. Verified both endpoint dialogs by mouse clicks on desktop; at mobile width 390, the enlarged final card ended at 357 inside the 375px stage, leaving 18px clearance.
+
+## Video previews, 12 September
+
+Eight featured projects now have local H.264 MP4 footage: DSH Studio, Africa Atlas, Template Studio, Pozla Camera, Rauf Tuncer, Latent, Sift and Pozla Recap. Combined transfer size is about 3.6 MB. Capture provenance is in media-manifest.json. Browser recordings use isolated English demos; iOS recordings use the isolated simulator apps. Recap is the application output with explicitly synthetic sample event images. DSH uses its existing demo recording. Cutaway retains its screenshot because the demonstrated copy stops before configured model discovery. Other archive projects retain their existing screenshots or evidence cards.
+
+Hover or keyboard focus plays a muted inline preview, with only one active preview. Offscreen, hidden page, project dialog, reduced motion and data saving states stop or suppress it. Video files load on demand. Project details show controls and preserve a screenshot poster. Mobile portrait videos are constrained to the media area.
+
+Verification: all eight MP4 resources returned HTTP 200 and decoded; frame contact sheets reviewed. Browser playback observed without media errors. Mobile Pozla playback advanced beyond seven seconds with readyState 4. Mobile video bottom 434 was above the project heading at 521, with no horizontal overflow. All 49 project copy records passed the prohibited dash check, as did the rendered homepage text and title. Not a production deployment.
+
+Capture originals and packaging script live in the preparation folder, output/playwright/videos and scripts/package_portfolio_videos.py. The project generator now preserves media assignments.

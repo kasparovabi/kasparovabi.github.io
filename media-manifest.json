@@ -1,0 +1,36 @@
+{
+  "videos": {
+    "dsh-studio": {
+      "video": "assets/videos/dsh-studio.mp4",
+      "source": "Existing isolated demo recording"
+    },
+    "maarif-sablon": {
+      "video": "assets/videos/maarif-sablon.mp4",
+      "source": "Local English demo browser recording"
+    },
+    "afrika-uyaniyor": {
+      "video": "assets/videos/afrika-uyaniyor.mp4",
+      "source": "Local English demo browser recording"
+    },
+    "sift": {
+      "video": "assets/videos/sift.mp4",
+      "source": "Local English demo browser recording"
+    },
+    "rauf-tuncer-site": {
+      "video": "assets/videos/rauf-tuncer-site.mp4",
+      "source": "Local English demo browser recording"
+    },
+    "pozla-recap": {
+      "video": "assets/videos/pozla-recap.mp4",
+      "source": "Sample event rendered by the original application"
+    },
+    "anikamerasi": {
+      "video": "assets/videos/anikamerasi.mp4",
+      "source": "Isolated iOS simulator recording"
+    },
+    "latent": {
+      "video": "assets/videos/latent.mp4",
+      "source": "Isolated iOS simulator recording"
+    }
+  }
+}
