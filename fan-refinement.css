@@ -15,3 +15,8 @@
 
 /* Reserve headroom for the lifted portrait capture at every viewport height. */
 .project-window{top:50%}
+
+/* Equal card hit areas keep every adjacent project reachable, including portrait captures. */
+.portrait-capture img{object-fit:contain;background:#e8ecf2}
+
+#deck{transform-style:flat;pointer-events:none}.project-window{pointer-events:auto}

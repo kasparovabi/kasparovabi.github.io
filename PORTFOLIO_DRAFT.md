@@ -30,3 +30,7 @@ Pending: owner feedback on the visual direction and selection; short real-use cl
 ### Stable pointer approach
 
 Browse only from the empty outer edges; the central approach area and card hover stop lateral motion. Hover retains the card angle and uses a short scale transition instead of abruptly changing depth and rotation. Verified actual mouse paths from both edges to the centered card: DSH Studio and Pozla Recap stayed under the pointer and opened the correct dialog on direct click.
+
+### Adjacent-card hit testing correction
+
+Removed endpoint browsing after user found intermediate cards inaccessible. Fan now has bounded pointer parallax and direct hover selection without recentering. Removed negative Z placement and flattened the deck stacking context: visible rear cards had not received hit tests. Uniform card hit areas retain access to portrait projects without adding a device shell. Browser evidence: all nine featured cards opened their matching dialogs by actual coordinate clicks on visible portions, including both adjacent cards and both endpoints.
