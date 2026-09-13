@@ -385,13 +385,13 @@
   "dripreader": {
     "name": "DripReader",
     "description": "A reading app that reveals a little more of a book each day.",
-    "image": "assets/projects/dripreader-original.png",
-    "scope": "The original iOS app was built and launched with its original initialization services. A newly written three chapter EPUB was selected through Files and the app parsed its title and author. The recording covers file selection and parsed book information. Saving the book, reading, timed chapter unlocks, cloud sync and physical devices are not verified. The initial unsigned simulator Keychain error was resolved by rebuilding with normal simulator signing.",
+    "image": "assets/projects/dripreader-reading.png",
+    "scope": "A self written sample EPUB was selected through the original Files picker and saved to the library. The recording combines file import with reading the first two chapters and viewing the third chapter locked by the daily limit. Saving was verified in the original app. Future scheduled unlocking and cloud sync have not been verified.",
     "verified": false,
-    "evidence": "Native iOS build and EPUB import",
+    "evidence": "Original EPUB import, saved library and chapter reading",
     "role": "Solo creator · Product, design and engineering",
     "ownership": "I designed and built this project independently, including its interface and implementation.",
-    "video": "assets/videos/dripreader-original.mp4"
+    "video": "assets/videos/dripreader-verified.mp4"
   },
   "latent": {
     "name": "Latent",

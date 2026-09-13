@@ -113,8 +113,8 @@
       "source": "A sample task was created through the original admin form, completed and approved against the original FastAPI backend with a separate SQLite database. The recording shows task details and approval. Persisted category values stay unchanged while display labels are translated. Email analysis, the mail watcher and external notifications were not exercised."
     },
     "dripreader": {
-      "video": "assets/videos/dripreader-original.mp4",
-      "source": "The original iOS app was built and launched with its original initialization services. A newly written three chapter EPUB was selected through Files and the app parsed its title and author. The recording covers file selection and parsed book information. Saving the book, reading, timed chapter unlocks, cloud sync and physical devices are not verified. The initial unsigned simulator Keychain error was resolved by rebuilding with normal simulator signing."
+      "video": "assets/videos/dripreader-verified.mp4",
+      "source": "A self written sample EPUB was selected through the original Files picker and saved to the library. The recording combines file import with reading the first two chapters and viewing the third chapter locked by the daily limit. Saving was verified in the original app. Future scheduled unlocking and cloud sync have not been verified."
     }
   }
 }
