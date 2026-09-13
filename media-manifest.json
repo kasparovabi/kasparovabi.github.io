@@ -107,6 +107,14 @@
     "dsh-studio-phone-private": {
       "video": "assets/videos/dsh-pocket-original.mp4",
       "source": "The original iOS client connects to the real local DSH server. A new session in an isolated folder read index.html and returned an English explanation of the counter and reset behavior. Tool execution and the answer are shown in the recording. The file remained unchanged. The copy restores the original network and photo permission declarations. Attachments, remote hosts and physical devices were not exercised."
+    },
+    "maarif-gorev": {
+      "video": "assets/videos/task-board-original.mp4",
+      "source": "A sample task was created through the original admin form, completed and approved against the original FastAPI backend with a separate SQLite database. The recording shows task details and approval. Persisted category values stay unchanged while display labels are translated. Email analysis, the mail watcher and external notifications were not exercised."
+    },
+    "dripreader": {
+      "video": "assets/videos/dripreader-original.mp4",
+      "source": "The original iOS app was built and launched with its original initialization services. A newly written three chapter EPUB was selected through Files and the app parsed its title and author. The recording covers file selection and parsed book information. Saving the book, reading, timed chapter unlocks, cloud sync and physical devices are not verified. The initial unsigned simulator Keychain error was resolved by rebuilding with normal simulator signing."
     }
   }
 }
