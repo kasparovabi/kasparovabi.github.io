@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gecit: one keyboard and mouse for Windows and Mac</title>
+<meta name="description" content="Gecit shares one keyboard, mouse and clipboard between a Windows PC and a Mac over your local network. Free, with a one-time Pro license for file drag and drop.">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0c0e;
+  --panel: #121418;
+  --line: #24272e;
+  --text: #e9e2d0;
+  --dim: #8d8a80;
+  --amber: #ffb000;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.7 var(--mono);
+  -webkit-font-smoothing: antialiased;
+}
+main { max-width: 760px; margin: 0 auto; padding: 56px 16px 80px; }
+a { color: var(--amber); text-underline-offset: 3px; }
+a:hover { color: var(--text); }
+pre.logo {
+  margin: 0 0 20px;
+  color: var(--text);
+  font: 700 min(15px, 3.4vw)/1.1 var(--mono);
+  overflow: hidden;
+}
+.tag { color: var(--amber); font-size: 18px; margin: 0 0 6px; }
+.sub { color: var(--dim); margin: 0; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 32px 0 8px; }
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid var(--amber);
+  color: var(--bg);
+  background: var(--amber);
+  text-decoration: none;
+  font-weight: 700;
+}
+.btn:hover { background: var(--text); border-color: var(--text); color: var(--bg); }
+.btn.ghost { background: transparent; color: var(--amber); }
+.btn.ghost:hover { color: var(--bg); background: var(--amber); }
+.note { color: var(--dim); font-size: 13px; margin: 0; }
+h2 {
+  margin: 64px 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: .04em;
+}
+h2::before { content: "$ "; color: var(--dim); }
+h3 { margin: 28px 0 8px; font-size: 15px; }
+p { margin: 0 0 14px; }
+ul { margin: 0 0 14px; padding-left: 0; list-style: none; }
+li { padding-left: 2ch; text-indent: -2ch; margin-bottom: 6px; }
+li::before { content: "- "; color: var(--dim); }
+table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--dim); font-weight: 400; }
+td.y { color: var(--amber); white-space: nowrap; }
+.legal { background: var(--panel); border: 1px solid var(--line); padding: 4px 20px 10px; margin-top: 16px; }
+.legal h3 { color: var(--text); }
+.legal p, .legal li { color: #c9c3b3; font-size: 14px; }
+footer { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--dim); font-size: 13px; }
+@media (max-width: 520px) {
+  main { padding-top: 32px; }
+  body { font-size: 14px; }
+  th, td { padding: 8px 6px; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<pre class="logo" aria-label="Gecit">
+ ██████╗ ███████╗ ██████╗██╗████████╗
+██╔════╝ ██╔════╝██╔════╝██║╚══██╔══╝
+██║  ███╗█████╗  ██║     ██║   ██║
+██║   ██║██╔══╝  ██║     ██║   ██║
+╚██████╔╝███████╗╚██████╗██║   ██║
+ ╚═════╝ ╚══════╝ ╚═════╝╚═╝   ╚═╝</pre>
+
+<p class="tag">&gt;&gt; one keyboard + mouse, windows &rarr; mac</p>
+<p class="sub">Push the pointer off the edge of your PC screen and it lands on your Mac. Type, copy, paste, drag files. Push it back and you are on Windows again.</p>
+
+<div class="cta">
+  <a class="btn" href="https://github.com/kasparovabi/gecit/releases/latest">Download (free)</a>
+  <a class="btn ghost" href="#pro">Gecit Pro, $9.99</a>
+</div>
+<p class="note">macOS 13 or later on Apple silicon &middot; Windows 10 or 11 (64-bit)</p>
+
+<h2>why I wrote it</h2>
+<p>I sit at a Windows PC with a MacBook below the monitor, and used Input Leap to drive both. It dropped the connection several times a day. When I read its logs and its code, I found the causes: a crash in the Mac client that nothing restarted, macOS quietly closing it under memory pressure, and a clipboard image that could kill the Windows side.</p>
+<p>Gecit is the replacement I built for that desk. It is a small native app on each side, and it has been my daily driver since.</p>
+
+<h2>what it does</h2>
+<ul>
+  <li>Keyboard and mouse cross to the Mac when the pointer leaves the bottom of the PC screen, and back when it leaves the top of the Mac screen. Keys travel as physical scan codes, so your layout stays the same on both sides.</li>
+  <li>Clipboard works both ways, text and images.</li>
+  <li>Media keys (volume, mute, play, next) control the Mac while the pointer is there.</li>
+  <li>Runs over QUIC on your local network. The two machines pair once and only talk to each other; traffic is encrypted and pinned to their certificates.</li>
+  <li>If Wi-Fi hiccups, it reconnects in a fraction of a second, and the pointer comes back to Windows on its own if the Mac goes quiet.</li>
+  <li>No account, no cloud, no telemetry.</li>
+</ul>
+
+<h2 id="pro">free and pro</h2>
+<table>
+  <thead><tr><th></th><th>Free</th><th>Pro</th></tr></thead>
+  <tbody>
+    <tr><td>Keyboard and mouse sharing</td><td class="y">yes</td><td class="y">yes</td></tr>
+    <tr><td>Clipboard, text and images</td><td class="y">yes</td><td class="y">yes</td></tr>
+    <tr><td>Media keys</td><td class="y">yes</td><td class="y">yes</td></tr>
+    <tr><td>Drag files from Windows to Mac</td><td>&nbsp;</td><td class="y">yes</td></tr>
+    <tr><td>Drag files from Mac to Windows</td><td>&nbsp;</td><td class="y">yes</td></tr>
+  </tbody>
+</table>
+<p>Gecit Pro is a one-time payment of $9.99. No subscription. You get a license key by email; paste it into the Gecit menu on your Mac and file drag unlocks. One key works on two Macs, and you can move it from the same menu.</p>
+<div class="cta">
+  <a class="btn" href="#buy" id="buy">Buy Gecit Pro, $9.99</a>
+</div>
+<p class="note">Payment is handled by Lemon Squeezy, which also takes care of sales tax and VAT.</p>
+
+<h2>support</h2>
+<p>Questions, bugs, lost license keys: write to <a href="mailto:kasparovabi@gmail.com">kasparovabi@gmail.com</a>. I usually answer within two working days.</p>
+
+<h2 id="legal">terms, privacy, refunds</h2>
+<div class="legal">
+  <h3 id="refunds">Refunds</h3>
+  <p>If Gecit Pro does not work for you, email me within 14 days of purchase and I will refund the full amount. No need to explain why.</p>
+
+  <h3 id="privacy">Privacy</h3>
+  <ul>
+    <li>Gecit sends your keystrokes, mouse movement, clipboard and dragged files only between your own two computers, directly over your local network. None of it passes through a server of mine or anyone else's.</li>
+    <li>If you activate Gecit Pro, the Mac sends your license key and an activation ID to Lemon Squeezy's license API, once at activation and about once a week afterwards, to check that the key is still valid.</li>
+    <li>When you buy, Lemon Squeezy collects your name, email address and payment details to process the order. Their privacy policy applies to that data. I see your name, email and order, and use them only to support you.</li>
+    <li>There is no analytics, tracking or advertising in the app or on this site.</li>
+  </ul>
+
+  <h3 id="terms">Terms</h3>
+  <ul>
+    <li>Gecit is sold by Ahmet Kazankaya, an independent developer. Lemon Squeezy is the merchant of record for all orders.</li>
+    <li>A Pro license is for your personal or work use on up to two Macs at a time. Do not share or resell keys.</li>
+    <li>The software is provided as is, without warranty. I am not liable for data loss or damages from its use, to the extent the law allows. Keep backups of files you move.</li>
+    <li>I may update these terms; the version on this page applies to new purchases.</li>
+  </ul>
+  <p class="note">Last updated 16 October 2026.</p>
+</div>
+
+<footer>
+  Gecit &middot; made by Ahmet Kazankaya &middot; <a href="mailto:kasparovabi@gmail.com">kasparovabi@gmail.com</a>
+</footer>
+
+</main>
+</body>
+</html>
