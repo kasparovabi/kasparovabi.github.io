@@ -53,6 +53,7 @@ pre.logo {
 .btn.ghost { background: transparent; color: var(--amber); }
 .btn.ghost:hover { color: var(--bg); background: var(--amber); }
 .note { color: var(--dim); font-size: 13px; margin: 0; }
+.note + .note { margin-top: 8px; }
 h2 {
   margin: 64px 0 16px;
   font-size: 15px;
@@ -70,6 +71,7 @@ table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; }
 th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { color: var(--dim); font-weight: 400; }
 td.y { color: var(--amber); white-space: nowrap; }
+code { background: var(--panel); padding: 0 4px; overflow-wrap: anywhere; }
 .legal { background: var(--panel); border: 1px solid var(--line); padding: 4px 20px 10px; margin-top: 16px; }
 .legal h3 { color: var(--text); }
 .legal p, .legal li { color: #c9c3b3; font-size: 14px; }
@@ -99,7 +101,8 @@ footer { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--line);
   <a class="btn" href="https://github.com/kasparovabi/gecit/releases/latest">Download (free)</a>
   <a class="btn ghost" href="#pro">Gecit Pro, $9.99</a>
 </div>
-<p class="note">macOS 13 or later on Apple silicon &middot; Windows 10 or 11 (64-bit)</p>
+<p class="note">Mac with Apple silicon, macOS 13 or later &middot; Windows 10 version 2004 or later, or Windows 11, 64-bit &middot; both on the same local network</p>
+<p class="note">The download page has Gecit.zip for the Mac and gecit.exe for Windows. A Microsoft Store version for Windows is coming soon. The exe is not code-signed yet, so the first time SmartScreen says "Windows protected your PC": click "More info", then "Run anyway".</p>
 
 <h2>why I wrote it</h2>
 <p>I sit at a Windows PC with a MacBook below the monitor, and used Input Leap to drive both. It dropped the connection several times a day. When I read its logs and its code, I found the causes: a crash in the Mac client that nothing restarted, macOS quietly closing it under memory pressure, and a clipboard image that could kill the Windows side.</p>
@@ -110,9 +113,10 @@ footer { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--line);
   <li>Keyboard and mouse cross to the Mac when the pointer leaves the PC screen on the side where your Mac sits, and come back the same way. Put the Mac below, above, left or right of the PC and slide it along that edge in the Screen arrangement window, the way you arrange displays in macOS. Keys travel as physical scan codes, so your layout stays the same on both sides.</li>
   <li>Clipboard works both ways, text and images.</li>
   <li>Media keys (volume, mute, play, next) control the Mac while the pointer is there.</li>
-  <li>Runs over QUIC on your local network. The two machines pair once and only talk to each other; traffic is encrypted and pinned to their certificates.</li>
+  <li>Runs over QUIC on your local network. You pair the two once: the PC shows a 6-digit code and you type it on the Mac. After that they only talk to each other; traffic is encrypted and pinned to their certificates.</li>
   <li>If Wi-Fi hiccups, it reconnects in a fraction of a second, and the pointer comes back to Windows on its own if the Mac goes quiet.</li>
-  <li>No account, no cloud, no telemetry.</li>
+  <li>New versions show up in the Gecit menu, and nothing downloads until you click.</li>
+  <li>No account and no cloud. Apart from an anonymous update check and, with Pro, the license check, Gecit talks only to your other computer.</li>
 </ul>
 
 <h2 id="pro">free and pro</h2>
@@ -143,23 +147,26 @@ footer { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--line);
   <h3 id="privacy">Privacy</h3>
   <ul>
     <li>Gecit sends your keystrokes, mouse movement, clipboard and dragged files only between your own two computers, directly over your local network. None of it passes through a server of mine or anyone else's.</li>
-    <li>If you activate Gecit Pro, the Mac sends your license key and an activation ID to Lemon Squeezy's license API, once at activation and about once a week afterwards, to check that the key is still valid.</li>
+    <li>If you activate Gecit Pro, the Mac sends your license key and the name "Mac" to Lemon Squeezy's license API when you activate it. About once a week afterwards, and when you remove the license from the Mac, it sends the key with the activation ID Lemon Squeezy returned, to check or release the activation.</li>
     <li>When you buy, Lemon Squeezy collects your name, email address and payment details to process the order. Their privacy policy applies to that data. I see your name, email and order, and use them only to support you.</li>
-    <li>There is no analytics, tracking or advertising in the app or on this site.</li>
+    <li>The Mac app and the downloaded Windows app check GitHub for a newer version a few minutes after they start and then once a day, or at most every ten minutes while mismatched versions keep your two computers from connecting. The check sends no identifier and does not say which version you run, so GitHub sees only your IP address and the time, as with any download. If there is a new version, a second request fetches its signature; the update itself downloads only when you click it. Set <code>"update_check": false</code> in Gecit's <code>config.json</code> to turn the check off. The Microsoft Store version never checks; the Store updates it.</li>
+    <li>Apart from these two checks, Gecit sends nothing anywhere. There is no analytics, tracking or advertising in the app or on this site.</li>
   </ul>
+
+  <p>The <a href="privacy.html">full privacy policy</a>, in English and Turkish, also covers what Gecit keeps on each computer and how to remove it.</p>
 
   <h3 id="terms">Terms</h3>
   <ul>
-    <li>Gecit is sold by Ahmet Kazankaya, an independent developer. Lemon Squeezy is the merchant of record for all orders.</li>
+    <li>Gecit is sold by snthbob, an independent developer. Lemon Squeezy is the merchant of record for all orders.</li>
     <li>A Pro license is for your personal or work use on up to two Macs at a time. Do not share or resell keys.</li>
     <li>The software is provided as is, without warranty. I am not liable for data loss or damages from its use, to the extent the law allows. Keep backups of files you move.</li>
     <li>I may update these terms; the version on this page applies to new purchases.</li>
   </ul>
-  <p class="note">Last updated 16 October 2026.</p>
+  <p class="note">Last updated 17 October 2026.</p>
 </div>
 
 <footer>
-  Gecit &middot; made by Ahmet Kazankaya &middot; <a href="mailto:kasparovabi@gmail.com">kasparovabi@gmail.com</a>
+  Gecit &middot; made by snthbob &middot; <a href="privacy.html">privacy</a> &middot; <a href="mailto:kasparovabi@gmail.com">kasparovabi@gmail.com</a>
 </footer>
 
 </main>

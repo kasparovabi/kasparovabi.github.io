@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gecit privacy policy</title>
+<meta name="description" content="What Gecit sends, what it keeps and how to remove it, on Windows and on the Mac.">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0c0e;
+  --line: #24272e;
+  --text: #e9e2d0;
+  --dim: #8d8a80;
+  --amber: #ffb000;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.7 var(--mono);
+  -webkit-font-smoothing: antialiased;
+}
+main { max-width: 760px; margin: 0 auto; padding: 56px 16px 80px; }
+a { color: var(--amber); text-underline-offset: 3px; }
+a:hover { color: var(--text); }
+h1 { margin: 0 0 6px; font-size: 18px; color: var(--amber); }
+h2 { margin: 56px 0 16px; font-size: 15px; font-weight: 700; color: var(--amber); letter-spacing: .04em; }
+h2::before { content: "$ "; color: var(--dim); }
+p { margin: 0 0 14px; }
+code { color: var(--text); background: #121418; padding: 0 4px; overflow-wrap: anywhere; }
+.note { color: var(--dim); font-size: 13px; }
+footer { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--dim); font-size: 13px; }
+@media (max-width: 520px) {
+  main { padding-top: 32px; }
+  body { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<h1>Gecit privacy policy</h1>
+<p class="note"><a href="#tr">Türkçe</a></p>
+
+<section>
+<h2>english</h2>
+<p class="note">Last updated 17 October 2026.</p>
+<p>Gecit runs on a Windows PC and a Mac that you pair with each other. Keyboard and mouse input, clipboard contents and files you drag go directly from one of your computers to the other over your local network, encrypted with TLS 1.3 and pinned to the certificates the two computers exchanged when you paired them. They are not stored, and they are not sent to the developer or to anyone else.</p>
+<p>Gecit keeps its settings, its pairing keys and a technical log on each computer. The log records connection events and errors, never what you type or copy. Uninstalling the Microsoft Store version removes its data, except settings left by an earlier downloaded version in <code>%APPDATA%\Gecit</code>; delete that folder to remove them. Uninstalling the downloaded Windows version keeps <code>%APPDATA%\Gecit</code>, so a reinstall stays paired; delete that folder to remove it. On the Mac, delete <code>~/Library/Application Support/Gecit</code>.</p>
+<p>The Microsoft Store version makes no internet connections; the Store updates it. The downloaded Windows version and the Mac app check GitHub (github.com) for a newer version a few minutes after they start and then once a day; while your two computers cannot connect because their Gecit versions do not match, they check at most every ten minutes. The check sends no identifier and does not say which version you run, so GitHub sees only the IP address and the time, like any download. When a newer version exists, a second request fetches its signature; the update itself downloads only when you click it. Set <code>"update_check": false</code> in Gecit's <code>config.json</code> to turn this off. The Mac app also connects to Lemon Squeezy (lemonsqueezy.com) only to activate, validate or deactivate a Gecit Pro license: it sends the license key with the name "Mac" when you activate it, and the license key with the activation ID Lemon Squeezy returned when it checks the license (about once a week) or when you remove it from the Mac. Purchases are handled by Lemon Squeezy under its own privacy policy.</p>
+<p>Gecit has no accounts, no analytics, no advertising and no tracking.</p>
+<p>Questions: <a href="mailto:kasparovabi@gmail.com">kasparovabi@gmail.com</a></p>
+</section>
+
+<section id="tr" lang="tr">
+<h2>türkçe</h2>
+<p class="note">Son güncelleme 17 Ekim 2026.</p>
+<p>Gecit, birbiriyle eşleştirdiğin bir Windows bilgisayarda ve bir Mac'te çalışır. Klavye ve fare hareketleri, panodaki içerik ve sürüklediğin dosyalar yerel ağın üzerinden doğrudan bir bilgisayarından öbürüne gider. Bağlantı TLS 1.3 ile şifrelenir ve eşleştirmede iki bilgisayarın değiştirdiği sertifikalara bağlıdır. Bu veriler saklanmaz, geliştiriciye ya da başka birine gönderilmez.</p>
+<p>Gecit her bilgisayarda ayarlarını, eşleştirme anahtarlarını ve teknik bir günlük tutar. Günlükte bağlantı olayları ve hatalar yer alır, yazdıkların ya da kopyaladıkların yer almaz. Microsoft Store sürümünü kaldırınca verileri de silinir; yalnızca daha önce indirilen bir sürümün <code>%APPDATA%\Gecit</code> klasöründe bıraktığı ayarlar kalır, onları da bu klasörü silerek kaldırabilirsin. İndirilen Windows sürümü kaldırılınca <code>%APPDATA%\Gecit</code> yeniden kurulumda eşleşme korunsun diye yerinde kalır; silmek için bu klasörü sil. Mac'te <code>~/Library/Application Support/Gecit</code> klasörünü silebilirsin.</p>
+<p>Microsoft Store sürümü internete bağlanmaz, onu Store günceller. İndirilen Windows sürümü ve Mac uygulaması yeni sürüm için açıldıktan birkaç dakika sonra, ardından günde bir kez GitHub'a (github.com) bakar. Gecit sürümleri uyuşmadığı için iki bilgisayar bağlanamıyorsa bu bakış en çok on dakikada bir yinelenir. İstekte kimlik bilgisi yoktur, kullandığın sürüm de yazmaz; GitHub, her indirmede olduğu gibi yalnızca IP adresini ve zamanı görür. Yeni bir sürüm varsa ikinci bir istek onun imzasını getirir; güncellemenin kendisi yalnızca sen tıklayınca iner. Kapatmak için Gecit'in <code>config.json</code> dosyasına <code>"update_check": false</code> yaz. Mac uygulaması ayrıca yalnızca Gecit Pro lisansını etkinleştirmek, doğrulamak ya da kaldırmak için Lemon Squeezy'ye (lemonsqueezy.com) bağlanır. Etkinleştirirken lisans anahtarıyla "Mac" adını, lisansı denetlerken (yaklaşık haftada bir) ya da Mac'ten kaldırırken lisans anahtarıyla Lemon Squeezy'nin verdiği etkinleştirme kimliğini gönderir. Satın alma işlemleri Lemon Squeezy'nin kendi gizlilik politikasıyla yürür.</p>
+<p>Gecit'te hesap, analiz, reklam ya da izleme yoktur.</p>
+<p>Sorular için: <a href="mailto:kasparovabi@gmail.com">kasparovabi@gmail.com</a></p>
+</section>
+
+<footer>
+  <a href="./">Gecit</a> &middot; <a href="mailto:kasparovabi@gmail.com">kasparovabi@gmail.com</a>
+</footer>
+
+</main>
+</body>
+</html>
