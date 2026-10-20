@@ -1,0 +1,480 @@
+# Ahmet Kazankaya
+
+> AI automation engineer based in Istanbul, Turkey. Builds the platform layer that makes LLM agents safe to run in production: execution runtimes, human approval gates, permission boundaries, run logging and evaluation harnesses. Ships native macOS, iOS, Windows and web tools as a solo builder. Open to full-time roles in Europe, on site or remote.
+
+Ahmet Kazankaya works as a solo product builder: product and interface design, implementation and testing, with coding agents (Claude Code, Codex) as part of the process. A task management system built for Türkiye Maarif Vakfı, a foundation operating schools in 66 countries, has been in production for four months. Other running work includes an Etsy and Printify automation line with a Telegram approval gate, an ESP32-S3 desk robot with a speech pipeline, and open source Claude Code skill sets that other people install.
+
+Skills: LLM agent orchestration, workflow automation, evaluation harnesses, CI reliability gates, prompt engineering, retrieval augmented generation, Python, TypeScript, Swift and SwiftUI, FastAPI, Next.js, Docker, AWS, ESP32 firmware. Languages: Turkish, English.
+
+Contact: ahmetkazankaya1@gmail.com, [LinkedIn](https://www.linkedin.com/in/ahmetkazankaya), [GitHub](https://github.com/kasparovabi).
+
+## Profile
+
+- [Portfolio](https://kasparovabi.github.io/): interactive collection of 49 independent software projects
+- [Background and CV](https://kasparovabi.github.io/cv.html): summary, working model, production case studies with symptom, root cause and fix
+- [CV as PDF](https://kasparovabi.github.io/Ahmet-Kazankaya-CV.pdf)
+
+## Case studies
+
+- [Template Studio](https://kasparovabi.github.io/projects/maarif-sablon.html): Turn everyday announcements into consistent, ready to export designs.
+- [DSH Studio](https://kasparovabi.github.io/projects/dsh-studio.html): A workspace for working with coding agents.
+- [Sift](https://kasparovabi.github.io/projects/sift.html): Find and revisit coding conversations across projects.
+
+## Products
+
+- [Gecit](https://kasparovabi.github.io/gecit/): shares one keyboard, mouse and clipboard between a Windows PC and a Mac over the local network; free, with a one-time Pro license for file drag and drop
+- [Gecit privacy policy](https://kasparovabi.github.io/gecit/privacy.html)
+
+## Open source
+
+- [Sift](https://github.com/kasparovabi/sift): native macOS app that indexes local Claude Code and Codex session transcripts for full text search
+- [DSH Studio](https://github.com/kasparovabi/dsh-studio): unofficial native macOS client for dsh, the DeepSeek agent harness
+- [Cutaway](https://github.com/kasparovabi/cutaway): native macOS app that transcribes a video and matches short clips to every sentence
+- [Busted](https://github.com/kasparovabi/busted): a Mac desk guard that catches snoops
+- [claude-audit-20](https://github.com/kasparovabi/claude-audit-20): guard-20 and audit-20 for Claude Code, twenty AI coding failure classes as write time rules plus a twenty pass verification gate with a false positive filter
+- [motion-first-design](https://github.com/kasparovabi/motion-first-design): Claude Code skill for motion first web design, published with the blind ablation that proved its first version wrong
+- [claude-file-bridge](https://github.com/kasparovabi/claude-file-bridge): uploads real files to a page when browser automation file upload is broken
+- [embeddinggemma2-rag-test](https://github.com/kasparovabi/embeddinggemma2-rag-test): EmbeddingGemma 2 GGUF settings for RAG compared against each other and BM25
+- [strands-decider-eval](https://github.com/kasparovabi/strands-decider-eval): AWS Strands Decider 2B tested on 501 real CI failures and 500 Wordle games
+- [iMenu timing fix](https://github.com/meyusufdemirci/iMenu-MacOS/pull/1): event ordering fix merged upstream into a macOS menu bar manager
+- [claude-mythos-scaffold](https://github.com/kasparovabi/claude-mythos-scaffold): retired August 2026, agent persistence scaffold for older Claude models
+
+## Security research
+
+- [Security research](https://kasparovabi.github.io/security-research/): coordinated disclosures and security writeups
+- [Omi disclosure](https://kasparovabi.github.io/security-research/2026-04-omi-disclosure.html): seventeen vulnerabilities in the Omi wearable backend, CVSS 10.0, coordinated disclosure timeline
+
+## All projects (49)
+
+### Africa Atlas
+
+Category: Web. Explore a continent through an interactive map and country index.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: English original 54 country atlas; browser search, country modal and neighbor navigation verified; historical source snapshot clearly labeled.
+
+### Communications Hub
+
+Category: Web. A single directory for a collection of institutional tools.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Actual local communications directory navigation. Service status and live availability were not tested.
+
+### Task Board
+
+Category: Web. A team’s work, presented as an at a glance display.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: A sample task was created through the original admin form, completed and approved against the original FastAPI backend with a separate SQLite database. The recording shows task details and approval. Persisted category values stay unchanged while display labels are translated. Email analysis, the mail watcher and external notifications were not exercised.
+
+### Sign Studio
+
+Category: Web. Design institutional signs and prepare them for print.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: All four sign types produced real CMYK PDF downloads, including a separate campus block and production sheets. An RTL outline alignment defect that clipped Arabic text was corrected, and English production sheet columns were spaced to avoid overlap. Three original test helpers omitted from the repository were recovered from the original local installation. All 139 tests pass. Two unlisted production sheet gray colors remain explicitly reported rather than assigned invented Pantone values.
+
+### Template Studio
+
+Category: Web. Turn everyday announcements into consistent, ready to export designs.
+
+Problem: Routine institutional announcements share a visual system but carry different names, dates and contact details. Recreating each layout manually makes consistency harder to maintain.
+
+My work: I designed and built the template collection, editing forms, live previews and image export, including the layout rules for each announcement type.
+
+Implementation: Typed template data feeds React layouts. The editor measures the available space to scale its preview, while export uses the original canvas dimensions and embedded fonts.
+
+Result: A user can choose a template, enter the announcement details and export a JPG. Seven template routes cover appointment, departure, HR information, condolences and celebrations.
+
+Stack: TypeScript, React, Next.js, html-to-image
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: All seven English template routes were exercised in the original browser editor. Each Download JPG action produced a readable JPEG with nonzero dimensions, with no broken browser images or download failures. The recording shows the original selection, editing and preview workflow.
+
+Case study: https://kasparovabi.github.io/projects/maarif-sablon.html
+
+### Kıpırda
+
+Category: Desktop. A movement break companion for time spent at a desk.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: The original Mac application was built and signed. The recording shows working hours, work rhythm, maximum blocking time and profile settings. The portfolio copy uses separate local storage and pairing credentials. Phone pairing, movement detection and the break overlay were not verified in this recording.
+
+### Maarifet
+
+Category: Web. Turn a structured workshop plan into a readable book.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original book renderer and week navigation with four clearly fictional workshop weeks. No cloud generation.
+
+### Video Downloader
+
+Category: Web. A focused interface for downloading a video from a link.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Corporate container source and UI; browser sample video downloaded and played; npm test passed including auth, SSRF, preview generation, and download.
+
+### Business Card Studio
+
+Category: Web. Create consistent business cards with print ready PDF output.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: 12 existing PDF engine tests passed; production build passed; browser standard and executive previews rendered; both PDF files downloaded.
+
+### DSH Studio
+
+Category: Desktop. A workspace for working with coding agents.
+
+Problem: Working with a coding agent involves more than sending a prompt. Sessions, streamed output, tool approvals and model settings need to stay understandable as work progresses.
+
+My work: I designed and built the macOS application: the session browser, live conversation interface, controls and integration with the dsh server.
+
+Implementation: SwiftUI presents sessions while JSON RPC and a WebSocket event stream connect the interface to the existing dsh harness. History recovery reads the local session log when the server cannot serve a damaged transcript.
+
+Result: The application brings session navigation, streaming output, approvals and configuration into one native workspace. The original repository includes the demonstration shown here.
+
+Stack: Swift, SwiftUI, JSON RPC, WebSocket
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original repository demo recording. The restored native application builds and connects to the local server. Agent execution was not retested in this review.
+
+Case study: https://kasparovabi.github.io/projects/dsh-studio.html
+
+Source: https://github.com/kasparovabi/dsh-studio
+
+### Etsy Factory
+
+Category: Desktop. An assisted product catalog workspace.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: The original Mac application uses its Python backend with an isolated snapshot of the existing local database and artwork files. The backend returned 12 product types and 71 designs. The recording shows catalog navigation and existing listing images. New artwork generation, mockup rendering and remote publishing were not exercised.
+
+### Pozla Gallery
+
+Category: Web. An invitation opens into a shared, polaroid style photo gallery.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.
+
+### Pozla Recap
+
+Category: Creative tools. Turn event photos into a recap with subject cutouts and layered photo transitions.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original subjectcut extraction and unchanged OnceClone animation, using generated event photos with transparent subject layers. The local render does not exercise the production queue.
+
+### Peri
+
+Category: Desktop. An on screen companion with expressive states and captions.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.
+
+### KieBatch
+
+Category: Desktop. A desktop workspace for batch image generation.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: XcodeGen and signed Debug build passed; English native batch UI verified. Paid generation and PSD conversion not executed.
+
+### Cutaway
+
+Category: Desktop. Find funny reaction clips that fit the spoken moments in your video.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original app transcription and live contextual clip search using the supplied video. Recording shows a real external candidate and sentence selection. Candidate playback was unavailable; relevance is not claimed.
+
+### Pozla Camera
+
+Category: Mobile. A shared event camera, with a playful introduction and a roll of memories.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original iOS onboarding recorded from the full application using generated portrait photos. Simulator build passed. Event creation, camera capture, uploads and purchases were not exercised.
+
+### Skill Pack
+
+Category: Developer tools. A reusable collection of agent workflows and development skills.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Source inspection only. 168 tracked files and 49 skill entry points. Agent execution and external integrations were not tested.
+
+### Sift
+
+Category: Developer tools. Find and revisit coding conversations across projects.
+
+Problem: Useful decisions and solutions accumulate across Claude Code and Codex transcripts. Remembering a previous solution does not necessarily mean remembering which session contains it.
+
+My work: I designed and built Sift, from transcript ingestion and local indexing to the search interface and the flow for returning to a session.
+
+Implementation: Provider specific readers normalize local transcripts into a SQLite index. FTS5 provides full text search with ranked results. The interface can open the original session in the appropriate agent.
+
+Result: Search, filters and readable session details provide a route back to earlier work. The demonstration uses example transcripts with the real indexing and reading flow.
+
+Stack: Swift, SwiftUI, SQLite, FTS5
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Existing English browser version; 18 synthetic sessions indexed, pagination search and session reading verified in browser; 31 tests passed and terminal POST returned 403. Native clients not exercised.
+
+Case study: https://kasparovabi.github.io/projects/sift.html
+
+Source: https://github.com/kasparovabi/sift
+
+### Mythos Scaffold
+
+Category: Developer tools. A scaffold for experimenting with agent persistence and verification.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Source inspection only. 51 tracked files and 1 skill entry points. Agent execution and external integrations were not tested.
+
+### Audit 20
+
+Category: Developer tools. A structured set of code verification guides.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Source inspection only. 24 tracked files and 2 skill entry points. Agent execution and external integrations were not tested.
+
+### Maarif Platform
+
+Category: Web. A shared entry point for institutional digital services.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: 520 EN keys complete; real landing/panel browser and POST403 verified; reused Next16.1.6; live backend excluded and exact declared version build unverified
+
+### Busted
+
+Category: Desktop. A Mac desk guard that reacts to keyboard activity and camera attention with an alert show.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: The video is the original repository demonstration of the alert sequence. The separate copy uses the original startup and detection engines, and all 92 core tests pass. Live camera detection, Bluetooth proximity and Telegram delivery were not exercised in this review.
+
+### Vien
+
+Category: Web. An image led studio website and gallery.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: English default and visible labels; browser full studio preview and gallery image navigation verified. Contact delivery not validated.
+
+### Global Signatures
+
+Category: Web. A multilingual email signature builder.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Browser: English labels, sample identity, live preview; imza copy action and conditional department field; intl language switching and bundled images.
+
+### Signature Studio
+
+Category: Web. Build and preview a branded email signature.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Browser: English labels, sample identity, live preview; imza copy action and conditional department field; intl language switching and bundled images.
+
+### Maarif AI
+
+Category: AI & automation. A conversational workspace with selectable models and specialist roles.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.
+
+### Player Feedback
+
+Category: AI & automation. An automated workflow for parsing and organizing player feedback.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: English workflow; five synthetic parser fixtures and malformed input rejection pass. Existing n8n sticky note execution paths and integration remain unverified.
+
+### Karart
+
+Category: Developer tools. A browser content engine for adapting a page’s appearance.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Actual color transformation engine on its local browser fixture. Extension transport is mocked.
+
+### DSH Pocket
+
+Category: Mobile. A mobile companion for coding agent conversations.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: The original iOS client connects to the real local DSH server. A new session in an isolated folder read index.html and returned an English explanation of the counter and reset behavior. Tool execution and the answer are shown in the recording. The file remained unchanged. The copy restores the original network and photo permission declarations. Attachments, remote hosts and physical devices were not exercised.
+
+### DSH for Windows
+
+Category: Desktop. The Windows side of an agent development workspace.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Isolated English synthetic source preview; RPC/server disabled; native verification pending WinApp0.6+ (installed0.5.0)
+
+### Cebimde Claude
+
+Category: Mobile. Project and agent conversations in a pocket sized workspace.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: The original iOS client connects to its real local backend. A real agent wrote a counter application, then a request sent from the phone updated it using the Write tool. The generated page opened in the original embedded preview; increment, decrement and reset worked on the simulator and in the browser. Waiting time is cut from the recording. Native app generation and physical device installation were not exercised.
+
+### Poz
+
+Category: Web. A shared camera experience with a limited number of shots.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.
+
+### Evening Outlook
+
+Category: Mobile. A daily view of conditions for planning time outdoors.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: The original iOS application runs in the simulator. Today and tomorrow scores use live weather through the original DEBUG fallback. Equipment selection and the bottom rig guide are shown. Location permission was declined and the built in Karaburun location was used. Notification delivery and production WeatherKit entitlements were not tested.
+
+### DripReader
+
+Category: Mobile. A reading app that reveals a little more of a book each day.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: A self written sample EPUB was selected through the original Files picker and saved to the library. The recording combines file import with reading the first two chapters and viewing the third chapter locked by the daily limit. Saving was verified in the original app. Future scheduled unlocking and cloud sync have not been verified.
+
+### Latent
+
+Category: Mobile. An image workspace exploring RAW photography and spatial tools.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: iOS simulator build/install/English empty editor verified; local mode only; no media export or reconstruction verification
+
+### Chaos Café
+
+Category: Creative tools. A local party game of recipes, characters and questionable decisions.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Actual local game setup and character selection. No online multiplayer session.
+
+### iPhone Vizor
+
+Category: Developer tools. Diagnostics for an iPhone to Windows mirroring setup.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: English current AirPlay diagnostics ran on Windows: UxPlay installed, Bonjour running and network passed; no settings changed or physical iPhone mirroring tested.
+
+### Video Pipeline
+
+Category: AI & automation. A command line pipeline for video records, ranking and subtitles.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: English CLI and logs; actual SQLite lifecycle and SRT/ASS generation passed with synthetic fixtures; no download, model, translation service or GPU render.
+
+### Snow Shovel
+
+Category: Creative tools. A small interactive snow shoveling game in the browser.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Actual WebGL gameplay with keyboard driving and steering. Mission completion is not claimed.
+
+### AoE Agents
+
+Category: AI & automation. A dashboard for exploring game agent experiments.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.
+
+### Rauf Tuncer
+
+Category: Web. A digital home for an artist’s work and visual archive.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: English 10 page static export, TypeScript, real browser homepage and local contact preview passed; reused Next 16.1.6 vs requested 16.2.11; archive claims not independently verified
+
+### İmleç
+
+Category: AI & automation. A desktop voice assistant experiment.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: English voice configuration, prompt and UI; isolated preview instantiated and four state methods passed on Windows Qt offscreen. Native screenshot, real speech and AI integration unverified.
+
+### BeatCut
+
+Category: Creative tools. Plan video cuts around a music track’s rhythm.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: English main CLI and Studio controls; Windows dry run passed on synthetic 12 second click track with specified 120 BPM. Studio/model/render paths unverified.
+
+### Desktop Pet
+
+Category: AI & automation. An expressive face for a desktop companion.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Actual face animations selected with manual controls. No robot connection or autonomous behavior.
+
+### Build a Companion
+
+Category: Web. An interactive guide through a desktop toy’s wiring and assembly.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: Original application flow restored in the separate copy. A fresh recording and complete English language review are pending.
+
+### GlassLoop
+
+Category: Creative tools. A Unity game prototype.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: English startup and isolated save identity; actual Windows Unity build exited 198 due missing headless license entitlement; gameplay not verified
+
+### Flow Auto
+
+Category: AI & automation. An automation experiment whose application source is currently unavailable.
+
+Role: Solo creator · Product, design and engineering. I built this automation experiment independently. Its application source is being recovered.
+
+Verification: Windows source folder rechecked: only package files, node_modules and browser profile; declared index.js absent. No runnable application source.
+
+### Sift for Windows
+
+Category: Desktop. A native Windows interface for exploring development sessions.
+
+Role: Solo creator · Product, design and engineering. I designed and built this project independently, including its interface and implementation.
+
+Verification: 77 Windows core tests passed; isolated English synthetic startup source prepared; native WinUI build/run pending WinApp0.6+ (installed0.5.0)
+

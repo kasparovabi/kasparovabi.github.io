@@ -1,0 +1,102 @@
+# Ahmet Kazankaya
+
+> AI automation engineer based in Istanbul, Turkey. Builds the platform layer that makes LLM agents safe to run in production: execution runtimes, human approval gates, permission boundaries, run logging and evaluation harnesses. Ships native macOS, iOS, Windows and web tools as a solo builder. Open to full-time roles in Europe, on site or remote.
+
+Ahmet Kazankaya works as a solo product builder: product and interface design, implementation and testing, with coding agents (Claude Code, Codex) as part of the process. A task management system built for Türkiye Maarif Vakfı, a foundation operating schools in 66 countries, has been in production for four months. Other running work includes an Etsy and Printify automation line with a Telegram approval gate, an ESP32-S3 desk robot with a speech pipeline, and open source Claude Code skill sets that other people install.
+
+Skills: LLM agent orchestration, workflow automation, evaluation harnesses, CI reliability gates, prompt engineering, retrieval augmented generation, Python, TypeScript, Swift and SwiftUI, FastAPI, Next.js, Docker, AWS, ESP32 firmware. Languages: Turkish, English.
+
+Contact: ahmetkazankaya1@gmail.com, [LinkedIn](https://www.linkedin.com/in/ahmetkazankaya), [GitHub](https://github.com/kasparovabi).
+
+## Profile
+
+- [Portfolio](https://kasparovabi.github.io/): interactive collection of 49 independent software projects
+- [Background and CV](https://kasparovabi.github.io/cv.html): summary, working model, production case studies with symptom, root cause and fix
+- [CV as PDF](https://kasparovabi.github.io/Ahmet-Kazankaya-CV.pdf)
+
+## Case studies
+
+- [Template Studio](https://kasparovabi.github.io/projects/maarif-sablon.html): Turn everyday announcements into consistent, ready to export designs.
+- [DSH Studio](https://kasparovabi.github.io/projects/dsh-studio.html): A workspace for working with coding agents.
+- [Sift](https://kasparovabi.github.io/projects/sift.html): Find and revisit coding conversations across projects.
+
+## Products
+
+- [Gecit](https://kasparovabi.github.io/gecit/): shares one keyboard, mouse and clipboard between a Windows PC and a Mac over the local network; free, with a one-time Pro license for file drag and drop
+- [Gecit privacy policy](https://kasparovabi.github.io/gecit/privacy.html)
+
+## Open source
+
+- [Sift](https://github.com/kasparovabi/sift): native macOS app that indexes local Claude Code and Codex session transcripts for full text search
+- [DSH Studio](https://github.com/kasparovabi/dsh-studio): unofficial native macOS client for dsh, the DeepSeek agent harness
+- [Cutaway](https://github.com/kasparovabi/cutaway): native macOS app that transcribes a video and matches short clips to every sentence
+- [Busted](https://github.com/kasparovabi/busted): a Mac desk guard that catches snoops
+- [claude-audit-20](https://github.com/kasparovabi/claude-audit-20): guard-20 and audit-20 for Claude Code, twenty AI coding failure classes as write time rules plus a twenty pass verification gate with a false positive filter
+- [motion-first-design](https://github.com/kasparovabi/motion-first-design): Claude Code skill for motion first web design, published with the blind ablation that proved its first version wrong
+- [claude-file-bridge](https://github.com/kasparovabi/claude-file-bridge): uploads real files to a page when browser automation file upload is broken
+- [embeddinggemma2-rag-test](https://github.com/kasparovabi/embeddinggemma2-rag-test): EmbeddingGemma 2 GGUF settings for RAG compared against each other and BM25
+- [strands-decider-eval](https://github.com/kasparovabi/strands-decider-eval): AWS Strands Decider 2B tested on 501 real CI failures and 500 Wordle games
+- [iMenu timing fix](https://github.com/meyusufdemirci/iMenu-MacOS/pull/1): event ordering fix merged upstream into a macOS menu bar manager
+- [claude-mythos-scaffold](https://github.com/kasparovabi/claude-mythos-scaffold): retired August 2026, agent persistence scaffold for older Claude models
+
+## Security research
+
+- [Security research](https://kasparovabi.github.io/security-research/): coordinated disclosures and security writeups
+- [Omi disclosure](https://kasparovabi.github.io/security-research/2026-04-omi-disclosure.html): seventeen vulnerabilities in the Omi wearable backend, CVSS 10.0, coordinated disclosure timeline
+
+## All projects (49)
+
+- Africa Atlas (Web): Explore a continent through an interactive map and country index.
+- Communications Hub (Web): A single directory for a collection of institutional tools.
+- Task Board (Web): A team’s work, presented as an at a glance display.
+- Sign Studio (Web): Design institutional signs and prepare them for print.
+- [Template Studio](https://kasparovabi.github.io/projects/maarif-sablon.html) (Web): Turn everyday announcements into consistent, ready to export designs.
+- Kıpırda (Desktop): A movement break companion for time spent at a desk.
+- Maarifet (Web): Turn a structured workshop plan into a readable book.
+- Video Downloader (Web): A focused interface for downloading a video from a link.
+- Business Card Studio (Web): Create consistent business cards with print ready PDF output.
+- [DSH Studio](https://kasparovabi.github.io/projects/dsh-studio.html) (Desktop): A workspace for working with coding agents.
+- Etsy Factory (Desktop): An assisted product catalog workspace.
+- Pozla Gallery (Web): An invitation opens into a shared, polaroid style photo gallery.
+- Pozla Recap (Creative tools): Turn event photos into a recap with subject cutouts and layered photo transitions.
+- Peri (Desktop): An on screen companion with expressive states and captions.
+- KieBatch (Desktop): A desktop workspace for batch image generation.
+- Cutaway (Desktop): Find funny reaction clips that fit the spoken moments in your video.
+- Pozla Camera (Mobile): A shared event camera, with a playful introduction and a roll of memories.
+- Skill Pack (Developer tools): A reusable collection of agent workflows and development skills.
+- [Sift](https://kasparovabi.github.io/projects/sift.html) (Developer tools): Find and revisit coding conversations across projects.
+- Mythos Scaffold (Developer tools): A scaffold for experimenting with agent persistence and verification.
+- Audit 20 (Developer tools): A structured set of code verification guides.
+- Maarif Platform (Web): A shared entry point for institutional digital services.
+- Busted (Desktop): A Mac desk guard that reacts to keyboard activity and camera attention with an alert show.
+- Vien (Web): An image led studio website and gallery.
+- Global Signatures (Web): A multilingual email signature builder.
+- Signature Studio (Web): Build and preview a branded email signature.
+- Maarif AI (AI & automation): A conversational workspace with selectable models and specialist roles.
+- Player Feedback (AI & automation): An automated workflow for parsing and organizing player feedback.
+- Karart (Developer tools): A browser content engine for adapting a page’s appearance.
+- DSH Pocket (Mobile): A mobile companion for coding agent conversations.
+- DSH for Windows (Desktop): The Windows side of an agent development workspace.
+- Cebimde Claude (Mobile): Project and agent conversations in a pocket sized workspace.
+- Poz (Web): A shared camera experience with a limited number of shots.
+- Evening Outlook (Mobile): A daily view of conditions for planning time outdoors.
+- DripReader (Mobile): A reading app that reveals a little more of a book each day.
+- Latent (Mobile): An image workspace exploring RAW photography and spatial tools.
+- Chaos Café (Creative tools): A local party game of recipes, characters and questionable decisions.
+- iPhone Vizor (Developer tools): Diagnostics for an iPhone to Windows mirroring setup.
+- Video Pipeline (AI & automation): A command line pipeline for video records, ranking and subtitles.
+- Snow Shovel (Creative tools): A small interactive snow shoveling game in the browser.
+- AoE Agents (AI & automation): A dashboard for exploring game agent experiments.
+- Rauf Tuncer (Web): A digital home for an artist’s work and visual archive.
+- İmleç (AI & automation): A desktop voice assistant experiment.
+- BeatCut (Creative tools): Plan video cuts around a music track’s rhythm.
+- Desktop Pet (AI & automation): An expressive face for a desktop companion.
+- Build a Companion (Web): An interactive guide through a desktop toy’s wiring and assembly.
+- GlassLoop (Creative tools): A Unity game prototype.
+- Flow Auto (AI & automation): An automation experiment whose application source is currently unavailable.
+- Sift for Windows (Desktop): A native Windows interface for exploring development sessions.
+
+## Optional
+
+- [Full project details](https://kasparovabi.github.io/llms-full.txt): every project with role, implementation notes and verification scope
+- [Project data as JSON](https://kasparovabi.github.io/projects.json)
